@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " a ",
+        "dcd",
+        "bgb"
+    ],
+    "key": {
+        "a": {
+            "item": "advanced_solar_panels:crafting",
+            "data": 0
+        },
+        "b": {
+            "item": "advanced_solar_panels:crafting",
+            "data": 3
+        },
+        "c": {
+            "item": "icwth:hybrid_circuit"
+        },
+        "d": {
+            "item": "advanced_solar_panels:crafting",
+            "data": 6
+        },
+        "g": {
+            "item": "ic2:nuclear",
+            "data": 7
+        }
+    },
+    "result": {
+        "item": "icwth:ultimate_hybrid_circuit"
+    }
+}

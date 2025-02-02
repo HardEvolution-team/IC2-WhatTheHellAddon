@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "eae",
+        "bcb",
+        "ede"
+    ],
+    "key": {
+        "a": {
+            "item": "advanced_solar_panels:crafting",
+            "data": 6
+        },
+        "b": {
+            "item": "ic2:misc_resource",
+            "data": 2
+        },
+        "c": {
+            "item": "ic2:crafting",
+            "data": 2
+        },
+        "d": {
+            "item": "advanced_solar_panels:crafting",
+            "data": 1
+        },
+        "e": {
+            "item": "ic2:casing",
+                "data": 5
+        }
+    },
+    "result": {
+        "item": "icwth:hybrid_circuit"
+    }
+}

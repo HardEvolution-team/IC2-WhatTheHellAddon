@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "icwth:blocks/loli_solar_side",
+    "down": "icwth:blocks/loli_panel_down",
+    "up": "icwth:blocks/loli_solar_up",
+    "north": "icwth:blocks/loli_solar_side",
+    "east": "icwth:blocks/loli_solar_side",
+    "south": "icwth:blocks/loli_solar_side",
+    "west": "icwth:blocks/loli_solar_side"
+  }
+}

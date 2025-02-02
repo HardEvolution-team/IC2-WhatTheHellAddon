@@ -1,0 +1,28 @@
+{
+	"type": "avaritia:compressor",
+	"result": {
+		"item": "icwth:mfsu_singularity",
+		"data": 10,
+		"count": 1
+	},
+	"cost": 300,
+	"ingredients": [
+		{
+			"type": "codechickenlib:conditional",
+			"conditions": [
+				{
+					"type": "avaritia:mod_exists",
+					"mod": "botania"
+				},
+				{
+					"type": "avaritia:config",
+					"tag": "materials.clay"
+				}
+			],
+			"pass": {
+				"type": "minecraft:item",
+				"item": "minecraft:clay_ball"
+			}
+		}
+	]
+}

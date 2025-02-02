@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ded",
+        "dcd",
+        "aba"
+    ],
+    "key": {
+        "a": {
+            "item": "gravisuite:crafting",
+            "data": 2
+        },
+        "b": {
+            "item": "icwth:ultimate_hybrid_circuit"
+        },
+        "c": {
+            "item": "icwth:advanced_overclocker"
+        },
+        "d": {
+            "item": "ic2:crafting",
+            "data": 4
+        },
+        "e": {
+            "item": "ic2:iridium_reflector"
+        }
+    },
+    "result": {
+        "item": "icwth:quantum_overclocker"
+    }
+}

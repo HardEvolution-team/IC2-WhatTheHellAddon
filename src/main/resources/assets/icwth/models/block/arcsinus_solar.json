@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "icwth:blocks/solar_panel_sides",
+    "down": "icwth:blocks/solar_panel_sides",
+    "up": "icwth:blocks/arcsinus_solar_up",
+    "north": "icwth:blocks/solar_panel_sides",
+    "east": "icwth:blocks/solar_panel_sides",
+    "south": "icwth:blocks/solar_panel_sides",
+    "west": "icwth:blocks/solar_panel_sides"
+  }
+}

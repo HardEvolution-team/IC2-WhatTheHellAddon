@@ -1,0 +1,12 @@
+{
+  "package": "com.ded.icwth.mixin.fluxnetworks",
+  "refmap": "mixins.icwth.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "TileFluxIC2Mixin"
+  ],
+  "client": [],
+  "server": []
+}

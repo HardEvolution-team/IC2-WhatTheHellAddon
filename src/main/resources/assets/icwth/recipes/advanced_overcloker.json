@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ebe",
+        "aca",
+        "ada"
+    ],
+    "key": {
+        "a": {
+            "item": "ic2:crafting",
+            "data": 15
+        },
+        "b": {
+            "item": "ic2:lzh_condensator"
+        },
+        "c": {
+            "item": "icwth:improved_overclocker"
+        },
+        "d": {
+            "item": "icwth:hybrid_circuit"
+        },
+        "e": {
+            "item": "advanced_solar_panels:crafting",
+            "data": 5
+        }
+    },
+    "result": {
+        "item": "icwth:advanced_overclocker"
+    }
+}

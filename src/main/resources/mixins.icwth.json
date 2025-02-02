@@ -1,0 +1,11 @@
+{
+  "package": "com.ded.icwth.mixin",
+  "refmap": "mixins.icwth.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [],
+  "server": []
+}

@@ -1,0 +1,31 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aba",
+        "aca",
+        "ede"
+    ],
+    "key": {
+        "a": {
+            "item": "ic2:crafting",
+            "data": 3
+        },
+        "b": {
+            "item": "ic2:overclocked_heat_vent"
+        },
+        "c": {
+            "item": "ic2:upgrade",
+            "data": 0
+        },
+        "d": {
+            "item": "ic2:crafting",
+            "data": 2
+        },
+        "e": {
+            "item": "ic2:hex_heat_storage"
+        }
+    },
+    "result": {
+        "item": "icwth:improved_overclocker"
+    }
+}

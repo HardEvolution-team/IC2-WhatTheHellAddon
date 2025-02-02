@@ -1,0 +1,367 @@
+{
+	"type": "avaritia:shaped",
+	"result": {
+		"item": "icwth:creative_overclocker",
+		"data": 0,
+		"count": 1
+	},
+	"pattern": [
+		"012345678",
+		"9abcdefgh",
+		"ijklmnopq",
+		"stuvwxyzA",
+		"BCDEFGHIJ",
+		"KLMNOPQRS",
+		"TUVWXYZ!@",
+		"#$%^&*()_",
+		"-=/?|+�;:"
+	],
+	"key": {
+		"0": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"1": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"2": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"3": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"4": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"5": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"6": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"7": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"8": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"9": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"a": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"b": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"c": {
+			"type": "minecraft:item",
+			"item": "avaritia:singularity",
+			"data": 3
+		},
+		"d": {
+			"type": "minecraft:item",
+			"item": "avaritia:resource",
+			"data": 4
+		},
+		"e": {
+			"type": "minecraft:item",
+			"item": "avaritia:singularity",
+			"data": 3
+		},
+		"f": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"g": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"h": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"i": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"j": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"k": {
+			"type": "minecraft:item",
+			"item": "advanced_solar_panels:crafting",
+			"data": 13
+		},
+		"l": {
+			"type": "minecraft:item",
+			"item": "advanced_solar_panels:crafting",
+			"data": 13
+		},
+		"m": {
+			"type": "minecraft:item",
+			"item": "ic2:hex_heat_storage"
+		},
+		"n": {
+			"type": "minecraft:item",
+			"item": "advanced_solar_panels:crafting",
+			"data": 13
+		},
+		"o": {
+			"type": "minecraft:item",
+			"item": "advanced_solar_panels:crafting",
+			"data": 13
+		},
+		"p": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"q": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"s": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"t": {
+			"type": "minecraft:item",
+			"item": "avaritia:singularity",
+			"data": 2
+		},
+		"u": {
+			"type": "minecraft:item",
+			"item": "ic2:hex_heat_storage"
+		},
+		"v": {
+			"type": "minecraft:item",
+			"item": "icwth:quantum_overclocker"
+		},
+		"w": {
+			"type": "minecraft:item",
+			"item": "icwth:quantum_overclocker"
+		},
+		"x": {
+			"type": "minecraft:item",
+			"item": "icwth:quantum_overclocker"
+		},
+		"y": {
+			"type": "minecraft:item",
+			"item": "ic2:hex_heat_storage"
+		},
+		"z": {
+			"type": "minecraft:item",
+			"item": "avaritia:singularity",
+			"data": 2
+		},
+		"A": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"B": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"C": {
+			"type": "minecraft:item",
+			"item": "avaritia:resource",
+			"data": 4
+		},
+		"D": {
+			"type": "minecraft:item",
+			"item": "avaritia:endest_pearl"
+		},
+		"E": {
+			"type": "minecraft:item",
+			"item": "ic2:hex_heat_storage"
+		},
+		"F": {
+			"type": "minecraft:item",
+			"item": "avaritia:resource",
+			"data": 5
+		},
+		"G": {
+			"type": "minecraft:item",
+			"item": "ic2:hex_heat_storage"
+		},
+		"H": {
+			"type": "minecraft:item",
+			"item": "avaritia:endest_pearl"
+		},
+		"I": {
+			"type": "minecraft:item",
+			"item": "avaritia:resource",
+			"data": 4
+		},
+		"J": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"K": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"L": {
+			"type": "minecraft:item",
+			"item": "avaritia:singularity",
+			"data": 3
+		},
+		"M": {
+			"type": "minecraft:item",
+			"item": "ic2:hex_heat_storage"
+		},
+		"N": {
+			"type": "minecraft:item",
+			"item": "icwth:quantum_overclocker"
+		},
+		"O": {
+			"type": "minecraft:item",
+			"item": "icwth:quantum_overclocker"
+		},
+		"P": {
+			"type": "minecraft:item",
+			"item": "icwth:quantum_overclocker"
+		},
+		"Q": {
+			"type": "minecraft:item",
+			"item": "ic2:hex_heat_storage"
+		},
+		"R": {
+			"type": "minecraft:item",
+			"item": "avaritia:singularity",
+			"data": 3
+		},
+		"S": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"T": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"U": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"V": {
+			"type": "minecraft:item",
+			"item": "advanced_solar_panels:crafting",
+			"data": 5
+		},
+		"W": {
+			"type": "minecraft:item",
+			"item": "advanced_solar_panels:crafting",
+			"data": 5
+		},
+		"X": {
+			"type": "minecraft:item",
+			"item": "ic2:hex_heat_storage"
+		},
+		"Y": {
+			"type": "minecraft:item",
+			"item": "advanced_solar_panels:crafting",
+			"data": 5
+		},
+		"Z": {
+			"type": "minecraft:item",
+			"item": "advanced_solar_panels:crafting",
+			"data": 5
+		},
+		"!": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"@": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"#": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"$": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"%": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"^": {
+			"type": "minecraft:item",
+			"item": "avaritia:singularity",
+			"data": 2
+		},
+		"&": {
+			"type": "minecraft:item",
+			"item": "avaritia:resource",
+			"data": 4
+		},
+		"*": {
+			"type": "minecraft:item",
+			"item": "avaritia:singularity",
+			"data": 2
+		},
+		"(": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		")": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"_": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"-": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"=": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"/": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"?": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"|": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"+": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		"�": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		";": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		},
+		":": {
+			"type": "minecraft:item",
+			"item": "minecraft:air"
+		}
+	}
+}
+
