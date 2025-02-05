@@ -14,6 +14,7 @@ import com.ded.icwth.items.materials.ItemFiveCompressedDenseIridiumPlate;
 import com.ded.icwth.items.materials.ItemQuadrupleDenseIridiumPlate;
 import com.ded.icwth.items.materials.ItemTripleDenseIridiumPlate;
 import com.ded.icwth.items.singularity.ItemMFSUSingularity;
+import com.ded.icwth.items.upgrades.matter.ItemMatterUpgrade;
 import com.ded.icwth.items.upgrades.overclocker.ItemAdvancedOverclocker;
 import com.ded.icwth.items.upgrades.overclocker.ItemCreativeOverclocker;
 import com.ded.icwth.items.upgrades.overclocker.ItemImprovedOverclocker;
@@ -45,6 +46,7 @@ public class CommonProxy {
         event.getRegistry().register(new ItemQuantumCircuit());
         event.getRegistry().register(new ItemMFSUSingularity());
 
+        event.getRegistry().register(new ItemMatterUpgrade());
 
 
        //event.getRegistry().register(new ItemBlock(CommonProxy.LoliSolar).setRegistryName(CommonProxy.LoliSolar.getTranslationKey()));

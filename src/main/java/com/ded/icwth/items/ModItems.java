@@ -18,6 +18,7 @@ import com.ded.icwth.items.materials.ItemFiveCompressedDenseIridiumPlate;
 import com.ded.icwth.items.materials.ItemQuadrupleDenseIridiumPlate;
 import com.ded.icwth.items.materials.ItemTripleDenseIridiumPlate;
 import com.ded.icwth.items.singularity.ItemMFSUSingularity;
+import com.ded.icwth.items.upgrades.matter.ItemMatterUpgrade;
 import com.ded.icwth.items.upgrades.overclocker.ItemAdvancedOverclocker;
 import com.ded.icwth.items.upgrades.overclocker.ItemCreativeOverclocker;
 import com.ded.icwth.items.upgrades.overclocker.ItemImprovedOverclocker;
@@ -59,6 +60,8 @@ public class ModItems {
     public static ItemQuadrupleDenseIridiumPlate quadrupleDenseIridiumPlate;
 
 
+    @GameRegistry.ObjectHolder("icwth:matter_upgrade")
+    public static ItemMatterUpgrade matterUpgrade;
 
 
 
@@ -134,7 +137,7 @@ public class ModItems {
         ultimateHybridCircuit.initModel();
         quantumCircuit.initModel();
 
-
+        matterUpgrade.initModel();
         mfsuSingularity.initModel();
 
 

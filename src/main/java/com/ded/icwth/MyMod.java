@@ -21,6 +21,7 @@ import ic2.core.IC2;
 import ic2.core.block.BlockTileEntity;
 import ic2.core.block.TeBlockRegistry;
 import ic2.core.block.generator.tileentity.TileEntitySolarGenerator;
+import ic2.core.item.upgrade.ItemUpgradeModule;
 import ic2.core.ref.IC2Material;
 import ic2.core.ref.TeBlock;
 import ic2.core.util.Util;
@@ -29,8 +30,12 @@ import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -47,12 +52,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.Nullable;
 
 import static com.ded.icwth.Tags.MODID;
 
 @Mod(modid = MODID, version = Tags.VERSION, name = Tags.MODNAME, acceptedMinecraftVersions = "[1.12.2]")
 public class MyMod {
-
+  //  public static final ItemUpgradeModule.UpgradeType MATTER_UPGRADE_TYPE = new ItemUpgradeModule.UpgradeType("matter_upgrade");
     public static BlockTileEntity machines;
     public static CommonProxy proxy;
 
@@ -73,8 +79,6 @@ public class MyMod {
 
 
       //  CommonConfig.energystorage.extrememfsu.outputTier = Integer.MAX_VALUE;
-
-
 
 
 

@@ -16,12 +16,12 @@ import java.util.List;
 
 public class TileLoliSolarPanel extends TileEntitySolarBase {
 
-    public final double capacity = (double) Integer.MAX_VALUE * 4; // Вместимость для двух пакетов
-    public final double generatePerPacket = Integer.MAX_VALUE; // Один пакет
+    public final double capacity = (double) Integer.MAX_VALUE * 8192; // Вместимость для двух пакетов
+    public final double generatePerPacket = (double) Integer.MAX_VALUE * 1024; // Один пакет
 
     public TileLoliSolarPanel() {
         super();
-        this.energy = new BasicSource((TileEntity) this, this.capacity, 14);
+        this.energy = new BasicSource((TileEntity) this, this.capacity, Integer.MAX_VALUE);
         this.output = this.generatePerPacket; // Максимальный размер одного пакета
     }
 

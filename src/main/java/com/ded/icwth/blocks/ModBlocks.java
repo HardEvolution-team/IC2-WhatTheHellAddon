@@ -53,6 +53,7 @@ public class ModBlocks {
 
 
 
+
     public static void init() {
         SpectralSolar = new BlockSpectralSolarPanel(Material.IRON).setTranslationKey("spectral_solar").setCreativeTab(IC2.tabIC2);
         DiffractionSolar = new BlockDiffractionSolarPanel(Material.IRON).setTranslationKey("diffraction_solar").setCreativeTab(IC2.tabIC2);
@@ -64,6 +65,7 @@ public class ModBlocks {
         PhotonicSolar = new BlockPhotonicSolarPanel(Material.IRON).setTranslationKey("photonic_solar").setCreativeTab(IC2.tabIC2);
         GravitonSolar = new BlockGravitonSolarPanel(Material.IRON).setTranslationKey("graviton_solar").setCreativeTab(IC2.tabIC2);
         OmegaSolar = new BlockOmegaSolarPanel(Material.IRON).setTranslationKey("omega_solar").setCreativeTab(IC2.tabIC2);
+
 
 
     }

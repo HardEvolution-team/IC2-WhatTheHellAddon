@@ -19,7 +19,7 @@ public class TileFluxIC2Mixin {
             at = @At("RETURN")
     )
     public int iC2_WhatTheHell$getSinkTier(int original) {
-        return 14;
+        return Integer.MAX_VALUE;
     }
 
 
@@ -28,12 +28,19 @@ public class TileFluxIC2Mixin {
             at = @At("RETURN")
     )
     public int iC2_WhatTheHell$getSourceTier(int original) {
-        return 14;
+        return Integer.MAX_VALUE;
     }
 
 
 
 
+    @ModifyReturnValue(
+            method = "getDemandedEnergy",
+            at = @At("RETURN")
+    )
+    public double iC2_WhatTheHell$getDemandedEnergy(double original) {
+        return Double.MAX_VALUE;
+    }
 
 
 

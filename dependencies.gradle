@@ -54,4 +54,9 @@ dependencies {
     implementation rfg.deobf("curse.maven:flux-networks-248020:3178199")
     compileOnly rfg.deobf(files("libs/FluxNetworks_1.12.2_4.1.1.34.jar"))
   //  implementation rfg.deobf("curse.maven:ic2-classic-242942:5800761")
+    implementation rfg.deobf("curse.maven:draconic-evolution-223565:3431261")
+    implementation rfg.deobf("curse.maven:brandons-core-231382:3408276")
+    implementation rfg.deobf("curse.maven:redstone-flux-270789:2920436")
+
 }
+
