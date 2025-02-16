@@ -2,8 +2,9 @@ package com.ded.icwth;
 
 
 import com.ded.icwth.blocks.ModBlocks;
-import com.ded.icwth.blocks.ModTiles;
 
+
+import com.ded.icwth.blocks.batbox.TileCompressedMFSU;
 import com.ded.icwth.blocks.panels.ArcsinusSolarPanel.TileArcsinusSolarPanel;
 import com.ded.icwth.blocks.panels.BrauthemSolarPanel.TileBrauthemSolarPanel;
 import com.ded.icwth.blocks.panels.DiffractionPanel.TileDiffractionSolarPanel;
@@ -125,6 +126,7 @@ public class MyMod {
         GameRegistry.registerTileEntity(TileGravitonSolarPanel.class, "tileEntityGravitonSolar");
         GameRegistry.registerTileEntity(TileOmegaSolarPanel.class, "tileEntityOmegaSolar");
 
+        GameRegistry.registerTileEntity(TileCompressedMFSU.class, "tileEntityCompressedMFSU");
 
     }
 

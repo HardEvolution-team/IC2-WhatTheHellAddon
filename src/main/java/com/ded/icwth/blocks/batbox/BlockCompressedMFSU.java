@@ -1,5 +1,7 @@
-package com.ded.icwth.blocks.panels.BrauthemSolarPanel;
+package com.ded.icwth.blocks.batbox;
 
+import com.ded.icwth.blocks.panels.BrauthemSolarPanel.TileBrauthemSolarPanel;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
@@ -9,8 +11,6 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
@@ -18,37 +18,31 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class BlockBrauthemSolarPanel extends BlockContainer {
+public class BlockCompressedMFSU extends BlockContainer {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
-    public BlockBrauthemSolarPanel(Material iron) {
+
+    public BlockCompressedMFSU(Material iron) {
         super(iron);
     }
 
-    @Override
     public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
     }
 
-    @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
-    @Override
     public boolean isFullCube(IBlockState state) {
         return false;
     }
 
     @Nullable
-    @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileBrauthemSolarPanel();
     }
 
-
-
-    @SideOnly(Side.CLIENT)
+    @SideOnly(value= Side.CLIENT)
     public void initModel() {
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
-    }
-}
+        ModelLoader.setCustomModelResourceLocation((Item)Item.getItemFromBlock((Block)this), (int)0, (ModelResourceLocation)new ModelResourceLocation(this.getRegistryName(), "inventory"));
+    }}

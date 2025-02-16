@@ -3,7 +3,7 @@ package com.ded.icwth;
 
 
 import com.ded.icwth.blocks.ModBlocks;
-import com.ded.icwth.blocks.ModTiles;
+
 import com.ded.icwth.blocks.panels.LoliSolarPanel.BlockLoliSolarPanel;
 import com.ded.icwth.blocks.panels.LoliSolarPanel.TileLoliSolarPanel;
 import com.ded.icwth.items.circuits.ItemHybridCircuit;
@@ -52,7 +52,7 @@ public class CommonProxy {
        //event.getRegistry().register(new ItemBlock(CommonProxy.LoliSolar).setRegistryName(CommonProxy.LoliSolar.getTranslationKey()));
 
 
-        ModTiles.buildDummies();
+
 
 
         event.getRegistry().register(new ItemQuadrupleDenseIridiumPlate());

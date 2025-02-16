@@ -3,6 +3,7 @@ package com.ded.icwth.blocks;
 
 import com.ded.icwth.Tags;
 
+import com.ded.icwth.blocks.batbox.BlockCompressedMFSU;
 import com.ded.icwth.blocks.panels.ArcsinusSolarPanel.BlockArcsinusSolarPanel;
 
 import com.ded.icwth.blocks.panels.BrauthemSolarPanel.BlockBrauthemSolarPanel;
@@ -50,6 +51,7 @@ public class ModBlocks {
     public static Block OmegaSolar;
 
 
+    public static Block CompressedMFSU;
 
 
 
@@ -66,7 +68,7 @@ public class ModBlocks {
         GravitonSolar = new BlockGravitonSolarPanel(Material.IRON).setTranslationKey("graviton_solar").setCreativeTab(IC2.tabIC2);
         OmegaSolar = new BlockOmegaSolarPanel(Material.IRON).setTranslationKey("omega_solar").setCreativeTab(IC2.tabIC2);
 
-
+        CompressedMFSU = new BlockCompressedMFSU(Material.IRON).setTranslationKey("compressed_mfsu").setCreativeTab(IC2.tabIC2);
 
     }
 
@@ -82,6 +84,7 @@ public class ModBlocks {
         registerBlock(GravitonSolar, GravitonSolar.getTranslationKey().substring(5));
         registerBlock(OmegaSolar, OmegaSolar.getTranslationKey().substring(5));
 
+        registerBlock(CompressedMFSU, CompressedMFSU.getTranslationKey().substring(5));
     }
 
     public static void Render() {
@@ -96,6 +99,7 @@ public class ModBlocks {
         registerRender(GravitonSolar);
         registerRender(OmegaSolar);
 
+        registerRender(CompressedMFSU);
     }
 
 
