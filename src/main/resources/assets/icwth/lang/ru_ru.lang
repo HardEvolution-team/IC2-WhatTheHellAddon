@@ -9,6 +9,6 @@ item.icwth.quantum_circuit.name=Квантовая электросхема
 
 
 
-
-
+icwth.mfsu.capacity = Хранит
+icwth.mfsu.generate = Производит
 

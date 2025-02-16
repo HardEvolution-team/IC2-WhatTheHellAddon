@@ -1,5 +1,7 @@
 package com.ded.icwth.blocks.panels.LoliSolarPanel;
 
+import com.ded.icwth.blocks.panels.DiffractionPanel.TileDiffractionSolarPanel;
+import ic2.core.init.Localization;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
@@ -8,7 +10,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -19,6 +23,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class BlockLoliSolarPanel extends BlockContainer {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -31,6 +36,12 @@ public class BlockLoliSolarPanel extends BlockContainer {
 
 
 
+    @Override
+    public void addInformation(ItemStack stack, @org.jetbrains.annotations.Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+        tooltip.add(Localization.translate("icwth.mfsu.capacity ") + " " + String.format("%.2f", TileLoliSolarPanel.capacity) + (" eu"));
+        tooltip.add(Localization.translate("icwth.mfsu.generate ") + " " + String.format("%.2f", TileLoliSolarPanel.generate) + (" eu/t"));
+    }
 
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state) {

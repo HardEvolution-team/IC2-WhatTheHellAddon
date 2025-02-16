@@ -6,3 +6,8 @@ item.icwth.creatrive_overclocker.name=Creative Overclocker Upgrade
 item.icwth.hybrid_circuit.name=Hybrid Circuit
 item.icwth.ultimate_hybrid_circuit.name=Ultimate Hybrid Circuit
 item.icwth.quantum_circuit.name=Quantum Circuit
+
+
+
+icwth.mfsu.capacity = Capacity
+icwth.mfsu.generate = Generate

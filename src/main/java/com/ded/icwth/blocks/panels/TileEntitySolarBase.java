@@ -37,7 +37,7 @@ import java.util.Random;
 
 public class TileEntitySolarBase extends TileEntityBase implements ITickable, IWrenchable, ILocatable, IMultiEnergySource {
 
-    public BasicSource energy;
+    public static BasicSource energy;
     private static final Random r = new Random();
     public double packetAmount;
     private double storage;

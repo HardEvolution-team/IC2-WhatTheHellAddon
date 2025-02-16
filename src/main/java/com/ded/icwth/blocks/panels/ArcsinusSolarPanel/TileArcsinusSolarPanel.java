@@ -17,8 +17,8 @@ import java.util.List;
 
 public class TileArcsinusSolarPanel extends TileEntitySolarBase {
 
-    public double capacity = CommonConfig.solarpanel.extremewtf.capacity * 300;
-    public double generate = CommonConfig.solarpanel.extremewtf.generateDay * 300;
+    public static double capacity = CommonConfig.solarpanel.extremewtf.capacity * 65536;
+    public static double generate = CommonConfig.solarpanel.extremewtf.generateDay * 65536;
 
     public TileArcsinusSolarPanel(){
         super();

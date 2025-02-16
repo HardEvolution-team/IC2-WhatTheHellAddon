@@ -16,8 +16,8 @@ import java.util.List;
 
 public class TileDiffractionSolarPanel extends TileEntitySolarBase {
 
-    public double capacity = CommonConfig.solarpanel.extremewtf.capacity * 64;
-    public double generate = CommonConfig.solarpanel.extremewtf.generateDay * 64;
+    public static double capacity = CommonConfig.solarpanel.extremewtf.capacity * 2048;
+    public static double generate = CommonConfig.solarpanel.extremewtf.generateDay * 2048;
 
     public TileDiffractionSolarPanel(){
         super();
