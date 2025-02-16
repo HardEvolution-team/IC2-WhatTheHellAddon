@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "icwth:items/mfsu_singularity"
+    "layer0": "icwth:items/mfsu_singularity_layer0",
+    "layer1": "icwth:items/mfsu_singularity_layer1"
   }
 }
