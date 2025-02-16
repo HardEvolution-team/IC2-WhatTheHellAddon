@@ -18,7 +18,7 @@ import java.util.List;
 public class TileVectorSolarPanel extends TileEntitySolarBase {
 
     public static double capacity = CommonConfig.solarpanel.extremewtf.capacity * 1024;
-    public static double generate = CommonConfig.solarpanel.extremewtf.generateDay * 256;
+    public static double generate = (double)CommonConfig.solarpanel.extremewtf.generateDay * 256;
 
     public TileVectorSolarPanel(){
         super();

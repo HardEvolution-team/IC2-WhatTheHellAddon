@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aba",
+        "cdc",
+        "aba"
+    ],
+    "key": {
+        "a": {
+            "item": "gravisuite:crafting",
+            "data": 1
+        },
+        "b": {
+            "item": "wtfic2addon:dense_iridium_reinforce_plate"
+        },
+        "c": {
+            "item": "gravisuite:crafting",
+            "data": 2
+        },
+        "d": {
+            "item": "ultimate_hybrid_circuit"
+        }
+    },
+    "result": {
+        "item": "icwth:quantum_circuit"
+    }
+}

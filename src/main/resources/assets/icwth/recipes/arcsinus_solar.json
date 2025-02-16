@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aaa",
+        "bcb",
+        "dbd"
+    ],
+    "key": {
+        "a": {
+            "item": "icwth:omega_solar"
+        },
+        "b": {
+            "item": "wtfic2addon:te",
+            "data": 13
+        },
+        "c": {
+            "item": "quadruple_dense_iridium_plate"
+        },
+        "d": {
+            "item": "triple_dense_iridium_plate"
+        }
+    },
+    "result": {
+        "item": "icwth:arcsinus_solar"
+    }
+}

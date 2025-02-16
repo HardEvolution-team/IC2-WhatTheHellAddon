@@ -31,8 +31,8 @@ public class BlockGravitonSolarPanel extends BlockContainer {
     @Override
     public void addInformation(ItemStack stack, @org.jetbrains.annotations.Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
-        tooltip.add(Localization.translate("icwth.mfsu.capacity ") + " " + String.format("%.2f", TileGravitonSolarPanel.capacity) + (" eu"));
-        tooltip.add(Localization.translate("icwth.mfsu.generate ") + " " + String.format("%.2f", TileGravitonSolarPanel.generate) + (" eu/t"));
+        tooltip.add(Localization.translate("icwth.mfsu.capacity ") + " " + String.format("%.0f", TileGravitonSolarPanel.capacity) + (" eu"));
+        tooltip.add(Localization.translate("icwth.mfsu.generate ") + " " + String.format("%.0f", TileGravitonSolarPanel.generate) + (" eu/t"));
     }
 
     @Override

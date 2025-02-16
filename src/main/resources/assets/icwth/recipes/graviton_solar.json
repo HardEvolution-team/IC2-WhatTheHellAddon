@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aaa",
+        "bcb",
+        "bdb"
+    ],
+    "key": {
+        "a": {
+            "item": "icwth:dispersion_solar"
+        },
+        "b": {
+            "item": "five_compressed_dense_iridium_plate"
+        },
+        "c": {
+            "item": "wtfic2addon:te",
+            "data": 14
+        },
+        "d": {
+            "item": "mfsu_singularity"
+        }
+    },
+    "result": {
+        "item": "icwth:graviton_solar"
+    }
+}

@@ -32,8 +32,8 @@ public class BlockDiffractionSolarPanel extends BlockContainer {
     @Override
     public void addInformation(ItemStack stack, @org.jetbrains.annotations.Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
-        tooltip.add(Localization.translate("icwth.mfsu.capacity ") + " " + String.format("%.2f", TileDiffractionSolarPanel.capacity) + (" eu"));
-        tooltip.add(Localization.translate("icwth.mfsu.generate ") + " " + String.format("%.2f", TileDiffractionSolarPanel.generate) + (" eu/t"));
+        tooltip.add(Localization.translate("icwth.mfsu.capacity ") + " " + String.format("%.0f", TileDiffractionSolarPanel.capacity) + (" eu"));
+        tooltip.add(Localization.translate("icwth.mfsu.generate ") + " " + String.format("%.0f", TileDiffractionSolarPanel.generate) + (" eu/t"));
     }
 
     @Override

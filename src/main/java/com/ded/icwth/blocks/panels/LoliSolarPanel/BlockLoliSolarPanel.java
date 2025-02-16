@@ -39,8 +39,8 @@ public class BlockLoliSolarPanel extends BlockContainer {
     @Override
     public void addInformation(ItemStack stack, @org.jetbrains.annotations.Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
-        tooltip.add(Localization.translate("icwth.mfsu.capacity ") + " " + String.format("%.2f", TileLoliSolarPanel.capacity) + (" eu"));
-        tooltip.add(Localization.translate("icwth.mfsu.generate ") + " " + String.format("%.2f", TileLoliSolarPanel.generate) + (" eu/t"));
+        tooltip.add(Localization.translate("icwth.mfsu.capacity ") + " " + String.format("%.0f", TileLoliSolarPanel.capacity) + (" eu"));
+        tooltip.add(Localization.translate("icwth.mfsu.generate ") + " " + String.format("%.0f", TileLoliSolarPanel.generate) + (" eu/t"));
     }
 
     @Override

@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aaa",
+        "bcb",
+        "ded"
+    ],
+    "key": {
+        "a": {
+            "item": "icwth:photonic_solar"
+        },
+        "b": {
+            "item": "wtfic2addon:te",
+            "data": 13
+        },
+        "c": {
+            "item": "double_dense_iridium_plate"
+        },
+        "d": {
+            "item": "triple_dense_iridium_plate"
+        },
+        "e": {
+            "item": "quantum_circuit"
+        }
+    },
+    "result": {
+        "item": "icwth:diffraction_solar"
+    }
+}

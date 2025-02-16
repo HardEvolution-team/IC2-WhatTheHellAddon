@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aaa",
+        "bcb",
+        "ded"
+    ],
+    "key": {
+        "a": {
+            "item": "vector_solar"
+        },
+        "b": {
+            "item": "ic2:nuclear",
+            "data": 10
+        },
+        "c": {
+            "item": "wtfic2addon:te",
+            "data": 13
+        },
+        "d": {
+            "item": "double_dense_iridium_plate"
+        },
+        "e": {
+            "item": "triple_dense_iridium_plate"
+        }
+    },
+    "result": {
+        "item": "icwth:photonic_solar"
+    }
+}

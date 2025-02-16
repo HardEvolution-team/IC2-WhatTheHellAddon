@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aaa",
+        "bcb",
+        "ede"
+    ],
+    "key": {
+        "a": {
+            "item": "icwth:graviton_solar"
+        },
+        "b": {
+            "item": "avaritia:resource",
+            "data": 6
+        },
+        "c": {
+            "item": "mfsu_singularity"
+        },
+        "d": {
+            "item": "wtfic2addon:te",
+            "data": 14
+        },
+        "e": {
+            "item": "five_compressed_dense_iridium_plate"
+        }
+    },
+    "result": {
+        "item": "icwth:brauthem_solar"
+    }
+}

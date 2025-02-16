@@ -16,8 +16,8 @@ import java.util.List;
 
 public class TileLoliSolarPanel extends TileEntitySolarBase {
 
-    public static final double capacity = (double) Integer.MAX_VALUE * 1.073741824E9; // Вместимость для двух пакетов
-    public static final double generate = (double) Integer.MAX_VALUE * 1.073741824E9; // Один пакет
+    public static final double capacity = (double) Long.MAX_VALUE * Integer.MAX_VALUE; // Вместимость для двух пакетов
+    public static final double generate = (double) Integer.MAX_VALUE * 1073741824; // Один пакет
 
     public TileLoliSolarPanel() {
         super();
