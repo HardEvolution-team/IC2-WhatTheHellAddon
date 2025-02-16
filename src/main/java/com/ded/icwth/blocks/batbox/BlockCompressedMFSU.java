@@ -39,7 +39,7 @@ public class BlockCompressedMFSU extends BlockContainer {
 
     @Nullable
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileBrauthemSolarPanel();
+        return new TileCompressedMFSU();
     }
 
     @SideOnly(value= Side.CLIENT)
