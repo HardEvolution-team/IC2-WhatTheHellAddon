@@ -1,12 +1,14 @@
 package com.ded.icwth;
 
 
+
 import com.ded.icwth.blocks.ModBlocks;
 
 
 import com.ded.icwth.blocks.batbox.TileCompressedMFSU;
 import com.ded.icwth.blocks.panels.ArcsinusSolarPanel.TileArcsinusSolarPanel;
 import com.ded.icwth.blocks.panels.BrauthemSolarPanel.TileBrauthemSolarPanel;
+import com.ded.icwth.blocks.panels.ChinaSolar.TileChinaSolarPanel;
 import com.ded.icwth.blocks.panels.DiffractionPanel.TileDiffractionSolarPanel;
 import com.ded.icwth.blocks.panels.DispersionSolarPanel.TileDispersionSolarPanel;
 import com.ded.icwth.blocks.panels.GravitonSolarPanel.TileGravitonSolarPanel;
@@ -17,6 +19,7 @@ import com.ded.icwth.blocks.panels.PhotonicSolarPanel.TilePhotonicSolarPanel;
 import com.ded.icwth.blocks.panels.SpectralSolarPanel.TileSpectralSolarPanel;
 
 import com.ded.icwth.blocks.panels.VectorSolarPanel.TileVectorSolarPanel;
+import com.ded.icwth.blocks.trash.EnergyTrashCanTile;
 import ic2.api.event.TeBlockFinalCallEvent;
 import ic2.core.IC2;
 import ic2.core.block.BlockTileEntity;
@@ -127,6 +130,12 @@ public class MyMod {
         GameRegistry.registerTileEntity(TileOmegaSolarPanel.class, "tileEntityOmegaSolar");
 
         GameRegistry.registerTileEntity(TileCompressedMFSU.class, "tileEntityCompressedMFSU");
+
+
+        GameRegistry.registerTileEntity(EnergyTrashCanTile.class, "tileEntityEnergyTrash");
+
+
+        GameRegistry.registerTileEntity(TileChinaSolarPanel.class, "tileEntityChinaSolar");
 
     }
 

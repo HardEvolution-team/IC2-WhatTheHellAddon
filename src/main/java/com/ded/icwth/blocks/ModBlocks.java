@@ -7,6 +7,7 @@ import com.ded.icwth.blocks.batbox.BlockCompressedMFSU;
 import com.ded.icwth.blocks.panels.ArcsinusSolarPanel.BlockArcsinusSolarPanel;
 
 import com.ded.icwth.blocks.panels.BrauthemSolarPanel.BlockBrauthemSolarPanel;
+import com.ded.icwth.blocks.panels.ChinaSolar.BlockChinaSolarPanel;
 import com.ded.icwth.blocks.panels.DiffractionPanel.BlockDiffractionSolarPanel;
 import com.ded.icwth.blocks.panels.DispersionSolarPanel.BlockDispersionSolarPanel;
 import com.ded.icwth.blocks.panels.GravitonSolarPanel.BlockGravitonSolarPanel;
@@ -16,6 +17,7 @@ import com.ded.icwth.blocks.panels.PhotonicSolarPanel.BlockPhotonicSolarPanel;
 
 import com.ded.icwth.blocks.panels.SpectralSolarPanel.BlockSpectralSolarPanel;
 import com.ded.icwth.blocks.panels.VectorSolarPanel.BlockVectorSolarPanel;
+import com.ded.icwth.blocks.trash.BlockEnergyTrashCan;
 import com.rumaruka.emt.emt;
 import ic2.core.IC2;
 import net.minecraft.block.Block;
@@ -54,6 +56,11 @@ public class ModBlocks {
     public static Block CompressedMFSU;
 
 
+    public static Block EnergyTrash;
+
+    public static Block ChinaSolar;
+
+
 
 
     public static void init() {
@@ -70,6 +77,13 @@ public class ModBlocks {
 
         CompressedMFSU = new BlockCompressedMFSU(Material.IRON).setTranslationKey("compressed_mfsu").setCreativeTab(IC2.tabIC2);
 
+
+        EnergyTrash = new BlockEnergyTrashCan(Material.IRON).setTranslationKey("energy_trash").setCreativeTab(IC2.tabIC2);
+
+
+        ChinaSolar = new BlockChinaSolarPanel(Material.IRON).setTranslationKey("china_solar").setCreativeTab(IC2.tabIC2);
+
+
     }
 
     public static void InGameRegister() {
@@ -85,6 +99,11 @@ public class ModBlocks {
         registerBlock(OmegaSolar, OmegaSolar.getTranslationKey().substring(5));
 
         registerBlock(CompressedMFSU, CompressedMFSU.getTranslationKey().substring(5));
+
+        registerBlock(EnergyTrash, EnergyTrash.getTranslationKey().substring(5));
+
+        registerBlock(ChinaSolar, ChinaSolar.getTranslationKey().substring(5));
+
     }
 
     public static void Render() {
@@ -100,6 +119,10 @@ public class ModBlocks {
         registerRender(OmegaSolar);
 
         registerRender(CompressedMFSU);
+
+        registerRender(EnergyTrash);
+
+        registerRender(ChinaSolar);
     }
 
 

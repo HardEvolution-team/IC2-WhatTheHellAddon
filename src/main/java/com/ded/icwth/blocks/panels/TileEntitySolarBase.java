@@ -37,149 +37,119 @@ import java.util.Random;
 
 public class TileEntitySolarBase extends TileEntityBase implements ITickable, IWrenchable, ILocatable, IMultiEnergySource {
 
-    public static BasicSource energy;
+    public BasicSource energy;
     private static final Random r = new Random();
     public double packetAmount;
     private double storage;
-    protected boolean isSunVisible;
     protected int tier;
     protected int tick;
     public double output;
 
     // Конструктор с правильной инициализацией энергии
     public TileEntitySolarBase(double output, double capacity, int tier) {
-        this.energy = energy; // capacity, tier, provideEnergy
+        this.energy = this.energy;
         this.output = output;
         this.tick = r.nextInt(64);
-        packetAmount = 2;
         this.tier = tier;
 
     }
-
-    // Пример конструктора для наследников
     public TileEntitySolarBase() {
-        this(1.0D, 1000, 1); // Пример значений по умолчанию
+        this(1.0, 1000.0, 1);
     }
 
-    @Override
     public void update() {
-        if (world == null || world.isRemote) return; // Работаем только на сервере
-
-        energy.update();
-        checkConditions();
+        if (this.world == null || this.world.isRemote) {
+            return;
+        }
+        this.energy.update();
+        this.checkConditions();
     }
 
     protected void checkConditions() {
-        // Убрана периодическая проверка солнца
-        createEnergy();
+        this.createEnergy();
     }
 
     protected void createEnergy() {
-        if (canGenerate()) { // Теперь зависит только от canGenerate()
-            energy.addEnergy(output);
+        if (this.canGenerate()) {
+            this.energy.addEnergy(this.output);
         }
     }
 
-    // Упрощенная проверка условий (можно переопределить в наследниках)
     protected boolean canGenerate() {
-        return true; // Всегда разрешено по умолчанию
+        return true;
     }
 
-    // Сохранение и загрузка
-    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        energy.readFromNBT(nbt);
-        output = nbt.getDouble("output");
+        this.energy.readFromNBT(nbt);
+        this.output = nbt.getDouble("output");
     }
 
-    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
-        energy.writeToNBT(nbt);
-        nbt.setDouble("output", output);
+        this.energy.writeToNBT(nbt);
+        nbt.setDouble("output", this.output);
         return nbt;
     }
 
-    @Override
     public void onChunkUnload() {
-        energy.onChunkUnload();
+        this.energy.onChunkUnload();
     }
 
-    @Override
     public void invalidate() {
-        energy.invalidate();
+        this.energy.invalidate();
         super.invalidate();
     }
 
-    // Реализация ILocatable для BasicSource
-    @Override
     public World getWorld() {
-        return super.getWorld(); // Возвращаем мир через метод суперкласса
+        return super.getWorld();
     }
 
-    @Override
     public BlockPos getPosition() {
-        return super.getPos(); // Используем позицию из TileEntity
+        return super.getPos();
     }
 
-    @Override
     public World getWorldObj() {
         return super.getWorld();
     }
 
-
-    // Реализация IWrenchable
-    @Override
     public EnumFacing getFacing(World world, BlockPos pos) {
-        return EnumFacing.UP; // Пример направления
+        return EnumFacing.UP;
     }
 
-    @Override
     public boolean setFacing(World world, BlockPos pos, EnumFacing newDirection, EntityPlayer player) {
-        return false; // Нельзя менять направление
+        return false;
     }
 
-    @Override
     public boolean wrenchCanRemove(World world, BlockPos pos, EntityPlayer player) {
-        return true; // Разрешить удаление гаечным ключом
+        return true;
     }
 
-    @Override
     public List<ItemStack> getWrenchDrops(World world, BlockPos pos, IBlockState state, TileEntity te, EntityPlayer player, int fortune) {
         return Collections.singletonList(new ItemStack(state.getBlock()));
     }
 
-    @Override
     public boolean sendMultipleEnergyPackets() {
-        return packetAmount > 0;
+        return this.packetAmount > 0.0;
     }
 
-    @Override
     public int getMultipleEnergyPacketAmount() {
-        return (int) packetAmount;
+        return (int)this.packetAmount;
     }
 
-    @Override
     public double getOfferedEnergy() {
-        return Math.min(output, storage);
+        return Math.min(this.output, this.storage);
     }
 
-    @Override
     public void drawEnergy(double amount) {
-        storage -= amount;
+        this.storage -= amount;
     }
 
-    @Override
     public int getSourceTier() {
-        return tier;
+        return this.tier;
     }
 
-
-    @Override
     public boolean emitsEnergyTo(IEnergyAcceptor receiver, EnumFacing side) {
         return side != EnumFacing.UP;
     }
-
-
 }

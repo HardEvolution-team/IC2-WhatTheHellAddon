@@ -14,19 +14,17 @@ import net.minecraft.world.World;
 import java.util.Arrays;
 import java.util.List;
 
-public class TileLoliSolarPanel extends TileEntitySolarBase {
-
-    public static final double capacity = (double) Long.MAX_VALUE * Integer.MAX_VALUE; // Вместимость для двух пакетов
-    public static final double generate = (double) Integer.MAX_VALUE * 1073741824; // Один пакет
+public class TileLoliSolarPanel
+        extends TileEntitySolarBase {
+    public static double capacity;
+    public static double generate;
 
     public TileLoliSolarPanel() {
-        super();
-        energy = new BasicSource((TileEntity) this, capacity, 14);
-        output = generate;
-
+        this.capacity = (double) Integer.MAX_VALUE * Long.MAX_VALUE;
+        this.generate = (double)CommonConfig.solarpanel.extremewtf.generateDay * 1.073741824E9;
+        this.energy = new BasicSource((TileEntity)this, this.capacity, Integer.MAX_VALUE);
+        this.output = this.generate;
     }
-
-
 
     @Override
     public List<ItemStack> getWrenchDrops(World world, BlockPos blockPos, IBlockState iBlockState, TileEntity tileEntity, EntityPlayer entityPlayer, int i) {

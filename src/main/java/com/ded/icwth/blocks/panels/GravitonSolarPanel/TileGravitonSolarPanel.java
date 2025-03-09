@@ -21,7 +21,7 @@ public class TileGravitonSolarPanel extends TileEntitySolarBase {
     public static double generate = (double)CommonConfig.solarpanel.extremewtf.generateDay * 1048576;
 
     public TileGravitonSolarPanel(){
-        energy = new BasicSource((TileEntity) this, capacity, 14);
+        energy = new BasicSource((TileEntity) this, capacity, Integer.MAX_VALUE);
         output = generate;
 
     }

@@ -1,4 +1,4 @@
-package com.ded.icwth.blocks.panels.BrauthemSolarPanel;
+package com.ded.icwth.blocks.panels.ChinaSolar;
 
 import com.ded.icwth.blocks.ModBlocks;
 import com.ded.icwth.blocks.panels.TileEntitySolarBase;
@@ -11,24 +11,23 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-
 import java.util.Arrays;
 import java.util.List;
 
-public class TileBrauthemSolarPanel extends TileEntitySolarBase {
-
+public class TileChinaSolarPanel
+        extends TileEntitySolarBase {
     public static double capacity;
     public static double generate;
 
-    public TileBrauthemSolarPanel() {
-        this.capacity = CommonConfig.solarpanel.extremewtf.capacity * 4194304.0;
-        this.generate = (double)CommonConfig.solarpanel.extremewtf.generateDay * 4194304.0;
-        this.energy = new BasicSource((TileEntity)this, this.capacity, Integer.MAX_VALUE);
-        this.output = this.generate;
+    public TileChinaSolarPanel() {
+        capacity = Double.MAX_VALUE;
+        generate = Long.MAX_VALUE;
+        this.energy = new BasicSource((TileEntity)this, capacity, Integer.MAX_VALUE);
+        this.output = generate;
     }
 
     @Override
     public List<ItemStack> getWrenchDrops(World world, BlockPos blockPos, IBlockState iBlockState, TileEntity tileEntity, EntityPlayer entityPlayer, int i) {
-        return Arrays.asList(new ItemStack[]{new ItemStack(ModBlocks.SpectralSolar)});
+        return Arrays.asList(new ItemStack(ModBlocks.SpectralSolar));
     }
 }
