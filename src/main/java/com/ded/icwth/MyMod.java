@@ -2,6 +2,7 @@ package com.ded.icwth;
 
 
 
+import com.ded.icwth.blocks.GuiHandler;
 import com.ded.icwth.blocks.ModBlocks;
 
 
@@ -77,7 +78,7 @@ public class MyMod {
         MinecraftForge.EVENT_BUS.register(this);
         LOGGER.info("I am " + Tags.MODNAME + " + at version " + Tags.VERSION);
 
-
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
         ModBlocks.init();
         ModBlocks.InGameRegister();
 
