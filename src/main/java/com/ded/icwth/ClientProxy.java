@@ -25,11 +25,6 @@ public class ClientProxy extends CommonProxy {
     public void registerRenders() {
         ModBlocks.Render();
 
-        ModelLoader.setCustomModelResourceLocation(
-                Item.getItemFromBlock(ModBlocks.CompressedMFSU),
-                0,
-                new ModelResourceLocation("icwth:compressed_mfsu", "inventory")
-        );
     }
 }
 

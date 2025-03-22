@@ -30,6 +30,11 @@ public class TilePhotonicSolarPanel extends TileEntitySolarBase {
 
     @Override
     public List<ItemStack> getWrenchDrops(World world, BlockPos blockPos, IBlockState iBlockState, TileEntity tileEntity, EntityPlayer entityPlayer, int i) {
-        return Arrays.asList(new ItemStack[]{new ItemStack(ModBlocks.SpectralSolar)});
+        return Arrays.asList(new ItemStack[]{new ItemStack(ModBlocks.PhotonicSolar)});
+    }
+
+    @Override
+    public String getName() {
+        return null;
     }
 }

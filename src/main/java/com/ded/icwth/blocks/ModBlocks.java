@@ -3,7 +3,7 @@ package com.ded.icwth.blocks;
 
 import com.ded.icwth.Tags;
 
-import com.ded.icwth.blocks.batbox.BlockCompressedMFSU;
+
 import com.ded.icwth.blocks.panels.ArcsinusSolarPanel.BlockArcsinusSolarPanel;
 
 import com.ded.icwth.blocks.panels.BrauthemSolarPanel.BlockBrauthemSolarPanel;
@@ -15,14 +15,12 @@ import com.ded.icwth.blocks.panels.LoliSolarPanel.BlockLoliSolarPanel;
 import com.ded.icwth.blocks.panels.OmegaSolarPanel.BlockOmegaSolarPanel;
 import com.ded.icwth.blocks.panels.PhotonicSolarPanel.BlockPhotonicSolarPanel;
 
-import com.ded.icwth.blocks.panels.SpectralSolarPanel.BlockSpectralSolarPanel;
+
 import com.ded.icwth.blocks.panels.VectorSolarPanel.BlockVectorSolarPanel;
 import com.ded.icwth.blocks.trash.BlockEnergyTrashCan;
-import com.rumaruka.emt.emt;
 import ic2.core.IC2;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.google.common.base.Strings;
@@ -41,7 +39,7 @@ import org.apache.logging.log4j.Level;
 import java.lang.reflect.Constructor;
 
 public class ModBlocks {
-    public static Block SpectralSolar;
+
     public static Block DiffractionSolar;
     public static Block DispersionSolar;
     public static Block BrauthemSolar;
@@ -53,7 +51,7 @@ public class ModBlocks {
     public static Block OmegaSolar;
 
 
-    public static Block CompressedMFSU;
+
 
 
     public static Block EnergyTrash;
@@ -64,7 +62,7 @@ public class ModBlocks {
 
 
     public static void init() {
-        SpectralSolar = new BlockSpectralSolarPanel(Material.IRON).setTranslationKey("spectral_solar").setCreativeTab(IC2.tabIC2);
+
         DiffractionSolar = new BlockDiffractionSolarPanel(Material.IRON).setTranslationKey("diffraction_solar").setCreativeTab(IC2.tabIC2);
         DispersionSolar = new BlockDispersionSolarPanel(Material.IRON).setTranslationKey("dispersion_solar").setCreativeTab(IC2.tabIC2);
         BrauthemSolar = new BlockBrauthemSolarPanel(Material.IRON).setTranslationKey("brauthem_solar").setCreativeTab(IC2.tabIC2);
@@ -75,7 +73,7 @@ public class ModBlocks {
         GravitonSolar = new BlockGravitonSolarPanel(Material.IRON).setTranslationKey("graviton_solar").setCreativeTab(IC2.tabIC2);
         OmegaSolar = new BlockOmegaSolarPanel(Material.IRON).setTranslationKey("omega_solar").setCreativeTab(IC2.tabIC2);
 
-        CompressedMFSU = new BlockCompressedMFSU(Material.IRON).setTranslationKey("compressed_mfsu").setCreativeTab(IC2.tabIC2);
+
 
 
         EnergyTrash = new BlockEnergyTrashCan(Material.IRON).setTranslationKey("energy_trash").setCreativeTab(IC2.tabIC2);
@@ -87,7 +85,7 @@ public class ModBlocks {
     }
 
     public static void InGameRegister() {
-        registerBlock(SpectralSolar, SpectralSolar.getTranslationKey().substring(5));
+
         registerBlock(DiffractionSolar, DiffractionSolar.getTranslationKey().substring(5));
         registerBlock(DispersionSolar, DispersionSolar.getTranslationKey().substring(5));
         registerBlock(BrauthemSolar, BrauthemSolar.getTranslationKey().substring(5));
@@ -98,7 +96,7 @@ public class ModBlocks {
         registerBlock(GravitonSolar, GravitonSolar.getTranslationKey().substring(5));
         registerBlock(OmegaSolar, OmegaSolar.getTranslationKey().substring(5));
 
-        registerBlock(CompressedMFSU, CompressedMFSU.getTranslationKey().substring(5));
+
 
         registerBlock(EnergyTrash, EnergyTrash.getTranslationKey().substring(5));
 
@@ -107,7 +105,7 @@ public class ModBlocks {
     }
 
     public static void Render() {
-        registerRender(SpectralSolar);
+
         registerRender(DiffractionSolar);
         registerRender(DispersionSolar);
         registerRender(BrauthemSolar);
@@ -118,7 +116,7 @@ public class ModBlocks {
         registerRender(GravitonSolar);
         registerRender(OmegaSolar);
 
-        registerRender(CompressedMFSU);
+
 
         registerRender(EnergyTrash);
 

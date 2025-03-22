@@ -1,5 +1,6 @@
 package com.ded.icwth.items;
 
+
 import com.ded.icwth.blocks.panels.ArcsinusSolarPanel.BlockArcsinusSolarPanel;
 import com.ded.icwth.blocks.panels.BrauthemSolarPanel.BlockBrauthemSolarPanel;
 import com.ded.icwth.blocks.panels.DiffractionPanel.BlockDiffractionSolarPanel;
@@ -8,7 +9,7 @@ import com.ded.icwth.blocks.panels.GravitonSolarPanel.BlockGravitonSolarPanel;
 import com.ded.icwth.blocks.panels.LoliSolarPanel.BlockLoliSolarPanel;
 import com.ded.icwth.blocks.panels.OmegaSolarPanel.BlockOmegaSolarPanel;
 import com.ded.icwth.blocks.panels.PhotonicSolarPanel.BlockPhotonicSolarPanel;
-import com.ded.icwth.blocks.panels.SpectralSolarPanel.BlockSpectralSolarPanel;
+
 import com.ded.icwth.blocks.panels.VectorSolarPanel.BlockVectorSolarPanel;
 import com.ded.icwth.items.circuits.ItemHybridCircuit;
 import com.ded.icwth.items.circuits.ItemQuantumCircuit;
@@ -75,8 +76,7 @@ public class ModItems {
     @GameRegistry.ObjectHolder("icwth:quantum_circuit")
     public static ItemQuantumCircuit quantumCircuit;
 
-    @GameRegistry.ObjectHolder("icwth:spectral_solar")
-    public static BlockSpectralSolarPanel spectralSolar;
+
 
     @GameRegistry.ObjectHolder("icwth:diffraction_solar")
     public static BlockDiffractionSolarPanel diffractionSolar;
@@ -154,7 +154,7 @@ public class ModItems {
 
 
         //blocks
-        spectralSolar.initModel();
+
         diffractionSolar.initModel();
         dispersionSolar.initModel();
         brauthemSolar.initModel();

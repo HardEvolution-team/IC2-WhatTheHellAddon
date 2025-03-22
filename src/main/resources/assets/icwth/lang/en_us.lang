@@ -11,3 +11,12 @@ item.icwth.quantum_circuit.name=Quantum Circuit
 
 icwth.mfsu.capacity = Capacity
 icwth.mfsu.generate = Generate
+
+
+
+
+
+tile.compressed_mfsu.name=Compressed MFSU
+
+
+tile.icwth.spectral_solar.name=Spectral Solar
