@@ -1,6 +1,7 @@
 package com.ded.icwth.blocks.panels;
 
 import com.ded.icwth.TileEntityBase;
+import com.ded.icwth.items.upgrades.UpgradeItems;
 import ic2.api.energy.prefab.BasicSource;
 import ic2.api.info.ILocatable;
 import ic2.api.item.IElectricItem;
@@ -34,16 +35,22 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
     public double output;
     protected double capacity;
     protected String localizedName;
-    protected NonNullList<ItemStack> inventory = NonNullList.withSize(6, ItemStack.EMPTY);
+    protected NonNullList<ItemStack> inventory = NonNullList.withSize(5, ItemStack.EMPTY); // Уменьшено до 5 слотов
     private double lastEnergy = -1;
+    private double baseOutput;  // Add this to store original output
+    private double baseCapacity; // Add this to store original capacity
+
 
     public TileEntitySolarBase(double output, double capacity, int tier) {
         this.energy = new BasicSource((TileEntity) this, capacity, tier);
+        this.baseOutput = output;    // Store base values
+        this.baseCapacity = capacity;
         this.output = output;
         this.capacity = capacity;
         this.tick = r.nextInt(64);
         this.tier = tier;
         this.localizedName = "tile.default_solar.name";
+        this.inventory = NonNullList.withSize(10, ItemStack.EMPTY); // Increase to 10 slots (5 charging + 5 upgrades)
     }
 
     public TileEntitySolarBase() {
@@ -73,10 +80,7 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
         }
     }
 
-    protected void checkConditions() {
-        this.createEnergy();
-        this.chargeItems();
-    }
+
 
     protected void createEnergy() {
         if (this.canGenerate()) {
@@ -89,11 +93,26 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
     }
 
     protected void chargeItems() {
-        ItemStack chargeStack = inventory.get(0);
-        if (!chargeStack.isEmpty() && chargeStack.getItem() instanceof IElectricItem) {
-            double transfer = Math.min(output, energy.getEnergyStored());
-            double charged = ic2.api.item.ElectricItem.manager.charge(chargeStack, transfer, tier, false, false);
-            energy.useEnergy(charged);
+        double totalTransfer = Math.min(output, energy.getEnergyStored());
+        int chargeableSlots = 0;
+
+        // Подсчитываем количество слотов с заряжаемыми предметами
+        for (int i = 0; i < 5; i++) {
+            ItemStack stack = inventory.get(i);
+            if (!stack.isEmpty() && stack.getItem() instanceof IElectricItem) {
+                chargeableSlots++;
+            }
+        }
+
+        if (chargeableSlots > 0) {
+            double transferPerSlot = totalTransfer / chargeableSlots;
+            for (int i = 0; i < 5; i++) {
+                ItemStack chargeStack = inventory.get(i);
+                if (!chargeStack.isEmpty() && chargeStack.getItem() instanceof IElectricItem) {
+                    double charged = ic2.api.item.ElectricItem.manager.charge(chargeStack, transferPerSlot, tier, false, false);
+                    energy.useEnergy(charged);
+                }
+            }
         }
     }
 
@@ -127,7 +146,10 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
             this.energy.useEnergy(amount);
         }
     }
-
+    @Override
+    public int getSizeInventory() {
+        return inventory.size(); // Now 10 slots
+    }
     @Override
     public int getSourceTier() {
         return this.tier;
@@ -152,7 +174,9 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         this.output = nbt.getDouble("output");
+        this.baseOutput = nbt.getDouble("baseOutput");
         this.capacity = nbt.getDouble("capacity");
+        this.baseCapacity = nbt.getDouble("baseCapacity");
         this.tier = nbt.getInteger("tier");
         this.localizedName = nbt.getString("localizedName");
         if (this.energy == null) {
@@ -160,7 +184,6 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
         }
         this.energy.readFromNBT(nbt);
         ItemStackHelper.loadAllItems(nbt, this.inventory);
-        System.out.println("Loaded energy: " + this.energy.getEnergyStored() + ", capacity: " + this.capacity + ", tier: " + this.tier + ", localizedName: " + this.localizedName);
     }
 
     @Override
@@ -169,10 +192,12 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
         if (this.energy != null) {
             this.energy.writeToNBT(nbt);
             nbt.setDouble("capacity", this.capacity);
+            nbt.setDouble("baseCapacity", this.baseCapacity);
             nbt.setInteger("tier", this.tier);
             nbt.setString("localizedName", this.localizedName);
         }
         nbt.setDouble("output", this.output);
+        nbt.setDouble("baseOutput", this.baseOutput);
         ItemStackHelper.saveAllItems(nbt, this.inventory);
         return nbt;
     }
@@ -240,10 +265,59 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
     public List<ItemStack> getWrenchDrops(World world, BlockPos blockPos, IBlockState iBlockState, TileEntity tileEntity, EntityPlayer entityPlayer, int i) {
         return Collections.emptyList();
     }
+    protected void checkConditions() {
+        this.applyUpgrades();  // Add this call
+        this.createEnergy();
+        this.chargeItems();
+    }
+    private void applyUpgrades() {
+        // Reset to base values
+        this.output = this.baseOutput;
+        this.capacity = this.baseCapacity;
 
+        double nightMultiplier = 1.0;
+        double dayMultiplier = 1.0;
+        double efficiencyMultiplier = 1.0;
+
+        // Check upgrade slots (5-9)
+        for (int i = 5; i < 10; i++) {
+            ItemStack stack = inventory.get(i);
+            if (!stack.isEmpty()) {
+                if (stack.getItem() == UpgradeItems.nightGenerationUpgrade) {
+                    nightMultiplier = 2.0;
+                } else if (stack.getItem() == UpgradeItems.dayGenerationUpgrade) {
+                    dayMultiplier = 1.5;
+                } else if (stack.getItem() == UpgradeItems.capacityUpgrade) {
+                    this.capacity *= 1.5;
+                } else if (stack.getItem() == UpgradeItems.efficiencyUpgrade) {
+                    efficiencyMultiplier = 1.25;
+                }
+            }
+        }
+
+        // Apply multipliers
+        if (world.isDaytime()) {
+            this.output *= dayMultiplier * efficiencyMultiplier;
+        } else {
+            this.output *= nightMultiplier * efficiencyMultiplier;
+        }
+
+        // Update energy capacity if changed
+        if (this.energy != null && this.capacity != this.energy.getCapacity()) {
+            this.energy.setCapacity(this.capacity);
+        }
+    }
     @Override
-    public int getSizeInventory() {
-        return inventory.size();
+    public boolean isItemValidForSlot(int index, ItemStack stack) {
+        if (index < 5) {  // Charging slots
+            return stack.getItem() instanceof IElectricItem;
+        } else if (index < 10) {  // Upgrade slots
+            return stack.getItem() == UpgradeItems.nightGenerationUpgrade ||
+                    stack.getItem() == UpgradeItems.dayGenerationUpgrade ||
+                    stack.getItem() == UpgradeItems.capacityUpgrade ||
+                    stack.getItem() == UpgradeItems.efficiencyUpgrade;
+        }
+        return false;
     }
 
     @Override
@@ -288,10 +362,8 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
     @Override
     public void closeInventory(EntityPlayer player) {}
 
-    @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
-        return index == 0 && stack.getItem() instanceof IElectricItem;
-    }
+
+
 
     @Override
     public int getField(int id) {

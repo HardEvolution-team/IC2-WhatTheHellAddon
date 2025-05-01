@@ -3,33 +3,29 @@ package com.ded.icwth;
 
 
 
+
 import com.ded.icwth.blocks.ModBlocks;
 
 
 import com.ded.icwth.blocks.batbox.EnergyStorageManager;
-import com.ded.icwth.blocks.panels.ArcsinusSolarPanel.TileArcsinusSolarPanel;
-import com.ded.icwth.blocks.panels.BrauthemSolarPanel.TileBrauthemSolarPanel;
 import com.ded.icwth.blocks.panels.ChinaSolar.TileChinaSolarPanel;
-import com.ded.icwth.blocks.panels.DiffractionPanel.TileDiffractionSolarPanel;
-import com.ded.icwth.blocks.panels.DispersionSolarPanel.TileDispersionSolarPanel;
-import com.ded.icwth.blocks.panels.GravitonSolarPanel.TileGravitonSolarPanel;
-import com.ded.icwth.blocks.panels.LoliSolarPanel.TileLoliSolarPanel;
-import com.ded.icwth.blocks.panels.OmegaSolarPanel.TileOmegaSolarPanel;
-import com.ded.icwth.blocks.panels.PhotonicSolarPanel.TilePhotonicSolarPanel;
 import com.ded.icwth.blocks.panels.SolarPanelManager;
-import com.ded.icwth.blocks.panels.VectorSolarPanel.TileVectorSolarPanel;
-import com.ded.icwth.blocks.panels.gui.CommonGuiHandler;
+
+import com.ded.icwth.blocks.CommonGuiHandler;
 
 import com.ded.icwth.blocks.trash.EnergyTrashCanTile;
+import com.ded.icwth.items.upgrades.UpgradeItems;
 import ic2.api.event.TeBlockFinalCallEvent;
 import ic2.core.block.BlockTileEntity;
 import ic2.core.ref.TeBlock;
+import mcjty.theoneprobe.api.ITheOneProbe;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -63,34 +59,64 @@ public class MyMod {
         MinecraftForge.EVENT_BUS.register(this);
         LOGGER.info("I am " + Tags.MODNAME + " + at version " + Tags.VERSION);
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonGuiHandler());
-
+        UpgradeItems.init();
         ModBlocks.init();
         ModBlocks.InGameRegister();
 
       //  CommonConfig.energystorage.extrememfsu.outputTier = Integer.MAX_VALUE;
 
 
-        EnergyStorageManager.registerStorage("arcsinus_mfsu", 6, 1024, 1000000, "tile.arcsinus_mfsu.name");
-        EnergyStorageManager.registerStorage("hell_yeah_mfsu", Integer.MAX_VALUE, Long.MAX_VALUE, Double.MAX_VALUE, "tile.brauthem_mfsu.name");
-        EnergyStorageManager.registerStorage("china_mfsu", 5, 512, 500000, "tile.china_mfsu.name");
-        EnergyStorageManager.registerStorage("diffraction_mfsu", 6, 1024, 1500000, "tile.diffraction_mfsu.name");
-        EnergyStorageManager.registerStorage("dispersion_mfsu", 7, 2048, 2500000, "tile.dispersion_mfsu.name");
-        EnergyStorageManager.registerStorage("graviton_mfsu", 8, 4096, 5000000, "tile.graviton_mfsu.name");
-        EnergyStorageManager.registerStorage("omega_mfsu", 9, 8192, 10000000, "tile.omega_mfsu.name");
-        EnergyStorageManager.registerStorage("photonic_mfsu", 8, 4096, 4000000, "tile.photonic_mfsu.name");
-        EnergyStorageManager.registerStorage("spectral_mfsu", 7, 2048, 3000000, "tile.spectral_mfsu.name");
-        EnergyStorageManager.registerStorage("vector_mfsu", 6, 1024, 1200000, "tile.vector_mfsu.name");
+
+        EnergyStorageManager.registerStorage("intermediate_mfsu", 5, 8192, 160000000, "tile.icwth.intermediate_mfsu.name");
+        EnergyStorageManager.registerStorage("intermediate_high_mfsu", 6, 20480, 400000000, "tile.icwth.intermediate_high_mfsu.name");
+        EnergyStorageManager.registerStorage("advanced_high_mfsu", 8, 61440, 1200000000, "tile.icwth.advanced_high_mfsu.name");
+        EnergyStorageManager.registerStorage("superior_mfsu", 8, 122880, 2400000000.0, "tile.icwth.superior_mfsu.name");
+        EnergyStorageManager.registerStorage("what_the_hell_mfsu", 14, 307200, 6000000000.0, "tile.icwth.what_the_hell_mfsu.name");
+        EnergyStorageManager.registerStorage("magnetron_mfsu", 14, 921600, 18000000000.0, "tile.icwth.magnetron_mfsu.name");
+        EnergyStorageManager.registerStorage("photon_resonance_mfsu", 14, 1843200, 36000000000.0, "tile.icwth.photon_resonance_mfsu.name");
+        EnergyStorageManager.registerStorage("extreme_photonic_mfsu", 14, 4608000, 90000000000.0, "tile.icwth.extreme_photonic_mfsu.name");
+        EnergyStorageManager.registerStorage("spectral_mfsu", 14, 4608000*2, 800000000, "tile.icwth.spectral_mfsu.name");
+        EnergyStorageManager.registerStorage("arcsinus_mfsu", 14, 13824000, 270000000000.0, "tile.icwth.arcsinus_mfsu.name");
+        EnergyStorageManager.registerStorage("diffraction_mfsu", 15, 27648000, 540000000000.0, "tile.icwth.diffraction_mfsu.name");
+        EnergyStorageManager.registerStorage("dispersion_mfsu", 16, 69120000, 1350000000000.0, "tile.icwth.dispersion_mfsu.name");
+        EnergyStorageManager.registerStorage("graviton_mfsu", 17, 207360000, 4050000000000.0, "tile.icwth.graviton_mfsu.name");
+        EnergyStorageManager.registerStorage("omega_mfsu", 18, 414720000, 8100000000000.0, "tile.icwth.omega_mfsu.name");
+        EnergyStorageManager.registerStorage("photonic_mfsu", Integer.MAX_VALUE, 1036800000, 20250000000000.0, "tile.icwth.photonic_mfsu.name");
+        EnergyStorageManager.registerStorage("vector_mfsu", Integer.MAX_VALUE, 3110400000.0, 60750000000000.0, "tile.icwth.vector_mfsu.name");
+
+// Финальные MFSU
+        EnergyStorageManager.registerStorage("brauthem_mfsu", Integer.MAX_VALUE, 31104000000.0, 607500000000000.0, "tile.icwth.brauthem_mfsu.name");
+        EnergyStorageManager.registerStorage("hell_yeah_mfsu", Integer.MAX_VALUE, Float.MAX_VALUE, Double.MAX_VALUE, "tile.icwth.hell_yeah_mfsu.name");
 
 
+// новые панели
+        SolarPanelManager.registerPanel("intermediate", 6, 8192.0, 20000000.0, "tile.icwth.intermediate.name");
+        SolarPanelManager.registerPanel("intermediate_high", 6, 16384.0, 40000000.0, "tile.icwth.intermediate_high.name");
+        SolarPanelManager.registerPanel("advanced_high", 6, 40960.0, 100000000.0, "tile.icwth.advanced_high.name");
+        SolarPanelManager.registerPanel("superior", 7, 122880.0, 300000000.0, "tile.icwth.superior.name");
+        SolarPanelManager.registerPanel("what_the_hell_panel", 7, 245760.0, 600000000.0, "tile.icwth.what_the_hell_panel.name");
+        SolarPanelManager.registerPanel("magnetron", 7, 614400.0, 1500000000.0, "tile.icwth.magnetron.name");
+        SolarPanelManager.registerPanel("photon_resonance", 8, 1843200.0, 4500000000.0, "tile.icwth.photon_resonance.name");
+        SolarPanelManager.registerPanel("extreme_photonic", 9, 3686400.0, 9000000000.0, "tile.icwth.extreme_photonic.name");
+        SolarPanelManager.registerPanel("spectral_solar", 10, 3686400.0*2, 9000000000.0*2, "tile.icwth.spectral_solar.name");
 
+// старые панели
+        SolarPanelManager.registerPanel("arcsinus_solar", Integer.MAX_VALUE, 9216000.0, 22500000000.0, "tile.icwth.arcsinus_solar_panel.name");
+        SolarPanelManager.registerPanel("diffraction_solar", Integer.MAX_VALUE, 27648000.0, 67500000000.0, "tile.icwth.diffraction_panel.name");
+        SolarPanelManager.registerPanel("dispersion_solar", Integer.MAX_VALUE, 55296000.0, 135000000000.0, "tile.icwth.dispersion_solar_panel.name");
+        SolarPanelManager.registerPanel("graviton_solar", Integer.MAX_VALUE, 138240000.0, 337500000000.0, "tile.icwth.graviton_solar_panel.name");
+        SolarPanelManager.registerPanel("omega_solar", Integer.MAX_VALUE, 414720000.0, 1012500000000.0, "tile.icwth.omega_solar_panel.name");
+        SolarPanelManager.registerPanel("photonic_solar", Integer.MAX_VALUE, 829440000.0, 2025000000000.0, "tile.icwth.photonic_solar_panel.name");
+        SolarPanelManager.registerPanel("vector_solar", Integer.MAX_VALUE, 2073600000.0, 5062500000000.0, "tile.icwth.vector_solar_panel.name");
 
-        SolarPanelManager.registerPanel("spectral_solar", 3, 512.0, 1000000.0, "tile.icwth.spectral_solar.name");
-
-    //    SolarPanelManager.registerSolarPanel("solar_panel_basic", Integer.MAX_VALUE, Long.MAX_VALUE, Double.MAX_VALUE, "Solar Panel", 1.0);
-
+// Финальные панели
+        SolarPanelManager.registerPanel("brauthem_solar", Integer.MAX_VALUE, 20736000000.0, 50625000000000.0, "tile.icwth.brauthem_solar_panel.name");
+        SolarPanelManager.registerPanel("loli_solar", Integer.MAX_VALUE, 414720000000.0, 1012500000000000.0, "tile.icwth.loli_solar_panel.name");
+        SolarPanelManager.registerPanel("hell_yeah_solar", Integer.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE, "tile.icwth.hell_yeah_solar.name");
 
 
     }
+
 
 
     @SideOnly(Side.CLIENT)
@@ -122,26 +148,10 @@ public class MyMod {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        //GameRegistry.registerTileEntity(TileSpectralSolarPanel.class, "tileEntitySpectralSolar");
-        GameRegistry.registerTileEntity(TileDiffractionSolarPanel.class, "tileEntityDiffractionSolar");
-        GameRegistry.registerTileEntity(TileDispersionSolarPanel.class, "tileEntityDispersionSolar");
-        GameRegistry.registerTileEntity(TileBrauthemSolarPanel.class, "tileEntityBrauthemSolar");
-        GameRegistry.registerTileEntity(TileLoliSolarPanel.class, "tileEntityLoliSolar");
-        GameRegistry.registerTileEntity(TileArcsinusSolarPanel.class, "tileEntityArcsinusSolar");
-        GameRegistry.registerTileEntity(TileVectorSolarPanel.class, "tileEntityVectorSolar");
-        GameRegistry.registerTileEntity(TilePhotonicSolarPanel.class, "tileEntityPhotonicSolar");
-        GameRegistry.registerTileEntity(TileGravitonSolarPanel.class, "tileEntityGravitonSolar");
-        GameRegistry.registerTileEntity(TileOmegaSolarPanel.class, "tileEntityOmegaSolar");
-
         GameRegistry.registerTileEntity(SolarPanelManager.SolarPanelTile.class,
                 new ResourceLocation(Tags.MODID, "solar_panel_tile"));
-
-
         GameRegistry.registerTileEntity(EnergyTrashCanTile.class, "tileEntityEnergyTrash");
-
-
         GameRegistry.registerTileEntity(TileChinaSolarPanel.class, "tileEntityChinaSolar");
-
     }
 
     @EventHandler

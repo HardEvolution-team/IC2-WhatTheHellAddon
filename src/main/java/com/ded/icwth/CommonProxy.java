@@ -4,8 +4,7 @@ package com.ded.icwth;
 
 import com.ded.icwth.blocks.ModBlocks;
 
-import com.ded.icwth.blocks.panels.LoliSolarPanel.BlockLoliSolarPanel;
-import com.ded.icwth.blocks.panels.LoliSolarPanel.TileLoliSolarPanel;
+
 import com.ded.icwth.items.circuits.ItemHybridCircuit;
 import com.ded.icwth.items.circuits.ItemQuantumCircuit;
 import com.ded.icwth.items.circuits.ItemUltimateHybridCircuit;
@@ -33,8 +32,7 @@ import java.util.Objects;
 
 @Mod.EventBusSubscriber
 public class CommonProxy {
-    @GameRegistry.ObjectHolder("icwth:loli_solar")
-    public static BlockLoliSolarPanel LoliSolar;
+
     @SubscribeEvent
     public static void init(RegistryEvent.Register<Item> event) {
         event.getRegistry().register(new ItemImprovedOverclocker());

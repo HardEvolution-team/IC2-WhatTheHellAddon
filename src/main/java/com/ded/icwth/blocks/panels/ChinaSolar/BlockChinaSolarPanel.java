@@ -1,6 +1,6 @@
 package com.ded.icwth.blocks.panels.ChinaSolar;
 
-import com.ded.icwth.blocks.panels.LoliSolarPanel.TileLoliSolarPanel;
+
 import ic2.core.init.Localization;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;

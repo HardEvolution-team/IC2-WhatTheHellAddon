@@ -1,16 +1,7 @@
 package com.ded.icwth.items;
 
 
-import com.ded.icwth.blocks.panels.ArcsinusSolarPanel.BlockArcsinusSolarPanel;
-import com.ded.icwth.blocks.panels.BrauthemSolarPanel.BlockBrauthemSolarPanel;
-import com.ded.icwth.blocks.panels.DiffractionPanel.BlockDiffractionSolarPanel;
-import com.ded.icwth.blocks.panels.DispersionSolarPanel.BlockDispersionSolarPanel;
-import com.ded.icwth.blocks.panels.GravitonSolarPanel.BlockGravitonSolarPanel;
-import com.ded.icwth.blocks.panels.LoliSolarPanel.BlockLoliSolarPanel;
-import com.ded.icwth.blocks.panels.OmegaSolarPanel.BlockOmegaSolarPanel;
-import com.ded.icwth.blocks.panels.PhotonicSolarPanel.BlockPhotonicSolarPanel;
 
-import com.ded.icwth.blocks.panels.VectorSolarPanel.BlockVectorSolarPanel;
 import com.ded.icwth.items.circuits.ItemHybridCircuit;
 import com.ded.icwth.items.circuits.ItemQuantumCircuit;
 import com.ded.icwth.items.circuits.ItemUltimateHybridCircuit;
@@ -78,32 +69,6 @@ public class ModItems {
 
 
 
-    @GameRegistry.ObjectHolder("icwth:diffraction_solar")
-    public static BlockDiffractionSolarPanel diffractionSolar;
-
-    @GameRegistry.ObjectHolder("icwth:dispersion_solar")
-    public static BlockDispersionSolarPanel dispersionSolar;
-
-    @GameRegistry.ObjectHolder("icwth:brauthem_solar")
-    public static BlockBrauthemSolarPanel brauthemSolar;
-
-    @GameRegistry.ObjectHolder("icwth:loli_solar")
-    public static BlockLoliSolarPanel loliSolar;
-
-    @GameRegistry.ObjectHolder("icwth:arcsinus_solar")
-    public static BlockArcsinusSolarPanel arcsinusSolar;
-
-    @GameRegistry.ObjectHolder("icwth:vector_solar")
-    public static BlockVectorSolarPanel vectorSolar;
-
-    @GameRegistry.ObjectHolder("icwth:photonic_solar")
-    public static BlockPhotonicSolarPanel photonicSolar;
-
-    @GameRegistry.ObjectHolder("icwth:graviton_solar")
-    public static BlockGravitonSolarPanel gravitonSolar;
-
-    @GameRegistry.ObjectHolder("icwth:omega_solar")
-    public static BlockOmegaSolarPanel omegaSolar;
 
 
 
@@ -127,7 +92,6 @@ public class ModItems {
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
-
         //items
         improvedOverclocker.initModel();
         advancedOverclocker.initModel();
@@ -140,40 +104,10 @@ public class ModItems {
         matterUpgrade.initModel();
         mfsuSingularity.initModel();
 
-
-
-
         doubleDenseIridiumPlate.initModel();
         fiveCompressedDenseIridiumPlate.initModel();
         tripleDenseIridiumPlate.initModel();
         quadrupleDenseIridiumPlate.initModel();
 
-
-
-
-
-
-        //blocks
-
-        diffractionSolar.initModel();
-        dispersionSolar.initModel();
-        brauthemSolar.initModel();
-        loliSolar.initModel();
-        arcsinusSolar.initModel();
-        vectorSolar.initModel();
-        photonicSolar.initModel();
-        gravitonSolar.initModel();
-        omegaSolar.initModel();
-
-
-
-
     }
-
-
-
-
-
-
-
 }

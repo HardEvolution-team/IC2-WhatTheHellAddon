@@ -22,9 +22,24 @@ public class ContainerSolarBase extends ContainerBase<TileEntitySolarBase> {
         this.tile = tile;
         this.player = playerInventory.player;
 
-        this.addSlotToContainer(new SlotCharge(tile, 0, 56, 17));
-        this.addSlotToContainer(new SlotCharge(tile, 1, 56, 53));
+        // Charging slots (0-4)
+        this.addSlotToContainer(new SlotCharge(tile, 0, 47, 53));  // Slot 0
+        this.addSlotToContainer(new SlotCharge(tile, 1, 65, 53));  // Slot 1
+        this.addSlotToContainer(new SlotCharge(tile, 2, 83, 53));  // Slot 2
+        this.addSlotToContainer(new SlotCharge(tile, 3, 101, 53)); // Slot 3
+        this.addSlotToContainer(new SlotCharge(tile, 4, 119, 53)); // Slot 4
 
+        // Upgrade slots (5-9)
+        for (int i = 0; i < 5; i++) {
+            this.addSlotToContainer(new Slot(tile, 5 + i, 47 + i * 18, 75) {
+                @Override
+                public int getSlotStackLimit() {
+                    return 1; // Limit upgrade slots to 1 item
+                }
+            });
+        }
+
+        // Armor slots (10-13)
         for (int i = 0; i < 4; i++) {
             final EntityEquipmentSlot slotType = EntityEquipmentSlot.values()[i + 2];
             this.addSlotToContainer(new Slot(playerInventory, 39 - i, 8 + i * 18, 84) {
@@ -56,12 +71,15 @@ public class ContainerSolarBase extends ContainerBase<TileEntitySolarBase> {
             });
         }
 
+        // Main player inventory (14-40)
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
-                this.addSlotToContainer(new Slot(playerInventory, col + row * 9 + 9, 8 + col * 18, 114 + row * 18));
+                this.addSlotToContainer(new Slot(playerInventory, col + row * 9 + 9,
+                        8 + col * 18, 114 + row * 18));
             }
         }
 
+        // Player hotbar (41-49)
         for (int col = 0; col < 9; col++) {
             this.addSlotToContainer(new Slot(playerInventory, col, 8 + col * 18, 172));
         }
@@ -88,38 +106,43 @@ public class ContainerSolarBase extends ContainerBase<TileEntitySolarBase> {
         Slot slot = this.inventorySlots.get(slotId);
         ItemStack stackInSlot = slot.getStack();
 
-        if (heldStack.isEmpty() && !stackInSlot.isEmpty()) {
-            if (clickType == ClickType.PICKUP) {
-                player.inventory.setItemStack(stackInSlot.copy());
-                slot.putStack(ItemStack.EMPTY);
-                slot.onSlotChanged();
-                return stackInSlot;
-            } else if (clickType == ClickType.QUICK_MOVE) {
-                if (slotId < 6) {
-                    ItemStack originalStack = stackInSlot.copy();
-                    for (int i = 6; i < this.inventorySlots.size(); i++) {
-                        Slot targetSlot = this.inventorySlots.get(i);
-                        if (!targetSlot.getHasStack() && targetSlot.isItemValid(stackInSlot)) {
-                            targetSlot.putStack(stackInSlot.copy());
-                            slot.putStack(ItemStack.EMPTY);
-                            slot.onSlotChanged();
-                            targetSlot.onSlotChanged();
-                            return originalStack;
-                        }
+        // Handle shift-click (QUICK_MOVE) since we can't override transferStackInSlot
+        if (clickType == ClickType.QUICK_MOVE) {
+            if (!stackInSlot.isEmpty()) {
+                if (slotId < 10) { // Charging (0-4) or Upgrade slots (5-9)
+                    if (mergeItemToPlayerInventory(stackInSlot)) {
+                        slot.putStack(ItemStack.EMPTY);
+                        slot.onSlotChanged();
+                        return stackInSlot;
                     }
-                    return ItemStack.EMPTY;
+                } else if (slotId >= 14) { // Player inventory to tile
+                    if (tryTransferToTile(stackInSlot)) {
+                        slot.putStack(stackInSlot.isEmpty() ? ItemStack.EMPTY : stackInSlot);
+                        slot.onSlotChanged();
+                        return stackInSlot;
+                    }
                 }
             }
+            return ItemStack.EMPTY;
         }
 
+        // Handle regular click (PICKUP)
+        if (heldStack.isEmpty() && !stackInSlot.isEmpty()) {
+            player.inventory.setItemStack(stackInSlot.copy());
+            slot.putStack(ItemStack.EMPTY);
+            slot.onSlotChanged();
+            return stackInSlot;
+        }
+
+        // If holding an item
         if (!heldStack.isEmpty()) {
-            if (slotId == 0 && tile.isItemValidForSlot(0, heldStack)) {
+            if (slotId >= 0 && slotId < 5 && tile.isItemValidForSlot(slotId, heldStack)) { // Charging slots
                 mergeItemToSlot(heldStack, slot);
-            } else if (slotId == 1 && tile.isItemValidForSlot(1, heldStack)) {
+            } else if (slotId >= 5 && slotId < 10 && tile.isItemValidForSlot(slotId, heldStack)) { // Upgrade slots
                 mergeItemToSlot(heldStack, slot);
-            } else if (slotId >= 2 && slotId < 6 && heldStack.getItem() instanceof ItemArmor && slot.isItemValid(heldStack)) {
+            } else if (slotId >= 10 && slotId < 14 && heldStack.getItem() instanceof ItemArmor && slot.isItemValid(heldStack)) { // Armor slots
                 mergeItemToSlot(heldStack, slot);
-            } else if (slotId >= 6) {
+            } else if (slotId >= 14) { // Player inventory
                 return super.slotClick(slotId, dragType, clickType, player);
             }
         }
@@ -127,10 +150,66 @@ public class ContainerSolarBase extends ContainerBase<TileEntitySolarBase> {
         return result.isEmpty() ? heldStack : result;
     }
 
+    private boolean mergeItemToPlayerInventory(ItemStack stack) {
+        for (int i = 14; i < this.inventorySlots.size(); i++) {
+            Slot targetSlot = this.inventorySlots.get(i);
+            if (!targetSlot.getHasStack()) {
+                targetSlot.putStack(stack.copy());
+                targetSlot.onSlotChanged();
+                return true;
+            } else {
+                ItemStack targetStack = targetSlot.getStack();
+                if (ItemStack.areItemsEqual(stack, targetStack) &&
+                        ItemStack.areItemStackTagsEqual(stack, targetStack)) {
+                    int space = targetStack.getMaxStackSize() - targetStack.getCount();
+                    if (space >= stack.getCount()) {
+                        targetStack.grow(stack.getCount());
+                        targetSlot.onSlotChanged();
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean tryTransferToTile(ItemStack stack) {
+        // Try charging slots first
+        for (int i = 0; i < 5; i++) {
+            if (tile.isItemValidForSlot(i, stack)) {
+                Slot slot = this.inventorySlots.get(i);
+                if (!slot.getHasStack()) {
+                    slot.putStack(stack.copy());
+                    stack.setCount(0);
+                    slot.onSlotChanged();
+                    return true;
+                }
+            }
+        }
+
+        // Then upgrade slots
+        for (int i = 5; i < 10; i++) {
+            if (tile.isItemValidForSlot(i, stack)) {
+                Slot slot = this.inventorySlots.get(i);
+                if (!slot.getHasStack()) {
+                    ItemStack singleStack = stack.copy();
+                    singleStack.setCount(1);
+                    slot.putStack(singleStack);
+                    stack.shrink(1);
+                    slot.onSlotChanged();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     private void mergeItemToSlot(ItemStack stack, Slot slot) {
         if (!slot.getHasStack()) {
-            slot.putStack(stack.copy());
-            stack.setCount(0);
+            ItemStack toPlace = stack.copy();
+            toPlace.setCount(1); // Limit to 1 item for charging, upgrade, and armor slots
+            slot.putStack(toPlace);
+            stack.shrink(1);
         } else {
             ItemStack slotStack = slot.getStack();
             if (ItemStack.areItemsEqual(stack, slotStack) && ItemStack.areItemStackTagsEqual(stack, slotStack)) {
@@ -143,5 +222,17 @@ public class ContainerSolarBase extends ContainerBase<TileEntitySolarBase> {
             }
         }
         slot.onSlotChanged();
+    }
+
+    @Override
+    public void detectAndSendChanges() {
+        super.detectAndSendChanges();
+        // Sync all tile slots (0-9)
+        for (int i = 0; i < 10; i++) {
+            ItemStack stack = tile.getStackInSlot(i);
+            if (!ItemStack.areItemStacksEqual(((Slot) inventorySlots.get(i)).getStack(), stack)) {
+                ((Slot) inventorySlots.get(i)).putStack(stack);
+            }
+        }
     }
 }

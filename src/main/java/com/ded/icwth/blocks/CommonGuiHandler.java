@@ -1,4 +1,4 @@
-package com.ded.icwth.blocks.panels.gui;
+package com.ded.icwth.blocks;
 
 import com.ded.icwth.blocks.panels.TileEntitySolarBase;
 import com.ded.icwth.blocks.panels.gui.ContainerSolarBase;

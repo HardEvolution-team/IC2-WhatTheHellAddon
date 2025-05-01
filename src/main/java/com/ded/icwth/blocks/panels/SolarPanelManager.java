@@ -14,10 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
@@ -125,6 +122,18 @@ public class SolarPanelManager {
             System.out.println("Created SolarPanelBlock with GUI ID: " + guiId + " and localizedName: " + localizedName);
         }
 
+        @SideOnly(Side.CLIENT)
+        private static void initModel(Block block, String name) {
+            ModelLoader.setCustomModelResourceLocation(
+                    Item.getItemFromBlock(block), 0,
+                    new ModelResourceLocation(Tags.MODID + ":" + name, "inventory")
+            );
+        }
+        @Override
+        public EnumBlockRenderType getRenderType(IBlockState state) {
+            return EnumBlockRenderType.MODEL;
+        }
+
         @Override
         public TileEntity createNewTileEntity(World world, int meta) {
             System.out.println("Creating new SolarPanelTile with parameters: tier=" + tier +
@@ -182,8 +191,8 @@ public class SolarPanelManager {
         @Override
         public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
             super.addInformation(stack, worldIn, tooltip, flagIn);
-            tooltip.add(Localization.translate("icwth.mfsu.capacity") + " " + String.format("%.0f", this.capacity) + " EU");
-            tooltip.add(Localization.translate("icwth.mfsu.generate") + " " + String.format("%.0f", this.generationRate) + " EU/t");
+            tooltip.add(Localization.translate("icwth.mfsu.capacity ") + " " + String.format("%.0f", this.capacity) + " EU");
+            tooltip.add(Localization.translate("icwth.mfsu.generate ") + " " + String.format("%.0f", this.generationRate) + " EU/t");
         }
     }
 
@@ -229,4 +238,5 @@ public class SolarPanelManager {
             return output;
         }
     }
+
 }

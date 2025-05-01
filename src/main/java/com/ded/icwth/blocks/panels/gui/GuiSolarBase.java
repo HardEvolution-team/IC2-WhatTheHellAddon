@@ -16,7 +16,7 @@ import java.util.Arrays;
 
 @SideOnly(Side.CLIENT)
 public class GuiSolarBase extends GuiIC2<ContainerSolarBase> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("ic2", "textures/gui/GUIElectricBlock.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation("icwth", "textures/gui/gui_solarpanel.png");
     private static final Logger LOGGER = LogManager.getLogger(Tags.MODID);
     private final TileEntitySolarBase tile;
 
@@ -112,7 +112,7 @@ public class GuiSolarBase extends GuiIC2<ContainerSolarBase> {
     private void drawOutputValue(double offeredEnergy) {
         String text = (offeredEnergy >= 1e10) ? String.format("Out: %.2e EU/t", offeredEnergy) : String.format("Out: %.1f EU/t", offeredEnergy);
         int textX = 85;
-        fontRenderer.drawString(text, textX, 60, 4210752);
+        fontRenderer.drawString(text, textX, 88, 4210752);
     }
 
     private void drawNoEnergyData() {

@@ -19,4 +19,43 @@ icwth.mfsu.generate = Generate
 tile.compressed_mfsu.name=Compressed MFSU
 
 
-tile.icwth.spectral_solar.name=Spectral Solar
+tile.icwth.intermediate.name=Intermediate Solar Panel
+tile.icwth.intermediate_high.name=Intermediate High Solar Panel
+tile.icwth.advanced_high.name=Advanced High Solar Panel
+tile.icwth.superior.name=Superior Solar Panel
+tile.icwth.what_the_hell_panel.name=What The Hell Solar Panel
+tile.icwth.magnetron.name=Magnetron Solar Panel
+tile.icwth.photon_resonance.name=Photon Resonance Solar Panel
+tile.icwth.extreme_photonic.name=Extreme Photonic Solar Panel
+tile.icwth.spectral_solar.name=Spectral Solar Panel
+tile.icwth.arcsinus_solar.name=Arcsinus Solar Panel
+tile.icwth.diffraction_solar.name=Diffraction Solar Panel
+tile.icwth.dispersion_solar.name=Dispersion Solar Panel
+tile.icwth.graviton_solar.name=Graviton Solar Panel
+tile.icwth.omega_solar.name=Omega Solar Panel
+tile.icwth.photonic_solar.name=Photonic Solar Panel
+tile.icwth.vector_solar.name=Vector Solar Panel
+tile.icwth.brauthem_solar.name=Brauthem Solar Panel
+tile.icwth.loli_solar.name=Loli Solar Panel
+
+
+tile.icwth.spectral_mfsu.name=Spectral MFSU
+tile.icwth.intermediate_mfsu.name=Intermediate MFSU
+tile.icwth.intermediate_high_mfsu.name=Intermediate High MFSU
+tile.icwth.advanced_high_mfsu.name=Advanced High MFSU
+tile.icwth.superior_mfsu.name=Superior MFSU
+tile.icwth.what_the_hell_mfsu.name=What The Hell MFSU
+tile.icwth.magnetron_mfsu.name=Magnetron MFSU
+tile.icwth.photon_resonance_mfsu.name=Photon Resonance MFSU
+tile.icwth.extreme_photonic_mfsu.name=Extreme Photonic MFSU
+tile.icwth.arcsinus_mfsu.name=Arcsinus MFSU
+tile.icwth.diffraction_mfsu.name=Diffraction MFSU
+tile.icwth.dispersion_mfsu.name=Dispersion MFSU
+tile.icwth.graviton_mfsu.name=Graviton MFSU
+tile.icwth.omega_mfsu.name=Omega MFSU
+tile.icwth.photonic_mfsu.name=Photonic MFSU
+tile.icwth.vector_mfsu.name=Vector MFSU
+tile.icwth.brauthem_mfsu.name=Brauthem MFSU
+tile.icwth.hell_yeah_mfsu.name=Hell Yeah MFSU
+
+

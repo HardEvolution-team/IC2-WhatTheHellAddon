@@ -4,19 +4,14 @@ package com.ded.icwth.blocks;
 import com.ded.icwth.Tags;
 
 
-import com.ded.icwth.blocks.panels.ArcsinusSolarPanel.BlockArcsinusSolarPanel;
 
-import com.ded.icwth.blocks.panels.BrauthemSolarPanel.BlockBrauthemSolarPanel;
+
+
 import com.ded.icwth.blocks.panels.ChinaSolar.BlockChinaSolarPanel;
-import com.ded.icwth.blocks.panels.DiffractionPanel.BlockDiffractionSolarPanel;
-import com.ded.icwth.blocks.panels.DispersionSolarPanel.BlockDispersionSolarPanel;
-import com.ded.icwth.blocks.panels.GravitonSolarPanel.BlockGravitonSolarPanel;
-import com.ded.icwth.blocks.panels.LoliSolarPanel.BlockLoliSolarPanel;
-import com.ded.icwth.blocks.panels.OmegaSolarPanel.BlockOmegaSolarPanel;
-import com.ded.icwth.blocks.panels.PhotonicSolarPanel.BlockPhotonicSolarPanel;
 
 
-import com.ded.icwth.blocks.panels.VectorSolarPanel.BlockVectorSolarPanel;
+
+
 import com.ded.icwth.blocks.trash.BlockEnergyTrashCan;
 import ic2.core.IC2;
 import net.minecraft.block.Block;
@@ -40,15 +35,7 @@ import java.lang.reflect.Constructor;
 
 public class ModBlocks {
 
-    public static Block DiffractionSolar;
-    public static Block DispersionSolar;
-    public static Block BrauthemSolar;
-    public static Block LoliSolar;
-    public static Block ArcsinusSolar;
-    public static Block VectorSolar;
-    public static Block PhotonicSolar;
-    public static Block GravitonSolar;
-    public static Block OmegaSolar;
+
 
 
 
@@ -63,15 +50,7 @@ public class ModBlocks {
 
     public static void init() {
 
-        DiffractionSolar = new BlockDiffractionSolarPanel(Material.IRON).setTranslationKey("diffraction_solar").setCreativeTab(IC2.tabIC2);
-        DispersionSolar = new BlockDispersionSolarPanel(Material.IRON).setTranslationKey("dispersion_solar").setCreativeTab(IC2.tabIC2);
-        BrauthemSolar = new BlockBrauthemSolarPanel(Material.IRON).setTranslationKey("brauthem_solar").setCreativeTab(IC2.tabIC2);
-        LoliSolar = new BlockLoliSolarPanel(Material.IRON).setTranslationKey("loli_solar").setCreativeTab(IC2.tabIC2);
-        ArcsinusSolar = new BlockArcsinusSolarPanel(Material.IRON).setTranslationKey("arcsinus_solar").setCreativeTab(IC2.tabIC2);
-        VectorSolar = new BlockVectorSolarPanel(Material.IRON).setTranslationKey("vector_solar").setCreativeTab(IC2.tabIC2);
-        PhotonicSolar = new BlockPhotonicSolarPanel(Material.IRON).setTranslationKey("photonic_solar").setCreativeTab(IC2.tabIC2);
-        GravitonSolar = new BlockGravitonSolarPanel(Material.IRON).setTranslationKey("graviton_solar").setCreativeTab(IC2.tabIC2);
-        OmegaSolar = new BlockOmegaSolarPanel(Material.IRON).setTranslationKey("omega_solar").setCreativeTab(IC2.tabIC2);
+
 
 
 
@@ -82,19 +61,12 @@ public class ModBlocks {
         ChinaSolar = new BlockChinaSolarPanel(Material.IRON).setTranslationKey("china_solar").setCreativeTab(IC2.tabIC2);
 
 
+
     }
 
     public static void InGameRegister() {
 
-        registerBlock(DiffractionSolar, DiffractionSolar.getTranslationKey().substring(5));
-        registerBlock(DispersionSolar, DispersionSolar.getTranslationKey().substring(5));
-        registerBlock(BrauthemSolar, BrauthemSolar.getTranslationKey().substring(5));
-        registerBlock(LoliSolar, LoliSolar.getTranslationKey().substring(5));
-        registerBlock(ArcsinusSolar, ArcsinusSolar.getTranslationKey().substring(5));
-        registerBlock(VectorSolar, VectorSolar.getTranslationKey().substring(5));
-        registerBlock(PhotonicSolar, PhotonicSolar.getTranslationKey().substring(5));
-        registerBlock(GravitonSolar, GravitonSolar.getTranslationKey().substring(5));
-        registerBlock(OmegaSolar, OmegaSolar.getTranslationKey().substring(5));
+
 
 
 
@@ -102,25 +74,22 @@ public class ModBlocks {
 
         registerBlock(ChinaSolar, ChinaSolar.getTranslationKey().substring(5));
 
+
+
+
     }
 
     public static void Render() {
 
-        registerRender(DiffractionSolar);
-        registerRender(DispersionSolar);
-        registerRender(BrauthemSolar);
-        registerRender(LoliSolar);
-        registerRender(ArcsinusSolar);
-        registerRender(VectorSolar);
-        registerRender(PhotonicSolar);
-        registerRender(GravitonSolar);
-        registerRender(OmegaSolar);
+
 
 
 
         registerRender(EnergyTrash);
 
         registerRender(ChinaSolar);
+
+
     }
 
 

@@ -18,8 +18,42 @@ icwth.mfsu.generate = Производит
 tile.compressed_mfsu.name=Сжатое МФСУ
 
 
+tile.icwth.intermediate.name=Промежуточная солнечная панель
+tile.icwth.intermediate_high.name=Улучшенная промежуточная солнечная панель
+tile.icwth.advanced_high.name=Продвинутая солнечная панель
+tile.icwth.superior.name=Превосходная солнечная панель
+tile.icwth.what_the_hell_panel.name=Что за черт солнечная панель
+tile.icwth.magnetron.name=Магнетронная солнечная панель
+tile.icwth.photon_resonance.name=Фотонно-резонансная солнечная панель
+tile.icwth.extreme_photonic.name=Экстремальная фотонная солнечная панель
+tile.icwth.spectral_solar.name=Спектральная солнечная панель
+tile.icwth.arcsinus_solar.name=Арксинусная солнечная панель
+tile.icwth.diffraction_solar.name=Дифракционная солнечная панель
+tile.icwth.dispersion_solar.name=Дисперсионная солнечная панель
+tile.icwth.graviton_solar.name=Гравитонная солнечная панель
+tile.icwth.omega_solar.name=Омега солнечная панель
+tile.icwth.photonic_solar.name=Фотонная солнечная панель
+tile.icwth.vector_solar.name=Векторная солнечная панель
+tile.icwth.brauthem_solar.name=Браутхем солнечная панель
+tile.icwth.loli_solar.name=Лоли солнечная панель
 
-
-
+tile.icwth.spectral_mfsu.name=Спектральный MFSU
+tile.icwth.intermediate_mfsu.name=Промежуточный MFSU
+tile.icwth.intermediate_high_mfsu.name=Улучшенный промежуточный MFSU
+tile.icwth.advanced_high_mfsu.name=Продвинутый MFSU
+tile.icwth.superior_mfsu.name=Превосходный MFSU
+tile.icwth.what_the_hell_mfsu.name=Что за черт MFSU
+tile.icwth.magnetron_mfsu.name=Магнетронный MFSU
+tile.icwth.photon_resonance_mfsu.name=Фотонно-резонансный MFSU
+tile.icwth.extreme_photonic_mfsu.name=Экстремальный фотонный MFSU
+tile.icwth.arcsinus_mfsu.name=Арксинусный MFSU
+tile.icwth.diffraction_mfsu.name=Дифракционный MFSU
+tile.icwth.dispersion_mfsu.name=Дисперсионный MFSU
+tile.icwth.graviton_mfsu.name=Гравитонный MFSU
+tile.icwth.omega_mfsu.name=Омега MFSU
+tile.icwth.photonic_mfsu.name=Фотонный MFSU
+tile.icwth.vector_mfsu.name=Векторный MFSU
+tile.icwth.brauthem_mfsu.name=Браутхем MFSU
+tile.icwth.hell_yeah_mfsu.name=Hell Yeah MFSU
 
 

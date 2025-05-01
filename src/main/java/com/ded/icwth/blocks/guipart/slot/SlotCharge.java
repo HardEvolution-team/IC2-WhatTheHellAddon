@@ -14,6 +14,10 @@ public class SlotCharge extends Slot {
         // Разрешаем только электрические предметы
         return stack.getItem() instanceof IElectricItem;
     }
+    @Override
+    public int getSlotStackLimit() {
+        return 1; // Ограничиваем слот зарядки до 1 предмета
+    }
 }
 
 
