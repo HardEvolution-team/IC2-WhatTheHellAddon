@@ -8,6 +8,8 @@ import com.ded.icwth.blocks.ModBlocks;
 
 
 import com.ded.icwth.blocks.batbox.EnergyStorageManager;
+import com.ded.icwth.blocks.hyperstorage.HyperStorageManager;
+import com.ded.icwth.blocks.hyperstorage.TileHyperStorage;
 import com.ded.icwth.blocks.panels.ChinaSolar.TileChinaSolarPanel;
 import com.ded.icwth.blocks.panels.SolarPanelManager;
 
@@ -88,6 +90,9 @@ public class MyMod {
         EnergyStorageManager.registerStorage("brauthem_mfsu", Integer.MAX_VALUE, 31104000000.0, 607500000000000.0, "tile.icwth.brauthem_mfsu.name");
         EnergyStorageManager.registerStorage("hell_yeah_mfsu", Integer.MAX_VALUE, Float.MAX_VALUE, Double.MAX_VALUE, "tile.icwth.hell_yeah_mfsu.name");
 
+        // Register the new Hyper Storage Unit
+        HyperStorageManager.registerHyperStorage("hyper_storage_unit", Integer.MAX_VALUE, Double.MAX_VALUE, "tile.icwth.hyper_storage_unit.name");
+
 
 // новые панели
         SolarPanelManager.registerPanel("intermediate", 6, 8192.0, 20000000.0, "tile.icwth.intermediate.name");
@@ -152,6 +157,7 @@ public class MyMod {
                 new ResourceLocation(Tags.MODID, "solar_panel_tile"));
         GameRegistry.registerTileEntity(EnergyTrashCanTile.class, "tileEntityEnergyTrash");
         GameRegistry.registerTileEntity(TileChinaSolarPanel.class, "tileEntityChinaSolar");
+        GameRegistry.registerTileEntity(TileHyperStorage.class, new ResourceLocation(Tags.MODID, "hyper_storage_tile")); // Register HyperStorage TileEntity
     }
 
     @EventHandler
@@ -165,3 +171,5 @@ public class MyMod {
     public void serverStarting(FMLServerStartingEvent event) {
     }
 }
+
+
