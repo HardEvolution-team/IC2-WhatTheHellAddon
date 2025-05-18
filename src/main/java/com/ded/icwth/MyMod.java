@@ -10,6 +10,8 @@ import com.ded.icwth.blocks.ModBlocks;
 import com.ded.icwth.blocks.batbox.EnergyStorageManager;
 import com.ded.icwth.blocks.hyperstorage.HyperStorageManager;
 import com.ded.icwth.blocks.hyperstorage.TileHyperStorage;
+import com.ded.icwth.blocks.molecularassembler.based.TileEntityMolecularAssembler;
+import com.ded.icwth.blocks.molecularassembler.based.renders.MolecularTransformerTESR;
 import com.ded.icwth.blocks.panels.ChinaSolar.TileChinaSolarPanel;
 import com.ded.icwth.blocks.panels.SolarPanelManager;
 
@@ -22,11 +24,15 @@ import ic2.core.block.BlockTileEntity;
 import ic2.core.ref.TeBlock;
 import mcjty.theoneprobe.api.ITheOneProbe;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -45,8 +51,9 @@ import org.apache.logging.log4j.Logger;
 import static com.ded.icwth.Tags.MODID;
 
 @Mod(modid = MODID, version = Tags.VERSION, name = Tags.MODNAME, acceptedMinecraftVersions = "[1.12.2]")
+@Mod.EventBusSubscriber(Side.CLIENT)
 public class MyMod {
-  //  public static final ItemUpgradeModule.UpgradeType MATTER_UPGRADE_TYPE = new ItemUpgradeModule.UpgradeType("matter_upgrade");
+    //  public static final ItemUpgradeModule.UpgradeType MATTER_UPGRADE_TYPE = new ItemUpgradeModule.UpgradeType("matter_upgrade");
     public static BlockTileEntity machines;
     public static CommonProxy proxy;
 
@@ -65,7 +72,7 @@ public class MyMod {
         ModBlocks.init();
         ModBlocks.InGameRegister();
 
-      //  CommonConfig.energystorage.extrememfsu.outputTier = Integer.MAX_VALUE;
+        //  CommonConfig.energystorage.extrememfsu.outputTier = Integer.MAX_VALUE;
 
 
 
@@ -124,9 +131,14 @@ public class MyMod {
 
 
 
+
+
+
+
+
     @SideOnly(Side.CLIENT)
     public static void initModels() {
-     //   BlockLoliSolarPanel.initModel();
+        //   BlockLoliSolarPanel.initModel();
 
 
     }
@@ -157,7 +169,10 @@ public class MyMod {
                 new ResourceLocation(Tags.MODID, "solar_panel_tile"));
         GameRegistry.registerTileEntity(EnergyTrashCanTile.class, "tileEntityEnergyTrash");
         GameRegistry.registerTileEntity(TileChinaSolarPanel.class, "tileEntityChinaSolar");
-        GameRegistry.registerTileEntity(TileHyperStorage.class, new ResourceLocation(Tags.MODID, "hyper_storage_tile")); // Register HyperStorage TileEntity
+        GameRegistry.registerTileEntity(TileHyperStorage.class, new ResourceLocation(Tags.MODID, "hyper_storage_tile"));
+        GameRegistry.registerTileEntity(TileEntityMolecularAssembler.class, new ResourceLocation(Tags.MODID, "molecular_assembler_tile"));
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMolecularAssembler.class, new MolecularTransformerTESR());
     }
 
     @EventHandler
@@ -171,5 +186,3 @@ public class MyMod {
     public void serverStarting(FMLServerStartingEvent event) {
     }
 }
-
-

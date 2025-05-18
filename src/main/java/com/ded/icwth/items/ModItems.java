@@ -2,6 +2,7 @@ package com.ded.icwth.items;
 
 
 
+import com.ded.icwth.blocks.molecularassembler.based.BlockMolecularAssembler;
 import com.ded.icwth.items.circuits.ItemHybridCircuit;
 import com.ded.icwth.items.circuits.ItemQuantumCircuit;
 import com.ded.icwth.items.circuits.ItemUltimateHybridCircuit;
@@ -70,6 +71,8 @@ public class ModItems {
 
 
 
+    @GameRegistry.ObjectHolder("icwth:molecular_assembler")
+    public static BlockMolecularAssembler molecularAssembler;
 
 
 
@@ -108,6 +111,12 @@ public class ModItems {
         fiveCompressedDenseIridiumPlate.initModel();
         tripleDenseIridiumPlate.initModel();
         quadrupleDenseIridiumPlate.initModel();
+
+        molecularAssembler.initModel();
+
+
+
+
 
     }
 }

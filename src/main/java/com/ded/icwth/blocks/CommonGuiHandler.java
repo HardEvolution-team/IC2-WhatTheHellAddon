@@ -1,5 +1,10 @@
 package com.ded.icwth.blocks;
 
+
+
+import com.ded.icwth.blocks.molecularassembler.based.TileEntityMolecularAssembler;
+import com.ded.icwth.blocks.molecularassembler.based.gui.ContainerMolecularAssembler;
+import com.ded.icwth.blocks.molecularassembler.based.gui.GuiMolecularAssembler;
 import com.ded.icwth.blocks.panels.TileEntitySolarBase;
 import com.ded.icwth.blocks.panels.gui.ContainerSolarBase;
 import com.ded.icwth.blocks.panels.gui.GuiSolarBase;
@@ -25,7 +30,11 @@ public class CommonGuiHandler implements IGuiHandler {
         } else if (te instanceof TileMFSUBase) {
             System.out.println("Creating ContainerMFSUBase for MFSU");
             return new ContainerMFSUBase(player.inventory, (TileMFSUBase) te);
+        } else if (te instanceof TileEntityMolecularAssembler) {
+            System.out.println("Creating ContainerMolecularAssembler for Molecular Assembler");
+            return new ContainerMolecularAssembler((TileEntityMolecularAssembler) te, player);
         }
+
         System.out.println("No valid TileEntity found for ID: " + ID);
         return null;
     }
@@ -44,7 +53,12 @@ public class CommonGuiHandler implements IGuiHandler {
             System.out.println("Creating GuiMFSUBase for MFSU");
             TileMFSUBase tile = (TileMFSUBase) te;
             return new GuiMFSUBase(new ContainerMFSUBase(player.inventory, tile), tile);
+        } else if (te instanceof TileEntityMolecularAssembler) {
+            System.out.println("Creating GuiMolecularAssembler for Molecular Assembler");
+            TileEntityMolecularAssembler tile = (TileEntityMolecularAssembler) te;
+            return new GuiMolecularAssembler(tile, player);
         }
+
         System.out.println("No valid TileEntity found for ID: " + ID);
         return null;
     }

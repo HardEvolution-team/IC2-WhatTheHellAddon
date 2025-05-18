@@ -26,10 +26,10 @@ public class TileChinaSolarPanel
         this.output = generate;
     }
 
-    @Override
-    public List<ItemStack> getWrenchDrops(World world, BlockPos blockPos, IBlockState iBlockState, TileEntity tileEntity, EntityPlayer entityPlayer, int i) {
-        return Arrays.asList(new ItemStack(ModBlocks.ChinaSolar));
-    }
+//    @Override
+//    public List<ItemStack> getWrenchDrops(World world, BlockPos blockPos, IBlockState iBlockState, TileEntity tileEntity, EntityPlayer entityPlayer, int i) {
+//        return Arrays.asList(new ItemStack(ModBlocks.ChinaSolar));
+//    }
 
     @Override
     public String getName() {

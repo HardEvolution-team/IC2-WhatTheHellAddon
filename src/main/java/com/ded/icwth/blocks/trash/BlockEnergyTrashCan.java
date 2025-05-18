@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class BlockEnergyTrashCan extends BlockContainer {
 
-    public BlockEnergyTrashCan(Material iron) {
+    public BlockEnergyTrashCan() {
         super(Material.IRON);
         setHardness(3.0F);
         setResistance(10.0F);

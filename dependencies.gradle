@@ -60,5 +60,9 @@ dependencies {
     implementation rfg.deobf("curse.maven:frogcraft-rebirth-248354:2695262")
    // implementation rfg.deobf("curse.maven:not-enough-machines-1073618:5577545")
     implementation rfg.deobf("curse.maven:energy-control-373450:5114551")
+    implementation rfg.deobf("curse.maven:modularmachinery-community-edition-817377:6480528")
+
+    runtimeOnly "curse.maven:crafttweaker-239197:3587830"
+    compileOnly "curse.maven:crafttweaker-239197:3587830"
 }
 

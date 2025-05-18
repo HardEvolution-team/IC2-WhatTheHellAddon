@@ -4,9 +4,7 @@ package com.ded.icwth.blocks;
 import com.ded.icwth.Tags;
 
 
-
-
-
+import com.ded.icwth.blocks.molecularassembler.based.BlockMolecularAssembler;
 import com.ded.icwth.blocks.panels.ChinaSolar.BlockChinaSolarPanel;
 
 
@@ -45,7 +43,7 @@ public class ModBlocks {
 
     public static Block ChinaSolar;
 
-
+    public static Block MolecularAssembler;
 
 
     public static void init() {
@@ -55,12 +53,11 @@ public class ModBlocks {
 
 
 
-        EnergyTrash = new BlockEnergyTrashCan(Material.IRON).setTranslationKey("energy_trash").setCreativeTab(IC2.tabIC2);
-
+        EnergyTrash = new BlockEnergyTrashCan().setTranslationKey("energy_trash").setCreativeTab(IC2.tabIC2);
 
         ChinaSolar = new BlockChinaSolarPanel(Material.IRON).setTranslationKey("china_solar").setCreativeTab(IC2.tabIC2);
 
-
+        MolecularAssembler = new BlockMolecularAssembler(Material.IRON).setTranslationKey("molecular_assembler").setCreativeTab(IC2.tabIC2);
 
     }
 
@@ -74,7 +71,7 @@ public class ModBlocks {
 
         registerBlock(ChinaSolar, ChinaSolar.getTranslationKey().substring(5));
 
-
+        registerBlock(MolecularAssembler, MolecularAssembler.getTranslationKey().substring(5));
 
 
     }
@@ -89,7 +86,7 @@ public class ModBlocks {
 
         registerRender(ChinaSolar);
 
-
+        registerRender(MolecularAssembler);
     }
 
 
@@ -97,7 +94,7 @@ public class ModBlocks {
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
-       // BlockLoliSolarPanel.initModel();
+        // BlockLoliSolarPanel.initModel();
 
 
     }
@@ -175,6 +172,3 @@ public class ModBlocks {
 
     }
 }
-
-
-

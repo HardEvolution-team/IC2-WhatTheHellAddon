@@ -47,7 +47,7 @@ public class CommonProxy {
         event.getRegistry().register(new ItemMatterUpgrade());
 
 
-       //event.getRegistry().register(new ItemBlock(CommonProxy.LoliSolar).setRegistryName(CommonProxy.LoliSolar.getTranslationKey()));
+        //event.getRegistry().register(new ItemBlock(CommonProxy.LoliSolar).setRegistryName(CommonProxy.LoliSolar.getTranslationKey()));
 
 
 
@@ -60,14 +60,14 @@ public class CommonProxy {
 
 
 
-       // event.getRegistry().register(new ItemBlock(ModBlocks.lol).setRegistryName(Objects.requireNonNull(ModBlocks.SpectralSolar.getRegistryName())));
+        // event.getRegistry().register(new ItemBlock(ModBlocks.lol).setRegistryName(Objects.requireNonNull(ModBlocks.SpectralSolar.getRegistryName())));
 
     }
 
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-      //  event.getRegistry().register(new BlockLoliSolarPanel());
+        //  event.getRegistry().register(new BlockLoliSolarPanel());
     }
 
 
