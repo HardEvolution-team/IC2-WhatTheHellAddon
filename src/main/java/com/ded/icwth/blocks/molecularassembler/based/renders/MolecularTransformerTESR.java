@@ -17,14 +17,13 @@ import java.util.Arrays;
 import java.util.List;
 import javax.imageio.ImageIO;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ActiveRenderInfo;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -171,13 +170,27 @@ public class MolecularTransformerTESR extends TileEntitySpecialRenderer<TileEnti
         }
 
         GlStateManager.popMatrix();
-        if (tileTransformer != null && drawActiveCore && tileTransformer.getActive()) {
-            GL11.glPushMatrix();
-            GlStateManager.pushAttrib();
-            this.renderCore(tileTransformer, x, y, z);
-            GlStateManager.popAttrib();
-            GL11.glPopMatrix();
-        }
+        if (tileTransformer != null && tileTransformer.isActive()) {
+            ItemStack stack = tileTransformer.getStackInSlot(1);
+            if (!stack.isEmpty()) {
+                GlStateManager.pushMatrix();
+                GlStateManager.translate(x + 0.5, y + 0.5, z + 0.51);
 
+                float angle = (float) ((System.currentTimeMillis() % 3600) / 10.0);
+                GlStateManager.rotate(angle, 0, 1, 0);
+
+                RenderHelper.enableStandardItemLighting();
+                GlStateManager.enableBlend();
+                GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+
+                float scale = 0.5f;
+                GlStateManager.scale(scale, scale, scale);
+                Minecraft.getMinecraft().getRenderItem().renderItem(stack, ItemCameraTransforms.TransformType.FIXED);
+
+                RenderHelper.disableStandardItemLighting();
+                GlStateManager.disableBlend();
+                GlStateManager.popMatrix();
+            }
+        }
     }
 }

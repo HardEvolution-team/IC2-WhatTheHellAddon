@@ -173,6 +173,7 @@ public class MyMod {
         GameRegistry.registerTileEntity(TileEntityMolecularAssembler.class, new ResourceLocation(Tags.MODID, "molecular_assembler_tile"));
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMolecularAssembler.class, new MolecularTransformerTESR());
+
     }
 
     @EventHandler
