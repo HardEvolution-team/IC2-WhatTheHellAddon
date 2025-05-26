@@ -4,7 +4,10 @@ package com.ded.icwth.blocks;
 import com.ded.icwth.Tags;
 
 
-import com.ded.icwth.blocks.molecularassembler.based.BlockMolecularAssembler;
+
+import com.ded.icwth.blocks.moleculartransformer.advanced.BlockAdvancedMolecularTransformer;
+
+import com.ded.icwth.blocks.moleculartransformer.based.BlockMolecularTransformer;
 import com.ded.icwth.blocks.panels.ChinaSolar.BlockChinaSolarPanel;
 
 
@@ -43,7 +46,9 @@ public class ModBlocks {
 
     public static Block ChinaSolar;
 
-    public static Block MolecularAssembler;
+    public static Block MolecularTransformer;
+    
+    public static Block AdvancedMolecularTransformer;
 
 
     public static void init() {
@@ -57,7 +62,9 @@ public class ModBlocks {
 
         ChinaSolar = new BlockChinaSolarPanel(Material.IRON).setTranslationKey("china_solar").setCreativeTab(IC2.tabIC2);
 
-        MolecularAssembler = new BlockMolecularAssembler(Material.IRON).setTranslationKey("molecular_assembler").setCreativeTab(IC2.tabIC2);
+        MolecularTransformer = new BlockMolecularTransformer(Material.IRON).setTranslationKey("molecular_transformer").setCreativeTab(IC2.tabIC2);
+        
+        AdvancedMolecularTransformer = new BlockAdvancedMolecularTransformer(Material.IRON).setTranslationKey("advanced_molecular_transformer").setCreativeTab(IC2.tabIC2);
 
     }
 
@@ -71,7 +78,9 @@ public class ModBlocks {
 
         registerBlock(ChinaSolar, ChinaSolar.getTranslationKey().substring(5));
 
-        registerBlock(MolecularAssembler, MolecularAssembler.getTranslationKey().substring(5));
+        registerBlock(MolecularTransformer, MolecularTransformer.getTranslationKey().substring(5));
+        
+        registerBlock(AdvancedMolecularTransformer, AdvancedMolecularTransformer.getTranslationKey().substring(5));
 
 
     }
@@ -86,7 +95,9 @@ public class ModBlocks {
 
         registerRender(ChinaSolar);
 
-        registerRender(MolecularAssembler);
+        registerRender(MolecularTransformer );
+        
+        registerRender(AdvancedMolecularTransformer);
     }
 
 

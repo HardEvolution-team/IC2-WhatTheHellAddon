@@ -3,7 +3,7 @@
 // (powered by FernFlower decompiler)
 //
 
-package com.ded.icwth.blocks.molecularassembler.based.renders;
+package com.ded.icwth.blocks.moleculartransformer.based.renders;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

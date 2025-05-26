@@ -1,6 +1,7 @@
-package com.ded.icwth.blocks.molecularassembler.based.gui;
+package com.ded.icwth.blocks.moleculartransformer.based.gui;
 
-import com.ded.icwth.blocks.molecularassembler.based.TileEntityMolecularAssembler;
+
+import com.ded.icwth.blocks.moleculartransformer.based.TileEntityMolecularTransformer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
@@ -14,14 +15,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * Отображает слоты для входного и выходного предметов, а также информацию о процессе трансформации.
  */
 @SideOnly(Side.CLIENT)
-public class GuiMolecularAssembler extends GuiContainer {
+public class GuiMolecularTransformer extends GuiContainer {
     // Путь к текстуре соответствует структуре ресурсов мода
     private static final ResourceLocation TEXTURE = new ResourceLocation("icwth:textures/gui/moleculartransformer.png");
 
-    private final TileEntityMolecularAssembler tileEntity;
+    private final TileEntityMolecularTransformer tileEntity;
 
-    public GuiMolecularAssembler(TileEntityMolecularAssembler tileEntity, EntityPlayer player) {
-        super(new ContainerMolecularAssembler(tileEntity, player));
+    public GuiMolecularTransformer(TileEntityMolecularTransformer tileEntity, EntityPlayer player) {
+        super(new ContainerMolecularTransformer(tileEntity, player));
         this.tileEntity = tileEntity;
         // Размеры GUI: xSize зависит от расстояния между слотами
         this.xSize = 220; // 220 + доп. промежутки для 8 слотов

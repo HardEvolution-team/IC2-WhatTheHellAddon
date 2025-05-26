@@ -1,4 +1,4 @@
-package com.ded.icwth.blocks.molecularassembler.based;
+package com.ded.icwth.blocks.moleculartransformer.based;
 
 import ic2.api.energy.EnergyNet;
 import ic2.api.energy.tile.IEnergyEmitter;
@@ -22,7 +22,7 @@ import net.minecraftforge.items.wrapper.InvWrapper;
  * TileEntity для молекулярного сборщика.
  * Обрабатывает логику преобразования предметов, потребление энергии и взаимодействие с GUI.
  */
-public class TileEntityMolecularAssembler extends TileEntity implements ITickable, IInventory, IEnergySink {
+public class TileEntityMolecularTransformer extends TileEntity implements ITickable, IInventory, IEnergySink {
 
     // Инвентарь: слот 0 - вход, слот 1 - выход
     private NonNullList<ItemStack> inventory = NonNullList.withSize(2, ItemStack.EMPTY);
@@ -35,7 +35,7 @@ public class TileEntityMolecularAssembler extends TileEntity implements ITickabl
     private int lastEnergyRequired = 0;
 
     // Текущий рецепт и его состояние
-    private MolecularAssemblerRecipe currentRecipe = null;
+    private MolecularTransformerRecipe currentRecipe = null;
     private ItemStack currentInput = ItemStack.EMPTY;
     private ItemStack currentOutput = ItemStack.EMPTY;
 
@@ -47,7 +47,7 @@ public class TileEntityMolecularAssembler extends TileEntity implements ITickabl
     // Флаг для отслеживания регистрации в EnergyNet
     private boolean addedToEnet = false;
 
-    public TileEntityMolecularAssembler() {
+    public TileEntityMolecularTransformer() {
         // Конструктор без инициализации BasicSink
     }
 
@@ -143,7 +143,7 @@ public class TileEntityMolecularAssembler extends TileEntity implements ITickabl
         if (this.isActive != nextActive) {
             this.isActive = nextActive;
             this.markDirty();
-            if (this.world.getBlockState(this.pos).getBlock() instanceof BlockMolecularAssembler) {
+            if (this.world.getBlockState(this.pos).getBlock() instanceof BlockMolecularTransformer) {
                 this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos),
                         this.world.getBlockState(this.pos), 3);
             }
@@ -166,7 +166,7 @@ public class TileEntityMolecularAssembler extends TileEntity implements ITickabl
             return false;
         }
 
-        MolecularAssemblerRecipe recipe = MolecularAssemblerRecipeManager.getInstance().findRecipe(input);
+        MolecularTransformerRecipe recipe = MolecularTransformerRecipeManager.getInstance().findRecipe(input);
         if (recipe != null) {
             // Проверяем, можно ли добавить выходной предмет
             ItemStack output = recipe.getOutput();
@@ -227,7 +227,7 @@ public class TileEntityMolecularAssembler extends TileEntity implements ITickabl
         if (compound.hasKey("CurrentInput")) {
             ItemStack input = new ItemStack(compound.getCompoundTag("CurrentInput"));
             if (!input.isEmpty()) {
-                MolecularAssemblerRecipe recipe = MolecularAssemblerRecipeManager.getInstance().findRecipe(input);
+                MolecularTransformerRecipe recipe = MolecularTransformerRecipeManager.getInstance().findRecipe(input);
                 if (recipe != null) {
                     this.currentRecipe = recipe;
                     this.currentInput = input;

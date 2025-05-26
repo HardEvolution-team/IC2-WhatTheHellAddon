@@ -1,4 +1,4 @@
-package com.ded.icwth.blocks.molecularassembler.based;
+package com.ded.icwth.blocks.moleculartransformer.based;
 
 import net.minecraft.item.ItemStack;
 
@@ -6,12 +6,12 @@ import net.minecraft.item.ItemStack;
  * Класс, представляющий рецепт для молекулярного сборщика.
  * Содержит входной предмет, выходной предмет и количество энергии, необходимое для трансформации.
  */
-public class MolecularAssemblerRecipe {
+public class MolecularTransformerRecipe {
     private final ItemStack input;
     private final ItemStack output;
     private final int energyRequired;
 
-    public MolecularAssemblerRecipe(ItemStack input, ItemStack output, int energyRequired) {
+    public MolecularTransformerRecipe(ItemStack input, ItemStack output, int energyRequired) {
         this.input = input.copy();
         this.output = output.copy();
         this.energyRequired = energyRequired;

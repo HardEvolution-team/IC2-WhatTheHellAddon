@@ -10,30 +10,26 @@ import com.ded.icwth.blocks.ModBlocks;
 import com.ded.icwth.blocks.batbox.EnergyStorageManager;
 import com.ded.icwth.blocks.hyperstorage.HyperStorageManager;
 import com.ded.icwth.blocks.hyperstorage.TileHyperStorage;
-import com.ded.icwth.blocks.molecularassembler.based.TileEntityMolecularAssembler;
-import com.ded.icwth.blocks.molecularassembler.based.renders.MolecularTransformerTESR;
+import com.ded.icwth.blocks.moleculartransformer.advanced.TileEntityAdvancedMolecularTransformer;
+import com.ded.icwth.blocks.moleculartransformer.advanced.renders.AdvancedMolecularTransformerTESR;
+import com.ded.icwth.blocks.moleculartransformer.based.TileEntityMolecularTransformer;
+import com.ded.icwth.blocks.moleculartransformer.based.renders.MolecularTransformerTESR;
 import com.ded.icwth.blocks.panels.ChinaSolar.TileChinaSolarPanel;
 import com.ded.icwth.blocks.panels.SolarPanelManager;
 
 import com.ded.icwth.blocks.CommonGuiHandler;
-
 import com.ded.icwth.blocks.trash.EnergyTrashCanTile;
 import com.ded.icwth.items.upgrades.UpgradeItems;
 import ic2.api.event.TeBlockFinalCallEvent;
 import ic2.core.block.BlockTileEntity;
 import ic2.core.ref.TeBlock;
-import mcjty.theoneprobe.api.ITheOneProbe;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -103,16 +99,12 @@ public class MyMod {
 
 // новые панели
         SolarPanelManager.registerPanel("intermediate", 6, 8192.0, 20000000.0, "tile.icwth.intermediate.name");
-        SolarPanelManager.registerPanel("intermediate_high", 6, 16384.0, 40000000.0, "tile.icwth.intermediate_high.name");
-        SolarPanelManager.registerPanel("advanced_high", 6, 40960.0, 100000000.0, "tile.icwth.advanced_high.name");
         SolarPanelManager.registerPanel("superior", 7, 122880.0, 300000000.0, "tile.icwth.superior.name");
         SolarPanelManager.registerPanel("what_the_hell_panel", 7, 245760.0, 600000000.0, "tile.icwth.what_the_hell_panel.name");
-        SolarPanelManager.registerPanel("magnetron", 7, 614400.0, 1500000000.0, "tile.icwth.magnetron.name");
         SolarPanelManager.registerPanel("photon_resonance", 8, 1843200.0, 4500000000.0, "tile.icwth.photon_resonance.name");
-        SolarPanelManager.registerPanel("extreme_photonic", 9, 3686400.0, 9000000000.0, "tile.icwth.extreme_photonic.name");
-        SolarPanelManager.registerPanel("spectral_solar", 10, 3686400.0*2, 9000000000.0*2, "tile.icwth.spectral_solar.name");
 
 // старые панели
+        SolarPanelManager.registerPanel("spectral_solar", 10, 3686400.0*2, 9000000000.0*2, "tile.icwth.spectral_solar.name");
         SolarPanelManager.registerPanel("arcsinus_solar", Integer.MAX_VALUE, 9216000.0, 22500000000.0, "tile.icwth.arcsinus_solar_panel.name");
         SolarPanelManager.registerPanel("diffraction_solar", Integer.MAX_VALUE, 27648000.0, 67500000000.0, "tile.icwth.diffraction_panel.name");
         SolarPanelManager.registerPanel("dispersion_solar", Integer.MAX_VALUE, 55296000.0, 135000000000.0, "tile.icwth.dispersion_solar_panel.name");
@@ -163,16 +155,18 @@ public class MyMod {
 
     }
 
-    @Mod.EventHandler
+    @EventHandler
     public void init(FMLInitializationEvent event) {
         GameRegistry.registerTileEntity(SolarPanelManager.SolarPanelTile.class,
-                new ResourceLocation(Tags.MODID, "solar_panel_tile"));
+                new ResourceLocation(MODID, "solar_panel_tile"));
         GameRegistry.registerTileEntity(EnergyTrashCanTile.class, "tileEntityEnergyTrash");
         GameRegistry.registerTileEntity(TileChinaSolarPanel.class, "tileEntityChinaSolar");
-        GameRegistry.registerTileEntity(TileHyperStorage.class, new ResourceLocation(Tags.MODID, "hyper_storage_tile"));
-        GameRegistry.registerTileEntity(TileEntityMolecularAssembler.class, new ResourceLocation(Tags.MODID, "molecular_assembler_tile"));
+        GameRegistry.registerTileEntity(TileHyperStorage.class, new ResourceLocation(MODID, "hyper_storage_tile"));
+        GameRegistry.registerTileEntity(TileEntityMolecularTransformer.class, new ResourceLocation(MODID, "molecular_transformer_tile"));
+        GameRegistry.registerTileEntity(TileEntityAdvancedMolecularTransformer.class, new ResourceLocation(MODID, "advanced_molecular_transformer_tile"));
 
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMolecularAssembler.class, new MolecularTransformerTESR());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMolecularTransformer.class, new MolecularTransformerTESR());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAdvancedMolecularTransformer.class, new AdvancedMolecularTransformerTESR());
 
     }
 

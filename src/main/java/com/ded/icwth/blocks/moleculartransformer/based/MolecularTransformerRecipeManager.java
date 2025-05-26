@@ -1,4 +1,4 @@
-package com.ded.icwth.blocks.molecularassembler.based;
+package com.ded.icwth.blocks.moleculartransformer.based;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,11 +8,11 @@ import net.minecraft.item.ItemStack;
  * Менеджер рецептов для молекулярного сборщика.
  * Хранит все доступные рецепты и предоставляет методы для их добавления и получения.
  */
-public class MolecularAssemblerRecipeManager {
-    private static final MolecularAssemblerRecipeManager INSTANCE = new MolecularAssemblerRecipeManager();
-    private final List<MolecularAssemblerRecipe> recipes = new ArrayList<>();
+public class MolecularTransformerRecipeManager {
+    private static final MolecularTransformerRecipeManager INSTANCE = new MolecularTransformerRecipeManager();
+    private final List<MolecularTransformerRecipe> recipes = new ArrayList<>();
 
-    private MolecularAssemblerRecipeManager() {
+    private MolecularTransformerRecipeManager() {
         // Приватный конструктор для синглтона
     }
 
@@ -21,7 +21,7 @@ public class MolecularAssemblerRecipeManager {
      * 
      * @return Экземпляр менеджера рецептов
      */
-    public static MolecularAssemblerRecipeManager getInstance() {
+    public static MolecularTransformerRecipeManager getInstance() {
         return INSTANCE;
     }
 
@@ -33,12 +33,12 @@ public class MolecularAssemblerRecipeManager {
      * @param energyRequired Требуемая энергия в EU
      * @return Созданный рецепт
      */
-    public MolecularAssemblerRecipe addRecipe(ItemStack input, ItemStack output, int energyRequired) {
+    public MolecularTransformerRecipe addRecipe(ItemStack input, ItemStack output, int energyRequired) {
         if (input.isEmpty() || output.isEmpty() || energyRequired <= 0) {
             return null;
         }
         
-        MolecularAssemblerRecipe recipe = new MolecularAssemblerRecipe(input, output, energyRequired);
+        MolecularTransformerRecipe recipe = new MolecularTransformerRecipe(input, output, energyRequired);
         recipes.add(recipe);
         return recipe;
     }
@@ -49,12 +49,12 @@ public class MolecularAssemblerRecipeManager {
      * @param input Входной предмет
      * @return Найденный рецепт или null, если рецепт не найден
      */
-    public MolecularAssemblerRecipe findRecipe(ItemStack input) {
+    public MolecularTransformerRecipe findRecipe(ItemStack input) {
         if (input.isEmpty()) {
             return null;
         }
         
-        for (MolecularAssemblerRecipe recipe : recipes) {
+        for (MolecularTransformerRecipe recipe : recipes) {
             if (recipe.matches(input)) {
                 return recipe;
             }
@@ -68,7 +68,7 @@ public class MolecularAssemblerRecipeManager {
      * 
      * @return Список всех рецептов
      */
-    public List<MolecularAssemblerRecipe> getRecipes() {
+    public List<MolecularTransformerRecipe> getRecipes() {
         return new ArrayList<>(recipes);
     }
 
@@ -85,7 +85,7 @@ public class MolecularAssemblerRecipeManager {
      * @param recipe Рецепт для удаления
      * @return true, если рецепт был удален, иначе false
      */
-    public boolean removeRecipe(MolecularAssemblerRecipe recipe) {
+    public boolean removeRecipe(MolecularTransformerRecipe recipe) {
         return recipes.remove(recipe);
     }
 }

@@ -1,6 +1,7 @@
-package com.ded.icwth.blocks.molecularassembler.based.gui;
+package com.ded.icwth.blocks.moleculartransformer.based.gui;
 
-import com.ded.icwth.blocks.molecularassembler.based.TileEntityMolecularAssembler;
+
+import com.ded.icwth.blocks.moleculartransformer.based.TileEntityMolecularTransformer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -14,17 +15,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * Контейнер для молекулярного сборщика.
  * Управляет слотами и взаимодействием с инвентарем игрока.
  */
-public class ContainerMolecularAssembler extends Container {
+public class ContainerMolecularTransformer extends Container {
     // Расстояние между слотами (18 пикселей слот + 2 пикселя промежуток)
     public static final int SLOT_SPACING = 21;
 
-    private final TileEntityMolecularAssembler tileEntity;
+    private final TileEntityMolecularTransformer tileEntity;
     private int lastEnergyUsed = 0;
     private int lastEnergyRequired = 0;
     private int lastActiveState = 0;
     private int lastEnergyInput = 0;
 
-    public ContainerMolecularAssembler(TileEntityMolecularAssembler tileEntity, EntityPlayer player) {
+    public ContainerMolecularTransformer(TileEntityMolecularTransformer tileEntity, EntityPlayer player) {
         this.tileEntity = tileEntity;
         InventoryPlayer playerInventory = player.inventory;
 

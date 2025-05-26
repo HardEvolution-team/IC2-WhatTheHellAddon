@@ -1,9 +1,8 @@
-package com.ded.icwth.blocks.molecularassembler.based;
-
+package com.ded.icwth.blocks.moleculartransformer.based;
 
 import com.ded.icwth.MyMod;
 import com.ded.icwth.Tags;
-import com.ded.icwth.blocks.panels.ChinaSolar.TileChinaSolarPanel;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -21,26 +20,22 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-
 /**
  * Блок молекулярного сборщика.
  * Отвечает за создание TileEntity и обработку взаимодействия с игроком.
  */
-public class BlockMolecularAssembler extends BlockContainer {
+public class BlockMolecularTransformer extends BlockContainer {
 
-    public BlockMolecularAssembler(Material iron) {
+    public BlockMolecularTransformer(Material iron) {
         super(Material.IRON);
         this.setHardness(3.0F);
         this.setResistance(10.0F);
         this.setHarvestLevel("pickaxe", 2);
     }
 
-
-
     @Override
-    public TileEntityMolecularAssembler createNewTileEntity(World world, int meta) {
-        return new TileEntityMolecularAssembler();
+    public TileEntityMolecularTransformer createNewTileEntity(World world, int meta) {
+        return new TileEntityMolecularTransformer();
     }
 
     @Override
@@ -50,7 +45,7 @@ public class BlockMolecularAssembler extends BlockContainer {
         }
 
         TileEntity te = world.getTileEntity(pos);
-        if (te instanceof TileEntityMolecularAssembler) {
+        if (te instanceof TileEntityMolecularTransformer) {
             player.openGui(MyMod.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
             return true;
         }
@@ -58,12 +53,11 @@ public class BlockMolecularAssembler extends BlockContainer {
         return false;
     }
 
-
-
     @Override
     public boolean isFullCube(IBlockState state) {
         return false;
     }
+
     @SideOnly(Side.CLIENT)
     private static void initModel(Block block, String name) {
         ModelLoader.setCustomModelResourceLocation(
@@ -76,14 +70,15 @@ public class BlockMolecularAssembler extends BlockContainer {
     public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
     }
+
     @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
-
     @SideOnly(Side.CLIENT)
     public void initModel() {
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
     }
+
 }

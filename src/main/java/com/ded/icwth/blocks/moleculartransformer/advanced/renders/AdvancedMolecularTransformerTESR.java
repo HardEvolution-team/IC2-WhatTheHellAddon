@@ -1,12 +1,7 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
-package com.ded.icwth.blocks.molecularassembler.based.renders;
+package com.ded.icwth.blocks.moleculartransformer.advanced.renders;
 
 
-import com.ded.icwth.blocks.molecularassembler.based.TileEntityMolecularAssembler;
+import com.ded.icwth.blocks.moleculartransformer.advanced.TileEntityAdvancedMolecularTransformer;
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
 import java.awt.Color;
@@ -33,17 +28,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
-public class MolecularTransformerTESR extends TileEntitySpecialRenderer<TileEntityMolecularAssembler> {
-    private static final ResourceLocation transfTextloc = new ResourceLocation("advanced_solar_panels", "textures/models/textureMolecularTransformer.png");
-    private static final ResourceLocation plazmaTextloc = new ResourceLocation("advanced_solar_panels", "textures/models/plazma.png");
-    private static final ResourceLocation particlesTextloc = new ResourceLocation("advanced_solar_panels", "textures/models/particles.png");
-    public static final MolecularTransformerModel model = new MolecularTransformerModel();
+public class AdvancedMolecularTransformerTESR extends TileEntitySpecialRenderer<TileEntityAdvancedMolecularTransformer> {
+    private static final ResourceLocation transfTextloc = new ResourceLocation("icwth", "textures/models/advanced_molecular_transformer.png");
+    private static final ResourceLocation plazmaTextloc = new ResourceLocation("icwth", "textures/models/plazma.png");
+    private static final ResourceLocation particlesTextloc = new ResourceLocation("icwth", "textures/models/particles.png");
+    public static final AdvancedMolecularTransformerModel model = new AdvancedMolecularTransformerModel();
     private static final TObjectIntMap<List<Serializable>> textureSizeCache = new TObjectIntHashMap();
     private static final IResourceManager resources = Minecraft.getMinecraft().getResourceManager();
-    public static boolean drawActiveCore = false;
+    public static boolean drawActiveCore = true;
     public int ticker;
 
-    public MolecularTransformerTESR() {
+    public AdvancedMolecularTransformerTESR() {
     }
 
     public static int getTextureSize(String s, int dv) {
@@ -51,7 +46,7 @@ public class MolecularTransformerTESR extends TileEntitySpecialRenderer<TileEnti
             return textureSizeCache.get(Arrays.asList(s, dv));
         } else {
             try {
-                InputStream inputstream = resources.getResource(new ResourceLocation("advanced_solar_panels", s)).getInputStream();
+                InputStream inputstream = resources.getResource(new ResourceLocation("icwth", s)).getInputStream();
                 if (inputstream == null) {
                     throw new FileNotFoundException("Image not found: " + s);
                 } else {
@@ -146,7 +141,8 @@ public class MolecularTransformerTESR extends TileEntitySpecialRenderer<TileEnti
         }
     }
 
-    public void render(TileEntityMolecularAssembler tileTransformer, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+    public void render(TileEntityAdvancedMolecularTransformer tileTransformer, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+        // Рендерим основную модель блока
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)x + 0.5F, (float)y + 1.5F, (float)z + 0.5F);
         if (destroyStage >= 0) {
@@ -170,25 +166,41 @@ public class MolecularTransformerTESR extends TileEntitySpecialRenderer<TileEnti
         }
 
         GlStateManager.popMatrix();
+
+        // Если блок активен, рендерим дополнительные эффекты
         if (tileTransformer != null && tileTransformer.isActive()) {
+            // Рендерим ядро (плазму и частицы)
+            if (drawActiveCore) {
+                GL11.glPushMatrix();
+                GlStateManager.pushAttrib();
+                this.renderCore(tileTransformer, x, y, z);
+                GlStateManager.popAttrib();
+                GL11.glPopMatrix();
+            }
+
+            // Рендерим вращающийся предмет внутри блока
             ItemStack stack = tileTransformer.getStackInSlot(1);
             if (!stack.isEmpty()) {
+                // Настраиваем позицию и вращение
                 GlStateManager.pushMatrix();
-                GlStateManager.translate(x + 0.5, y + 0.5, z + 0.51);
+                GlStateManager.translate(x + 0.5, y + 0.5, z + 0.5);
 
+                // Вычисляем угол вращения на основе времени - простое вращение вокруг оси Y
                 float angle = (float) ((System.currentTimeMillis() % 3600) / 10.0);
                 GlStateManager.rotate(angle, 0, 1, 0);
 
+                // Настраиваем освещение
                 RenderHelper.enableStandardItemLighting();
-                GlStateManager.enableBlend();
-                GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 
-                float scale = 0.5f;
+                // Фиксированный масштаб для предмета
+                float scale = 0.4f;
                 GlStateManager.scale(scale, scale, scale);
+
+                // Рендерим предмет
                 Minecraft.getMinecraft().getRenderItem().renderItem(stack, ItemCameraTransforms.TransformType.FIXED);
 
+                // Восстанавливаем состояние OpenGL
                 RenderHelper.disableStandardItemLighting();
-                GlStateManager.disableBlend();
                 GlStateManager.popMatrix();
             }
         }

@@ -1,7 +1,8 @@
 package com.ded.icwth.integration.crafttweaker;
 
 
-import com.ded.icwth.blocks.molecularassembler.based.MolecularAssemblerRecipeManager;
+
+import com.ded.icwth.blocks.moleculartransformer.based.MolecularTransformerRecipeManager;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
 import crafttweaker.annotations.ZenRegister;
@@ -60,7 +61,7 @@ public class CraftTweakerIntegration {
         public void apply() {
             ItemStack inputStack = (ItemStack) input.getInternal();
             ItemStack outputStack = (ItemStack) output.getInternal();
-            MolecularAssemblerRecipeManager.getInstance().addRecipe(inputStack, outputStack, energyRequired);
+            MolecularTransformerRecipeManager.getInstance().addRecipe(inputStack, outputStack, energyRequired);
         }
 
         @Override
@@ -75,7 +76,7 @@ public class CraftTweakerIntegration {
     private static class RemoveAllRecipesAction implements IAction {
         @Override
         public void apply() {
-            MolecularAssemblerRecipeManager.getInstance().clearRecipes();
+            MolecularTransformerRecipeManager.getInstance().clearRecipes();
         }
 
         @Override

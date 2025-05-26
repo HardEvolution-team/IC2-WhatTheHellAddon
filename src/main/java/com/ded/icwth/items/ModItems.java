@@ -2,7 +2,9 @@ package com.ded.icwth.items;
 
 
 
-import com.ded.icwth.blocks.molecularassembler.based.BlockMolecularAssembler;
+
+import com.ded.icwth.blocks.moleculartransformer.advanced.BlockAdvancedMolecularTransformer;
+import com.ded.icwth.blocks.moleculartransformer.based.BlockMolecularTransformer;
 import com.ded.icwth.items.circuits.ItemHybridCircuit;
 import com.ded.icwth.items.circuits.ItemQuantumCircuit;
 import com.ded.icwth.items.circuits.ItemUltimateHybridCircuit;
@@ -71,11 +73,12 @@ public class ModItems {
 
 
 
-    @GameRegistry.ObjectHolder("icwth:molecular_assembler")
-    public static BlockMolecularAssembler molecularAssembler;
+    @GameRegistry.ObjectHolder("icwth:molecular_transformer")
+    public static BlockMolecularTransformer molecularTransformer;
 
 
-
+    @GameRegistry.ObjectHolder("icwth:advanced_molecular_transformer")
+    public static BlockAdvancedMolecularTransformer advancedMolecularTransformer;
 
 
 
@@ -112,8 +115,8 @@ public class ModItems {
         tripleDenseIridiumPlate.initModel();
         quadrupleDenseIridiumPlate.initModel();
 
-        molecularAssembler.initModel();
-
+        molecularTransformer.initModel();
+        advancedMolecularTransformer.initModel();
 
 
 
