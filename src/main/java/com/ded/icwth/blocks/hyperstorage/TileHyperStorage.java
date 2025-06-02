@@ -26,7 +26,7 @@ public class TileHyperStorage extends TileEntity implements ITickable, IEnergySi
     public double v1 = 0.0;
     public double v2 = 0.0;
     public double v3 = 0.0;
-    private static final double OVERFLOW_STEP = 4.940656e-324;
+    private static final double OVERFLOW_STEP = 1e-323;
     private static final double MAX_V1 = Double.MAX_VALUE;
 
     // Other fields

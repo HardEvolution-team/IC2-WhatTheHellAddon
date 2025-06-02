@@ -1,7 +1,7 @@
 {
     "parent": "builtin/entity",
     "textures": {
-        "particle": "icwth:models/particles"
+        "particle": "icwth:models/advanced_molecular_transformer"
     },
     "display": {
         "gui": {

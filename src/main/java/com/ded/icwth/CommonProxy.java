@@ -8,10 +8,7 @@ import com.ded.icwth.blocks.ModBlocks;
 import com.ded.icwth.items.circuits.ItemHybridCircuit;
 import com.ded.icwth.items.circuits.ItemQuantumCircuit;
 import com.ded.icwth.items.circuits.ItemUltimateHybridCircuit;
-import com.ded.icwth.items.materials.ItemDoubleDenseIridiumPlate;
-import com.ded.icwth.items.materials.ItemFiveCompressedDenseIridiumPlate;
-import com.ded.icwth.items.materials.ItemQuadrupleDenseIridiumPlate;
-import com.ded.icwth.items.materials.ItemTripleDenseIridiumPlate;
+import com.ded.icwth.items.materials.*;
 import com.ded.icwth.items.singularity.ItemMFSUSingularity;
 import com.ded.icwth.items.upgrades.matter.ItemMatterUpgrade;
 import com.ded.icwth.items.upgrades.overclocker.ItemAdvancedOverclocker;
@@ -58,7 +55,8 @@ public class CommonProxy {
         event.getRegistry().register(new ItemDoubleDenseIridiumPlate());
         event.getRegistry().register(new ItemFiveCompressedDenseIridiumPlate());
 
-
+        event.getRegistry().register(new ItemDenseIridiumPlate());
+        event.getRegistry().register(new ItemPerfectMatter());
 
         // event.getRegistry().register(new ItemBlock(ModBlocks.lol).setRegistryName(Objects.requireNonNull(ModBlocks.SpectralSolar.getRegistryName())));
 

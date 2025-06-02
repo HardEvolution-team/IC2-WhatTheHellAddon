@@ -19,7 +19,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 /**
- * TileEntity для молекулярного сборщика.
+ * TileEntity для молекулярного трансформера.
  * Обрабатывает логику преобразования предметов, потребление энергии и взаимодействие с GUI.
  */
 public class TileEntityMolecularTransformer extends TileEntity implements ITickable, IInventory, IEnergySink {
@@ -250,7 +250,7 @@ public class TileEntityMolecularTransformer extends TileEntity implements ITicka
         compound.setDouble("LastEnergyInput", this.lastEnergyInput);
         compound.setInteger("LastEnergyRequired", this.lastEnergyRequired);
 
-        // Зап thứис состояния активности
+        // Запись состояния активности
         compound.setBoolean("IsActive", this.isActive);
 
         // Сохранение текущего рецепта
@@ -378,10 +378,12 @@ public class TileEntityMolecularTransformer extends TileEntity implements ITicka
 
     @Override
     public void openInventory(EntityPlayer player) {
+        // Не требуется реализация
     }
 
     @Override
     public void closeInventory(EntityPlayer player) {
+        // Не требуется реализация
     }
 
     @Override
@@ -465,10 +467,16 @@ public class TileEntityMolecularTransformer extends TileEntity implements ITicka
 
     // Дополнительные методы для GUI
 
+    /**
+     * Возвращает состояние активности машины
+     */
     public boolean isActive() {
         return this.isActive;
     }
 
+    /**
+     * Возвращает прогресс в диапазоне 0.0-1.0 для GUI
+     */
     public double getProgress() {
         if (this.currentRecipe == null) {
             return 0.0;
@@ -476,27 +484,28 @@ public class TileEntityMolecularTransformer extends TileEntity implements ITicka
         return this.energyUsed / this.currentRecipe.getEnergyRequired();
     }
 
+    /**
+     * Возвращает процент прогресса в виде строки
+     */
+    public String getProgressPercent() {
+        if (this.currentRecipe == null) {
+            return "0%";
+        }
+        int percent = (int) (this.getProgress() * 100);
+        return percent + "%";
+    }
+
+    /**
+     * Возвращает имя входного предмета
+     */
     public String getInputName() {
         return this.currentInput.isEmpty() ? "" : this.currentInput.getDisplayName();
     }
 
+    /**
+     * Возвращает имя выходного предмета
+     */
     public String getOutputName() {
         return this.currentOutput.isEmpty() ? "" : this.currentOutput.getDisplayName();
-    }
-
-    public String getEnergyNeeded() {
-        return this.lastEnergyRequired == 0 ? "0 EU" : String.format("%,d EU", this.lastEnergyRequired);
-    }
-
-    public String getEnergyInput() {
-        return this.lastEnergyInput <= 0 ? "0 EU/t" : String.format("%,.0f EU/t", this.lastEnergyInput);
-    }
-
-    public String getProgressPercent() {
-        return this.currentRecipe == null ? "0%" : String.format("%,.0f%%", this.getProgress() * 100.0);
-    }
-
-    public boolean getActive() {
-        return this.isActive;
     }
 }

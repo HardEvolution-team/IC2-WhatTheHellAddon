@@ -58,4 +58,10 @@ tile.icwth.vector_mfsu.name=Vector MFSU
 tile.icwth.brauthem_mfsu.name=Brauthem MFSU
 tile.icwth.hell_yeah_mfsu.name=Hell Yeah MFSU
 
+tile.advanced_molecular_transformer.name=Advanced Molecular Transformer
+tile.molecular_transformer.name=Molecular Transformer
+
+jei.icwth.input=Input
+jei.icwth.output=output
+jei.icwth.energy_required=EU:
 

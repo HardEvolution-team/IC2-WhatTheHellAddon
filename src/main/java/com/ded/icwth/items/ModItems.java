@@ -8,10 +8,7 @@ import com.ded.icwth.blocks.moleculartransformer.based.BlockMolecularTransformer
 import com.ded.icwth.items.circuits.ItemHybridCircuit;
 import com.ded.icwth.items.circuits.ItemQuantumCircuit;
 import com.ded.icwth.items.circuits.ItemUltimateHybridCircuit;
-import com.ded.icwth.items.materials.ItemDoubleDenseIridiumPlate;
-import com.ded.icwth.items.materials.ItemFiveCompressedDenseIridiumPlate;
-import com.ded.icwth.items.materials.ItemQuadrupleDenseIridiumPlate;
-import com.ded.icwth.items.materials.ItemTripleDenseIridiumPlate;
+import com.ded.icwth.items.materials.*;
 import com.ded.icwth.items.singularity.ItemMFSUSingularity;
 import com.ded.icwth.items.upgrades.matter.ItemMatterUpgrade;
 import com.ded.icwth.items.upgrades.overclocker.ItemAdvancedOverclocker;
@@ -71,6 +68,13 @@ public class ModItems {
     public static ItemQuantumCircuit quantumCircuit;
 
 
+    @GameRegistry.ObjectHolder("icwth:perfect_matter")
+    public static ItemPerfectMatter perfectMatter;
+
+    @GameRegistry.ObjectHolder("icwth:dense_iridium_plate")
+    public static ItemDenseIridiumPlate denseIridiumPlate;
+
+
 
 
     @GameRegistry.ObjectHolder("icwth:molecular_transformer")
@@ -94,11 +98,8 @@ public class ModItems {
 
 
 
-
-
     @SideOnly(Side.CLIENT)
     public static void initModels() {
-        //items
         improvedOverclocker.initModel();
         advancedOverclocker.initModel();
         quantumOverclocker.initModel();
@@ -119,7 +120,8 @@ public class ModItems {
         advancedMolecularTransformer.initModel();
 
 
-
+        perfectMatter.initModel();
+        denseIridiumPlate.initModel();
 
     }
 }

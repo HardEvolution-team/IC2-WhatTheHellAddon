@@ -56,4 +56,9 @@ tile.icwth.vector_mfsu.name=Векторный MFSU
 tile.icwth.brauthem_mfsu.name=Браутхем MFSU
 tile.icwth.hell_yeah_mfsu.name=Hell Yeah MFSU
 
+tile.advanced_molecular_transformer.name=Улучшенный Молекулярный Преобразователь
+tile.molecular_transformer.name=Молекулярный Преобразователь
 
+jei.icwth.input=Вход
+jei.icwth.output=Выход
+jei.icwth.energy_required=EU:

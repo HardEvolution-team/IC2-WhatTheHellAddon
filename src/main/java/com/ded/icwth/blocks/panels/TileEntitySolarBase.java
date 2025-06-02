@@ -21,12 +21,15 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public abstract class TileEntitySolarBase extends TileEntityBase implements ITickable, IWrenchable, ILocatable, IMultiEnergySource, IInventory {
+    private static final Logger LOGGER = LogManager.getLogger();
     public BasicSource energy;
     private static final Random r = new Random();
     public double packetAmount;
@@ -35,7 +38,7 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
     public double output;
     protected double capacity;
     protected String localizedName;
-    protected NonNullList<ItemStack> inventory = NonNullList.withSize(5, ItemStack.EMPTY); // Уменьшено до 5 слотов
+    protected NonNullList<ItemStack> inventory = NonNullList.withSize(10, ItemStack.EMPTY); // Фиксированный размер 10 слотов
     private double lastEnergy = -1;
     private double baseOutput;  // Add this to store original output
     private double baseCapacity; // Add this to store original capacity
@@ -50,10 +53,12 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
         this.tick = r.nextInt(64);
         this.tier = tier;
         this.localizedName = "tile.default_solar.name";
-        this.inventory = NonNullList.withSize(10, ItemStack.EMPTY); // Increase to 10 slots (5 charging + 5 upgrades)
+        this.inventory = NonNullList.withSize(10, ItemStack.EMPTY); // Всегда 10 слотов (5 зарядных + 5 апгрейдов)
     }
 
     public TileEntitySolarBase() {
+        // Убедимся, что инвентарь всегда инициализирован с правильным размером
+        this.inventory = NonNullList.withSize(10, ItemStack.EMPTY);
     }
 
     @Override
@@ -80,8 +85,6 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
         }
     }
 
-
-
     protected void createEnergy() {
         if (this.canGenerate()) {
             this.energy.addEnergy(this.output);
@@ -93,26 +96,46 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
     }
 
     protected void chargeItems() {
-        double totalTransfer = Math.min(output, energy.getEnergyStored());
-        int chargeableSlots = 0;
-
-        // Подсчитываем количество слотов с заряжаемыми предметами
-        for (int i = 0; i < 5; i++) {
-            ItemStack stack = inventory.get(i);
-            if (!stack.isEmpty() && stack.getItem() instanceof IElectricItem) {
-                chargeableSlots++;
+        try {
+            // Проверка на null и правильный размер
+            if (inventory == null) {
+                LOGGER.error("TileEntitySolarBase.chargeItems: inventory is null");
+                inventory = NonNullList.withSize(10, ItemStack.EMPTY);
+                return;
             }
-        }
 
-        if (chargeableSlots > 0) {
-            double transferPerSlot = totalTransfer / chargeableSlots;
+            if (inventory.size() < 5) {
+                LOGGER.warn("TileEntitySolarBase.chargeItems: inventory size is {}, expected at least 5", inventory.size());
+                NonNullList<ItemStack> newList = NonNullList.withSize(10, ItemStack.EMPTY);
+                for (int i = 0; i < inventory.size(); i++) {
+                    newList.set(i, inventory.get(i));
+                }
+                inventory = newList;
+            }
+
+            double totalTransfer = Math.min(output, energy.getEnergyStored());
+            int chargeableSlots = 0;
+
+            // Подсчитываем количество слотов с заряжаемыми предметами
             for (int i = 0; i < 5; i++) {
-                ItemStack chargeStack = inventory.get(i);
-                if (!chargeStack.isEmpty() && chargeStack.getItem() instanceof IElectricItem) {
-                    double charged = ic2.api.item.ElectricItem.manager.charge(chargeStack, transferPerSlot, tier, false, false);
-                    energy.useEnergy(charged);
+                ItemStack stack = inventory.get(i);
+                if (!stack.isEmpty() && stack.getItem() instanceof IElectricItem) {
+                    chargeableSlots++;
                 }
             }
+
+            if (chargeableSlots > 0) {
+                double transferPerSlot = totalTransfer / chargeableSlots;
+                for (int i = 0; i < 5; i++) {
+                    ItemStack chargeStack = inventory.get(i);
+                    if (!chargeStack.isEmpty() && chargeStack.getItem() instanceof IElectricItem) {
+                        double charged = ic2.api.item.ElectricItem.manager.charge(chargeStack, transferPerSlot, tier, false, false);
+                        energy.useEnergy(charged);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error in TileEntitySolarBase.chargeItems", e);
         }
     }
 
@@ -146,10 +169,16 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
             this.energy.useEnergy(amount);
         }
     }
+
     @Override
     public int getSizeInventory() {
-        return inventory.size(); // Now 10 slots
+        // Убедимся, что инвентарь инициализирован
+        if (inventory == null) {
+            inventory = NonNullList.withSize(10, ItemStack.EMPTY);
+        }
+        return inventory.size();
     }
+
     @Override
     public int getSourceTier() {
         return this.tier;
@@ -183,7 +212,30 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
             this.energy = new BasicSource((TileEntity) this, this.capacity, this.tier);
         }
         this.energy.readFromNBT(nbt);
-        ItemStackHelper.loadAllItems(nbt, this.inventory);
+
+        try {
+            // Убедимся, что инвентарь инициализирован с правильным размером
+            if (inventory == null || inventory.size() != 10) {
+                LOGGER.warn("TileEntitySolarBase.readFromNBT: Reinitializing inventory with size 10");
+                inventory = NonNullList.withSize(10, ItemStack.EMPTY);
+            }
+
+            // Загружаем предметы из NBT
+            ItemStackHelper.loadAllItems(nbt, this.inventory);
+
+            // Проверка размера после загрузки
+            if (inventory.size() != 10) {
+                LOGGER.warn("TileEntitySolarBase.readFromNBT: Incorrect inventory size after loading: {}", inventory.size());
+                NonNullList<ItemStack> newList = NonNullList.withSize(10, ItemStack.EMPTY);
+                for (int i = 0; i < Math.min(inventory.size(), 10); i++) {
+                    newList.set(i, inventory.get(i));
+                }
+                inventory = newList;
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error reading inventory from NBT", e);
+            inventory = NonNullList.withSize(10, ItemStack.EMPTY);
+        }
     }
 
     @Override
@@ -198,7 +250,26 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
         }
         nbt.setDouble("output", this.output);
         nbt.setDouble("baseOutput", this.baseOutput);
-        ItemStackHelper.saveAllItems(nbt, this.inventory);
+
+        try {
+            // Проверка на null и правильный размер
+            if (inventory == null) {
+                LOGGER.warn("TileEntitySolarBase.writeToNBT: inventory is null, creating new one");
+                inventory = NonNullList.withSize(10, ItemStack.EMPTY);
+            } else if (inventory.size() != 10) {
+                LOGGER.warn("TileEntitySolarBase.writeToNBT: Incorrect inventory size: {}, resizing to 10", inventory.size());
+                NonNullList<ItemStack> newList = NonNullList.withSize(10, ItemStack.EMPTY);
+                for (int i = 0; i < Math.min(inventory.size(), 10); i++) {
+                    newList.set(i, inventory.get(i));
+                }
+                inventory = newList;
+            }
+
+            ItemStackHelper.saveAllItems(nbt, this.inventory);
+        } catch (Exception e) {
+            LOGGER.error("Error writing inventory to NBT", e);
+        }
+
         return nbt;
     }
 
@@ -265,48 +336,78 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
     public List<ItemStack> getWrenchDrops(World world, BlockPos blockPos, IBlockState iBlockState, TileEntity tileEntity, EntityPlayer entityPlayer, int i) {
         return Collections.emptyList();
     }
+
     protected void checkConditions() {
         this.applyUpgrades();  // Add this call
         this.createEnergy();
         this.chargeItems();
     }
+
     private void applyUpgrades() {
-        // Reset to base values
-        this.output = this.baseOutput;
-        this.capacity = this.baseCapacity;
+        try {
+            // Проверка на null
+            if (inventory == null) {
+                LOGGER.error("TileEntitySolarBase.applyUpgrades: inventory is null");
+                inventory = NonNullList.withSize(10, ItemStack.EMPTY);
+                return;
+            }
 
-        double nightMultiplier = 1.0;
-        double dayMultiplier = 1.0;
-        double efficiencyMultiplier = 1.0;
+            // Проверка размера списка
+            if (inventory.size() < 10) {
+                LOGGER.warn("TileEntitySolarBase.applyUpgrades: inventory size is {}, expected 10", inventory.size());
+                NonNullList<ItemStack> newList = NonNullList.withSize(10, ItemStack.EMPTY);
+                for (int i = 0; i < inventory.size(); i++) {
+                    newList.set(i, inventory.get(i));
+                }
+                inventory = newList;
+            }
 
-        // Check upgrade slots (5-9)
-        for (int i = 5; i < 10; i++) {
-            ItemStack stack = inventory.get(i);
-            if (!stack.isEmpty()) {
-                if (stack.getItem() == UpgradeItems.nightGenerationUpgrade) {
-                    nightMultiplier = 2.0;
-                } else if (stack.getItem() == UpgradeItems.dayGenerationUpgrade) {
-                    dayMultiplier = 1.5;
-                } else if (stack.getItem() == UpgradeItems.capacityUpgrade) {
-                    this.capacity *= 1.5;
-                } else if (stack.getItem() == UpgradeItems.efficiencyUpgrade) {
-                    efficiencyMultiplier = 1.25;
+            // Reset to base values
+            this.output = this.baseOutput;
+            this.capacity = this.baseCapacity;
+
+            double nightMultiplier = 1.0;
+            double dayMultiplier = 1.0;
+            double efficiencyMultiplier = 1.0;
+
+            // Check upgrade slots (5-9)
+            for (int i = 5; i < 10; i++) {
+                // Безопасный доступ к элементам списка
+                if (i >= inventory.size()) {
+                    LOGGER.warn("TileEntitySolarBase.applyUpgrades: trying to access index {} but inventory size is {}", i, inventory.size());
+                    continue;
+                }
+
+                ItemStack stack = inventory.get(i);
+                if (!stack.isEmpty()) {
+                    if (stack.getItem() == UpgradeItems.nightGenerationUpgrade) {
+                        nightMultiplier = 2.0;
+                    } else if (stack.getItem() == UpgradeItems.dayGenerationUpgrade) {
+                        dayMultiplier = 1.5;
+                    } else if (stack.getItem() == UpgradeItems.capacityUpgrade) {
+                        this.capacity *= 1.5;
+                    } else if (stack.getItem() == UpgradeItems.efficiencyUpgrade) {
+                        efficiencyMultiplier = 1.25;
+                    }
                 }
             }
-        }
 
-        // Apply multipliers
-        if (world.isDaytime()) {
-            this.output *= dayMultiplier * efficiencyMultiplier;
-        } else {
-            this.output *= nightMultiplier * efficiencyMultiplier;
-        }
+            // Apply multipliers
+            if (world.isDaytime()) {
+                this.output *= dayMultiplier * efficiencyMultiplier;
+            } else {
+                this.output *= nightMultiplier * efficiencyMultiplier;
+            }
 
-        // Update energy capacity if changed
-        if (this.energy != null && this.capacity != this.energy.getCapacity()) {
-            this.energy.setCapacity(this.capacity);
+            // Update energy capacity if changed
+            if (this.energy != null && this.capacity != this.energy.getCapacity()) {
+                this.energy.setCapacity(this.capacity);
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error applying solar panel upgrades", e);
         }
     }
+
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
         if (index < 5) {  // Charging slots
@@ -322,26 +423,77 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
 
     @Override
     public boolean isEmpty() {
+        // Проверка на null
+        if (inventory == null) {
+            return true;
+        }
         return inventory.stream().allMatch(ItemStack::isEmpty);
     }
 
     @Override
     public ItemStack getStackInSlot(int index) {
+        // Безопасный доступ к элементам списка
+        if (inventory == null) {
+            LOGGER.error("TileEntitySolarBase.getStackInSlot: inventory is null");
+            inventory = NonNullList.withSize(10, ItemStack.EMPTY);
+            return ItemStack.EMPTY;
+        }
+
+        if (index < 0 || index >= inventory.size()) {
+            LOGGER.warn("TileEntitySolarBase.getStackInSlot: index {} out of bounds (size: {})", index, inventory.size());
+            return ItemStack.EMPTY;
+        }
+
         return inventory.get(index);
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count) {
+        // Безопасный доступ к элементам списка
+        if (inventory == null) {
+            LOGGER.error("TileEntitySolarBase.decrStackSize: inventory is null");
+            inventory = NonNullList.withSize(10, ItemStack.EMPTY);
+            return ItemStack.EMPTY;
+        }
+
+        if (index < 0 || index >= inventory.size()) {
+            LOGGER.warn("TileEntitySolarBase.decrStackSize: index {} out of bounds (size: {})", index, inventory.size());
+            return ItemStack.EMPTY;
+        }
+
         return ItemStackHelper.getAndSplit(inventory, index, count);
     }
 
     @Override
     public ItemStack removeStackFromSlot(int index) {
+        // Безопасный доступ к элементам списка
+        if (inventory == null) {
+            LOGGER.error("TileEntitySolarBase.removeStackFromSlot: inventory is null");
+            inventory = NonNullList.withSize(10, ItemStack.EMPTY);
+            return ItemStack.EMPTY;
+        }
+
+        if (index < 0 || index >= inventory.size()) {
+            LOGGER.warn("TileEntitySolarBase.removeStackFromSlot: index {} out of bounds (size: {})", index, inventory.size());
+            return ItemStack.EMPTY;
+        }
+
         return ItemStackHelper.getAndRemove(inventory, index);
     }
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
+        // Безопасный доступ к элементам списка
+        if (inventory == null) {
+            LOGGER.error("TileEntitySolarBase.setInventorySlotContents: inventory is null");
+            inventory = NonNullList.withSize(10, ItemStack.EMPTY);
+        }
+
+        if (index < 0 || index >= inventory.size()) {
+            LOGGER.warn("TileEntitySolarBase.setInventorySlotContents: index {} out of bounds (size: {})", index, inventory.size());
+            return;
+        }
+
         inventory.set(index, stack);
         markDirty();
     }
@@ -362,9 +514,6 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
     @Override
     public void closeInventory(EntityPlayer player) {}
 
-
-
-
     @Override
     public int getField(int id) {
         return 0;
@@ -380,7 +529,11 @@ public abstract class TileEntitySolarBase extends TileEntityBase implements ITic
 
     @Override
     public void clear() {
-        inventory.clear();
+        if (inventory == null) {
+            inventory = NonNullList.withSize(10, ItemStack.EMPTY);
+        } else {
+            inventory.clear();
+        }
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.ded.icwth.integration.jei;
 import com.ded.icwth.blocks.ModBlocks;
 
 
+import com.ded.icwth.blocks.moleculartransformer.advanced.gui.GuiAdvancedMolecularTransformer;
 import com.ded.icwth.blocks.moleculartransformer.based.MolecularTransformerRecipe;
 import com.ded.icwth.blocks.moleculartransformer.based.MolecularTransformerRecipeManager;
 
@@ -48,5 +49,7 @@ public class JEICompat implements IModPlugin {
 
         // Регистрируем блок как катализатор для рецептов
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.MolecularTransformer), MOLECULAR_ASSEMBLER_UID);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.AdvancedMolecularTransformer), MOLECULAR_ASSEMBLER_UID);
+
     }
 }

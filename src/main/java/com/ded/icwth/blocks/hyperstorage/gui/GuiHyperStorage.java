@@ -26,7 +26,7 @@ public class GuiHyperStorage extends GuiIC2<ContainerHyperStorage> {
     private static final int PROGRESS_BAR_HEIGHT = 14;
 
     // Constants for energy calculation
-    private static final BigDecimal OVERFLOW_STEP = new BigDecimal("4.940656E-324");
+    private static final BigDecimal OVERFLOW_STEP = new BigDecimal("1e-323");
     private static final BigDecimal MAX_V1 = new BigDecimal(Double.MAX_VALUE);
     private static final BigDecimal V2_MULTIPLIER = MAX_V1; // v2 * MAX_V1
     private static final BigDecimal V3_MULTIPLIER = MAX_V1.multiply(MAX_V1).divide(OVERFLOW_STEP, MathContext.DECIMAL128); // v3 * MAX_V1^2 / 1E-323

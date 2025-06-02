@@ -26,7 +26,7 @@ public class CraftTweakerIntegration {
      * @param energyRequired Требуемая энергия в EU
      */
     @ZenMethod
-    public static void addRecipe(IItemStack output, IItemStack input, int energyRequired) {
+    public static void addRecipe(IItemStack output, IItemStack input, double energyRequired) {
         if (output == null || input == null || energyRequired <= 0) {
             CraftTweakerAPI.logError("Invalid recipe parameters for Molecular Assembler");
             return;
@@ -49,9 +49,9 @@ public class CraftTweakerIntegration {
     private static class AddRecipeAction implements IAction {
         private final IItemStack input;
         private final IItemStack output;
-        private final int energyRequired;
+        private final double energyRequired;
 
-        public AddRecipeAction(IItemStack input, IItemStack output, int energyRequired) {
+        public AddRecipeAction(IItemStack input, IItemStack output, double energyRequired) {
             this.input = input;
             this.output = output;
             this.energyRequired = energyRequired;

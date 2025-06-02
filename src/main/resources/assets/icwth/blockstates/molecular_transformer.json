@@ -1,7 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "icwth:molecular_assembler"
+    "model": "icwth:molecular_transformer"
   },
   "variants": {
     "normal": [{}],

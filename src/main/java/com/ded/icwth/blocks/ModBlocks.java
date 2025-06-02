@@ -95,7 +95,7 @@ public class ModBlocks {
 
         registerRender(ChinaSolar);
 
-        registerRender(MolecularTransformer );
+        registerRender(MolecularTransformer);
         
         registerRender(AdvancedMolecularTransformer);
     }
