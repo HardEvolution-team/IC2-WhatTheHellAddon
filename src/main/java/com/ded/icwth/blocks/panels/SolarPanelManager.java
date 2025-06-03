@@ -2,7 +2,7 @@ package com.ded.icwth.blocks.panels;
 
 import com.ded.icwth.MyMod;
 import com.ded.icwth.Tags;
-import ic2.core.init.Localization;
+import com.ded.icwth.util.BlockstateGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SolarPanelManager {
-    private static final Map<String, Block> registeredPanels = new HashMap<>();
+    public static final Map<String, Block> registeredPanels = new HashMap<>();
     private static int guiIdCounter = 1000;
 
     static {
@@ -50,13 +50,29 @@ public class SolarPanelManager {
      */
     public static void registerPanel(String name, int tier, double generationRate,
                                      double capacity, String localizedName) {
+        registerPanel(name, tier, generationRate, capacity, localizedName, null);
+    }
+
+    /**
+     * Регистрирует новый блок солнечной панели с указанием цвета верхней грани.
+     *
+     * @param name           Имя блока
+     * @param tier           Уровень панели
+     * @param generationRate Скорость генерации энергии
+     * @param capacity       Вместимость энергии
+     * @param localizedName  Локализованное имя
+     * @param hexTopColor    HEX-цвет верхней грани (например, "#FF0000" для красного)
+     */
+    public static void registerPanel(String name, int tier, double generationRate,
+                                     double capacity, String localizedName, String hexTopColor) {
         SolarPanelBlock block = new SolarPanelBlock(
                 name,
                 tier,
                 generationRate,
                 capacity,
                 localizedName,
-                guiIdCounter
+                guiIdCounter,
+                hexTopColor
         );
 
         guiIdCounter++;
@@ -74,10 +90,15 @@ public class SolarPanelManager {
         // Инициализация модели на клиентской стороне
         if (net.minecraftforge.fml.common.FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             initModel(block, name);
+            
+            // Создаем blockstate-файл для блока
+            BlockstateGenerator.createBlockstate(name);
         }
 
         registeredPanels.put(name, block);
-        System.out.println("Registered solar panel: " + name + " with GUI ID: " + (guiIdCounter - 1) + " and localizedName: " + localizedName);
+        System.out.println("Registered solar panel: " + name + " with GUI ID: " + (guiIdCounter - 1) + 
+                " and localizedName: " + localizedName + 
+                (hexTopColor != null ? " and hexTopColor: " + hexTopColor : ""));
     }
 
     /**
@@ -103,15 +124,22 @@ public class SolarPanelManager {
         private final double capacity;
         private final String localizedName;
         private final int guiId;
+        private final String hexTopColor; // HEX-цвет верхней грани
 
         public SolarPanelBlock(String name, int tier, double generationRate,
                                double capacity, String localizedName, int guiId) {
+            this(name, tier, generationRate, capacity, localizedName, guiId, null);
+        }
+
+        public SolarPanelBlock(String name, int tier, double generationRate,
+                               double capacity, String localizedName, int guiId, String hexTopColor) {
             super(Material.IRON);
             this.tier = tier;
             this.generationRate = generationRate;
             this.capacity = capacity;
             this.localizedName = localizedName != null ? localizedName : "tile.default_solar.name";
             this.guiId = guiId;
+            this.hexTopColor = hexTopColor;
 
             // Настройки блока
             this.setCreativeTab(ic2.core.IC2.tabIC2);
@@ -119,16 +147,19 @@ public class SolarPanelManager {
             this.setHardness(2.0F); // Установка прочности блока
             this.setResistance(10.0F); // Установка устойчивости к взрывам
 
-            System.out.println("Created SolarPanelBlock with GUI ID: " + guiId + " and localizedName: " + localizedName);
+            System.out.println("Created SolarPanelBlock with GUI ID: " + guiId + 
+                    " and localizedName: " + localizedName + 
+                    (hexTopColor != null ? " and hexTopColor: " + hexTopColor : ""));
         }
 
-        @SideOnly(Side.CLIENT)
-        private static void initModel(Block block, String name) {
-            ModelLoader.setCustomModelResourceLocation(
-                    Item.getItemFromBlock(block), 0,
-                    new ModelResourceLocation(Tags.MODID + ":" + name, "inventory")
-            );
+        /**
+         * Получает HEX-цвет верхней грани блока.
+         * @return HEX-цвет или null, если не задан
+         */
+        public String getHexTopColor() {
+            return hexTopColor;
         }
+
         @Override
         public EnumBlockRenderType getRenderType(IBlockState state) {
             return EnumBlockRenderType.MODEL;
@@ -138,8 +169,9 @@ public class SolarPanelManager {
         public TileEntity createNewTileEntity(World world, int meta) {
             System.out.println("Creating new SolarPanelTile with parameters: tier=" + tier +
                     ", generationRate=" + generationRate + ", capacity=" + capacity +
-                    ", localizedName=" + localizedName + ", guiId=" + guiId);
-            return new SolarPanelTile(generationRate, capacity, tier, localizedName, guiId);
+                    ", localizedName=" + localizedName + ", guiId=" + guiId + 
+                    (hexTopColor != null ? ", hexTopColor=" + hexTopColor : ""));
+            return new SolarPanelTile(generationRate, capacity, tier, localizedName, guiId, hexTopColor);
         }
 
         @Override
@@ -191,8 +223,14 @@ public class SolarPanelManager {
         @Override
         public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
             super.addInformation(stack, worldIn, tooltip, flagIn);
-            tooltip.add(Localization.translate("icwth.mfsu.capacity ") + " " + String.format("%.0f", this.capacity) + " EU");
-            tooltip.add(Localization.translate("icwth.mfsu.generate ") + " " + String.format("%.0f", this.generationRate) + " EU/t");
+            tooltip.add(ic2.core.init.Localization.translate("icwth.mfsu.capacity ") + " " + String.format("%.0f", this.capacity) + " EU");
+            tooltip.add(ic2.core.init.Localization.translate("icwth.mfsu.generate ") + " " + String.format("%.0f", this.generationRate) + " EU/t");
+            
+            // Добавляем информацию о цвете верхней грани, если он задан
+            SolarPanelBlock block = (SolarPanelBlock) this.block;
+            if (block.getHexTopColor() != null) {
+                tooltip.add("§7Top Color: §r" + block.getHexTopColor());
+            }
         }
     }
 
@@ -202,20 +240,36 @@ public class SolarPanelManager {
     public static class SolarPanelTile extends TileEntitySolarBase {
         private final int guiId;
         private final String localizedName;
+        private final String hexTopColor; // HEX-цвет верхней грани
 
         public SolarPanelTile(double output, double capacity, int tier, String localizedName, int guiId) {
+            this(output, capacity, tier, localizedName, guiId, null);
+        }
+
+        public SolarPanelTile(double output, double capacity, int tier, String localizedName, int guiId, String hexTopColor) {
             super(output, capacity, tier);
             this.guiId = guiId;
             this.localizedName = localizedName != null ? localizedName : "tile.default_solar.name";
+            this.hexTopColor = hexTopColor;
             System.out.println("SolarPanelTile created with parameters: output=" + output +
                     ", capacity=" + capacity + ", tier=" + tier +
-                    ", localizedName=" + localizedName + ", guiId=" + guiId);
+                    ", localizedName=" + localizedName + ", guiId=" + guiId + 
+                    (hexTopColor != null ? ", hexTopColor=" + hexTopColor : ""));
         }
 
         public SolarPanelTile() {
             super();
             this.guiId = 0;
             this.localizedName = "tile.default_solar.name";
+            this.hexTopColor = null;
+        }
+
+        /**
+         * Получает HEX-цвет верхней грани блока.
+         * @return HEX-цвет или null, если не задан
+         */
+        public String getHexTopColor() {
+            return hexTopColor;
         }
 
         @Override
@@ -238,5 +292,4 @@ public class SolarPanelManager {
             return output;
         }
     }
-
 }

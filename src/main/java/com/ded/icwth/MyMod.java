@@ -28,10 +28,12 @@ import ic2.api.recipe.Recipes;
 import ic2.core.block.BlockTileEntity;
 import ic2.core.ref.TeBlock;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -78,10 +80,8 @@ public class MyMod {
         ModBlocks.init();
         ModBlocks.InGameRegister();
 
-        //  CommonConfig.energystorage.extrememfsu.outputTier = Integer.MAX_VALUE;
 
 
-//tier,out,storage
 // Energy Storage
 
         EnergyStorageManager.registerStorage("compressed_mfsu", 7, 18432, 360000000, "tile.icwth.intermediate_mfsu.name");
@@ -111,7 +111,7 @@ public class MyMod {
         EnergyStorageManager.registerStorage("hell_yeah_mfsu", 22, Long.MAX_VALUE, Long.MAX_VALUE, "tile.icwth.hell_yeah_mfsu.name");
 
 
-        SolarPanelManager.registerPanel("intermediate_solar", 6, 16384, 40000000, "tile.icwth.intermediate.name");
+        SolarPanelManager.registerPanel("intermediate_solar", 6, 16384, 40000000, "tile.icwth.intermediate.name", "#3366FF");
         SolarPanelManager.registerPanel("superior_solar", 7, 65536, 160000000, "tile.icwth.superior.name");
         SolarPanelManager.registerPanel("what_the_hell_panel", 8, 262144, 640000000, "tile.icwth.what_the_hell_panel.name");
         SolarPanelManager.registerPanel("photon_resonance_solar", 9, 1048576, 2560000000.0, "tile.icwth.photon_resonance.name");
@@ -133,7 +133,9 @@ public class MyMod {
         MinecraftForge.EVENT_BUS.register(RecipeSynchronizer.class);
 
         HyperStorageManager.registerHyperStorage("hyper_storage_unit", Integer.MAX_VALUE, Double.MAX_VALUE, "tile.icwth.hyper_storage_unit.name");
-
+        if (event.getSide() == Side.CLIENT) {
+            MinecraftForge.EVENT_BUS.register(ClientProxy.class);
+        }
     }
 
 
