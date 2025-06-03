@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "ic2:te",
+      "data": 75
+    }
+  },
+  "result": {
+    "item": "icwth:compressed_mfsu",
+    "count": 1
+  }
+}

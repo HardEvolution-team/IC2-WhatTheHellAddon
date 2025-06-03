@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "BCB",
+    "DDD"
+  ],
+  "key": {
+    "A": {
+      "item": "icwth:loli_mfsu",
+      "data": 0
+    },
+    "B": {
+      "item": "icwth:hell_yeah_mfsu",
+      "data": 0
+    },
+    "C": {
+      "item": "icwth:mfsu_singularity",
+      "data": 0
+    },
+    "D": {
+      "item": "icwth:perfect_matter",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "icwth:hyper_storage_unit",
+    "count": 1
+  }
+}

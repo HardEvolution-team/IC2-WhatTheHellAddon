@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "BCB",
+    "BDB"
+  ],
+  "key": {
+    "A": {
+      "item": "icwth:dispersion_solar",
+      "data": 0
+    },
+    "B": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 13
+    },
+    "C": {
+      "item": "icwth:intermediate_mfsu",
+      "data": 0
+    },
+    "D": {
+      "item": "ic2:charging_lapotron_crystal",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "icwth:graviton_solar",
+    "count": 1
+  }
+}

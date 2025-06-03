@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "BCB",
+    "BDB"
+  ],
+  "key": {
+    "A": {
+      "item": "icwth:photonic_solar",
+      "data": 0
+    },
+    "B": {
+      "item": "icwth:triple_dense_iridium_plate",
+      "data": 0
+    },
+    "C": {
+      "item": "icwth:mfsu_singularity",
+      "data": 0
+    },
+    "D": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 13
+    }
+  },
+  "result": {
+    "item": "icwth:vector_solar",
+    "count": 1
+  }
+}

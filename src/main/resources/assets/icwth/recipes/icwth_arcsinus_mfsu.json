@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "CDC",
+    "EFE"
+  ],
+  "key": {
+    "A": {
+      "item": "ic2:hex_heat_storage",
+      "data": 0
+    },
+    "B": {
+      "item": "gravisuite:crafting",
+      "data": 2
+    },
+    "C": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 13
+    },
+    "D": {
+      "item": "icwth:spectral_mfsu",
+      "data": 0
+    },
+    "E": {
+      "item": "icwth:what_the_hell_mfsu",
+      "data": 0
+    },
+    "F": {
+      "item": "icwth:quantum_circuit",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "icwth:arcsinus_mfsu",
+    "count": 1
+  }
+}

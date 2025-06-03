@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "BCB",
+    "DBD"
+  ],
+  "key": {
+    "A": {
+      "item": "icwth:loli_solar",
+      "data": 0
+    },
+    "B": {
+      "item": "icwth:mfsu_singularity",
+      "data": 0
+    },
+    "C": {
+      "item": "icwth:extreme_mfsu",
+      "data": 0
+    },
+    "D": {
+      "item": "icwth:five_compressed_dense_iridium_plate",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "icwth:hell_yeah_solar",
+    "count": 1
+  }
+}

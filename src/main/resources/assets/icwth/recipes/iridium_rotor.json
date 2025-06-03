@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aba",
+        "bcb",
+        "aba"
+    ],
+    "key": {
+        "a": {
+            "item": "ic2:plate",
+            "data": 7
+        },
+        "b": {
+            "item": "advanced_solar_panels:crafting",
+            "data": 7
+        },
+        "c": {
+            "item": "ic2:rotor_carbon"
+        }
+    },
+    "result": {
+        "item": "icwth:iridium_rotor"
+    }
+}

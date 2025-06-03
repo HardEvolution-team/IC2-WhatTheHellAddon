@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "BCB",
+    "DED"
+  ],
+  "key": {
+    "A": {
+      "item": "icwth:extreme_solar",
+      "data": 0
+    },
+    "B": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 5
+    },
+    "C": {
+      "item": "ic2:resource",
+      "data": 13
+    },
+    "D": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 13
+    },
+    "E": {
+      "item": "ic2:charging_lapotron_crystal",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "icwth:spectral_solar",
+    "count": 1
+  }
+}

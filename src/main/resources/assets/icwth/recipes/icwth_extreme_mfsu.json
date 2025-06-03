@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "CDC",
+    "EFE"
+  ],
+  "key": {
+    "A": {
+      "item": "ic2:hex_heat_storage",
+      "data": 0
+    },
+    "B": {
+      "item": "ic2:lzh_condensator",
+      "data": 0
+    },
+    "C": {
+      "item": "icwth:advanced_high_mfsu",
+      "data": 0
+    },
+    "D": {
+      "item": "icwth:photon_resonance_mfsu",
+      "data": 0
+    },
+    "E": {
+      "item": "icwth:quantum_circuit",
+      "data": 0
+    },
+    "F": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 13
+    }
+  },
+  "result": {
+    "item": "icwth:extreme_mfsu",
+    "count": 1
+  }
+}

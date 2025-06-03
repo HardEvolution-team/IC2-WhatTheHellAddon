@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "CDC",
+    "EFE"
+  ],
+  "key": {
+    "A": {
+      "item": "ic2:te",
+      "data": 80
+    },
+    "B": {
+      "item": "gravisuite:crafting",
+      "data": 2
+    },
+    "C": {
+      "item": "icwth:quantum_circuit",
+      "data": 0
+    },
+    "D": {
+      "item": "icwth:magnetron_mfsu",
+      "data": 0
+    },
+    "E": {
+      "item": "icwth:intermediate_mfsu",
+      "data": 0
+    },
+    "F": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 13
+    }
+  },
+  "result": {
+    "item": "icwth:photon_resonance_mfsu",
+    "count": 1
+  }
+}

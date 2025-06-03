@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "BCB",
+    "DED"
+  ],
+  "key": {
+    "A": {
+      "item": "icwth:what_the_hell_panel",
+      "data": 0
+    },
+    "B": {
+      "item": "ic2:charging_lapotron_crystal",
+      "data": 0
+    },
+    "C": {
+      "item": "ic2:resource",
+      "data": 13
+    },
+    "D": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 5
+    },
+    "E": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 13
+    }
+  },
+  "result": {
+    "item": "icwth:photon_resonance_solar",
+    "count": 1
+  }
+}

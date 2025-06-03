@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "CDC",
+    "ABA"
+  ],
+  "key": {
+    "A": {
+      "item": "ic2:resource",
+      "data": 13
+    },
+    "B": {
+      "item": "ic2:te",
+      "data": 80
+    },
+    "C": {
+      "item": "ic2:crafting",
+      "data": 2
+    },
+    "D": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 12
+    }
+  },
+  "result": {
+    "item": "icwth:molecular_transformer",
+    "count": 1
+  }
+}

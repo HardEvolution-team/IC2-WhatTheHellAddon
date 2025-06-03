@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "BCB",
+    "DED"
+  ],
+  "key": {
+    "A": {
+      "item": "icwth:arcsinus_solar",
+      "data": 0
+    },
+    "B": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 5
+    },
+    "C": {
+      "item": "ic2:te",
+      "data": 75
+    },
+    "D": {
+      "item": "icwth:triple_dense_iridium_plate",
+      "data": 0
+    },
+    "E": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 13
+    }
+  },
+  "result": {
+    "item": "icwth:diffraction_solar",
+    "count": 1
+  }
+}

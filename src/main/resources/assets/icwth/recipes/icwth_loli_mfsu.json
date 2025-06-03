@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "CDC",
+    "EEE"
+  ],
+  "key": {
+    "A": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 13
+    },
+    "B": {
+      "item": "icwth:mfsu_singularity",
+      "data": 0
+    },
+    "C": {
+      "item": "ic2:hex_heat_storage",
+      "data": 0
+    },
+    "D": {
+      "item": "icwth:brauthem_mfsu",
+      "data": 0
+    },
+    "E": {
+      "item": "icwth:photonic_mfsu",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "icwth:loli_mfsu",
+    "count": 1
+  }
+}

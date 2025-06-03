@@ -4,6 +4,7 @@ package com.ded.icwth;
 
 
 
+//import com.ded.icwth.blocks.BlockEnergyCoreUltra;
 import com.ded.icwth.blocks.ModBlocks;
 
 
@@ -23,10 +24,12 @@ import com.ded.icwth.blocks.CommonGuiHandler;
 import com.ded.icwth.blocks.trash.EnergyTrashCanTile;
 import com.ded.icwth.items.upgrades.UpgradeItems;
 import ic2.api.event.TeBlockFinalCallEvent;
+import ic2.api.recipe.Recipes;
 import ic2.core.block.BlockTileEntity;
 import ic2.core.ref.TeBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -40,11 +43,16 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.ForgeRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.lang.reflect.Method;
+import java.util.Iterator;
 
 import static com.ded.icwth.Tags.MODID;
 
@@ -103,11 +111,11 @@ public class MyMod {
         EnergyStorageManager.registerStorage("hell_yeah_mfsu", 22, Long.MAX_VALUE, Long.MAX_VALUE, "tile.icwth.hell_yeah_mfsu.name");
 
 
-        SolarPanelManager.registerPanel("intermediate", 6, 16384, 40000000, "tile.icwth.intermediate.name");
-        SolarPanelManager.registerPanel("superior", 7, 65536, 160000000, "tile.icwth.superior.name");
+        SolarPanelManager.registerPanel("intermediate_solar", 6, 16384, 40000000, "tile.icwth.intermediate.name");
+        SolarPanelManager.registerPanel("superior_solar", 7, 65536, 160000000, "tile.icwth.superior.name");
         SolarPanelManager.registerPanel("what_the_hell_panel", 8, 262144, 640000000, "tile.icwth.what_the_hell_panel.name");
-        SolarPanelManager.registerPanel("photon_resonance", 9, 1048576, 2560000000.0, "tile.icwth.photon_resonance.name");
-        SolarPanelManager.registerPanel("extreme", 10, 4194304, 10240000000.0, "tile.icwth.extreme.name");
+        SolarPanelManager.registerPanel("photon_resonance_solar", 9, 1048576, 2560000000.0, "tile.icwth.photon_resonance.name");
+        SolarPanelManager.registerPanel("extreme_solar", 10, 4194304, 10240000000.0, "tile.icwth.extreme.name");
 
         SolarPanelManager.registerPanel("spectral_solar", 11, 16777216, 40960000000.0, "tile.icwth.spectral_solar.name");
         SolarPanelManager.registerPanel("arcsinus_solar", 12, 67108864, 163840000000.0, "tile.icwth.arcsinus_solar_panel.name");
@@ -179,6 +187,10 @@ public class MyMod {
         RecipeInitializer.init(event);
         RecipeSynchronizer.init();
 
+//        GameRegistry.registerTileEntity(
+//                BlockEnergyCoreUltra.TileEntityEnergyCoreExtreme.class,
+//                MODID + ":energy_core_extreme"
+//        );
 
 
     }
@@ -187,10 +199,72 @@ public class MyMod {
     // postInit "Handle interaction with other mods, complete your setup based on this." (Remove if not needed)
     public void postInit(FMLPostInitializationEvent event) {
         TeBlock.registerTeMappings();
+        removeMolecularTransformerRecipe();
+
+
     }
+
+
 
     @EventHandler
     // register server commands in this event handler (Remove if not needed)
     public void serverStarting(FMLServerStartingEvent event) {
     }
+    private void removeMolecularTransformerRecipe() {
+        System.out.println("[YourMod] Начинаю процесс удаления рецепта молекулярного трансформера...");
+
+        // Удаление через Forge Registry - самый надежный способ
+        try {
+            boolean removed = removeViaForgeRegistry();
+            if (removed) {
+                System.out.println("[YourMod] Рецепт молекулярного трансформера успешно удален через Forge Registry!");
+                return;
+            }
+        } catch (Exception e) {
+            System.out.println("[YourMod] Не удалось удалить рецепт через Forge Registry: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        System.out.println("[YourMod] Не удалось найти и удалить рецепт молекулярного трансформера!");
+    }
+    private boolean removeViaForgeRegistry() {
+        // Получаем реестр рецептов
+        ForgeRegistry<IRecipe> recipeRegistry = (ForgeRegistry<IRecipe>) ForgeRegistries.RECIPES;
+        boolean removed = false;
+
+        System.out.println("[YourMod] Поиск рецепта молекулярного трансформера в реестре Forge...");
+
+        // Перебираем все рецепты и ищем молекулярный трансформер
+        for (IRecipe recipe : recipeRegistry.getValuesCollection()) {
+            ItemStack output = recipe.getRecipeOutput();
+
+            // Пропускаем пустые результаты
+            if (output.isEmpty() || output.getItem() == null || output.getItem().getRegistryName() == null) {
+                continue;
+            }
+
+            String registryName = output.getItem().getRegistryName().toString();
+            String unlocalizedName = output.getTranslationKey();
+            String displayName = output.getDisplayName();
+
+            System.out.println("[YourMod] Проверяю рецепт: " + registryName + " / " + unlocalizedName + " / " + displayName);
+
+            // Проверяем, является ли результат молекулярным трансформером
+            if (registryName.contains("advancedsolarpanels") &&
+                    (unlocalizedName.contains("molecular_transformer") ||
+                            displayName.toLowerCase().contains("molecular transformer") ||
+                            displayName.toLowerCase().contains("молекулярный трансформер"))) {
+
+                System.out.println("[YourMod] Найден рецепт молекулярного трансформера: " + recipe.getRegistryName());
+
+                // Удаляем рецепт
+                recipeRegistry.remove(recipe.getRegistryName());
+                removed = true;
+                break;
+            }
+        }
+
+        return removed;
+    }
+
 }

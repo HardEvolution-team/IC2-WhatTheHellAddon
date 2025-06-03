@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "BCB",
+    "DED"
+  ],
+  "key": {
+    "A": {
+      "item": "icwth:vector_solar",
+      "data": 0
+    },
+    "B": {
+      "item": "icwth:intermediate_high_mfsu",
+      "data": 0
+    },
+    "C": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 13
+    },
+    "D": {
+      "item": "icwth:five_compressed_dense_iridium_plate",
+      "data": 0
+    },
+    "E": {
+      "item": "icwth:mfsu_singularity",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "icwth:brauthem_solar",
+    "count": 1
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "BCB",
+    "DED"
+  ],
+  "key": {
+    "A": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 13
+    },
+    "B": {
+      "item": "icwth:quantum_circuit",
+      "data": 0
+    },
+    "C": {
+      "item": "icwth:what_the_hell_mfsu",
+      "data": 0
+    },
+    "D": {
+      "item": "ic2:lzh_condensator",
+      "data": 0
+    },
+    "E": {
+      "item": "icwth:intermediate_mfsu",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "icwth:magnetron_mfsu",
+    "count": 1
+  }
+}

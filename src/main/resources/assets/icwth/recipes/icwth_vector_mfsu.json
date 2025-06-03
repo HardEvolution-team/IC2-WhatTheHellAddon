@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "ACA",
+    "ADA"
+  ],
+  "key": {
+    "A": {
+      "item": "icwth:diffraction_mfsu",
+      "data": 0
+    },
+    "B": {
+      "item": "ic2:hex_heat_storage",
+      "data": 0
+    },
+    "C": {
+      "item": "icwth:photonic_mfsu",
+      "data": 0
+    },
+    "D": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 13
+    }
+  },
+  "result": {
+    "item": "icwth:vector_mfsu",
+    "count": 1
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "ACA",
+    "ADA"
+  ],
+  "key": {
+    "A": {
+      "item": "ic2:hex_heat_storage",
+      "data": 0
+    },
+    "B": {
+      "item": "icwth:extreme_mfsu",
+      "data": 0
+    },
+    "C": {
+      "item": "icwth:dispersion_mfsu",
+      "data": 0
+    },
+    "D": {
+      "item": "icwth:spectral_mfsu",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "icwth:graviton_mfsu",
+    "count": 1
+  }
+}

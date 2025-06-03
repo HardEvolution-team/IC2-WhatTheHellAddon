@@ -50,7 +50,7 @@ public class ModBlocks {
     
     public static Block AdvancedMolecularTransformer;
 
-
+  //  public static Block TestRenderBlock;
     public static void init() {
 
 
@@ -66,6 +66,7 @@ public class ModBlocks {
         
         AdvancedMolecularTransformer = new BlockAdvancedMolecularTransformer(Material.IRON).setTranslationKey("advanced_molecular_transformer").setCreativeTab(IC2.tabIC2);
 
+        // TestRenderBlock = new BlockEnergyCoreProcedural(Material.IRON).setTranslationKey("test_render_block").setCreativeTab(IC2.tabIC2);
     }
 
     public static void InGameRegister() {
@@ -82,7 +83,7 @@ public class ModBlocks {
         
         registerBlock(AdvancedMolecularTransformer, AdvancedMolecularTransformer.getTranslationKey().substring(5));
 
-
+     //   registerBlock(TestRenderBlock, TestRenderBlock.getTranslationKey().substring(5));
     }
 
     public static void Render() {
@@ -98,6 +99,8 @@ public class ModBlocks {
         registerRender(MolecularTransformer);
         
         registerRender(AdvancedMolecularTransformer);
+
+      //  registerRender(TestRenderBlock);
     }
 
 

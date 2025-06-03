@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "BCB",
+    "BDB"
+  ],
+  "key": {
+    "A": {
+      "item": "icwth:graviton_solar",
+      "data": 0
+    },
+    "B": {
+      "item": "icwth:double_dense_iridium_plate",
+      "data": 0
+    },
+    "C": {
+      "item": "icwth:intermediate_high_mfsu",
+      "data": 0
+    },
+    "D": {
+      "item": "ic2:resource",
+      "data": 13
+    }
+  },
+  "result": {
+    "item": "icwth:omega_solar",
+    "count": 1
+  }
+}

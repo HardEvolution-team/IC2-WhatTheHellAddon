@@ -9,6 +9,7 @@ import com.ded.icwth.items.circuits.ItemHybridCircuit;
 import com.ded.icwth.items.circuits.ItemQuantumCircuit;
 import com.ded.icwth.items.circuits.ItemUltimateHybridCircuit;
 import com.ded.icwth.items.materials.*;
+import com.ded.icwth.items.rotors.IridiumRotor;
 import com.ded.icwth.items.singularity.ItemMFSUSingularity;
 import com.ded.icwth.items.upgrades.matter.ItemMatterUpgrade;
 import com.ded.icwth.items.upgrades.overclocker.ItemAdvancedOverclocker;
@@ -85,7 +86,8 @@ public class ModItems {
     public static BlockAdvancedMolecularTransformer advancedMolecularTransformer;
 
 
-
+    @GameRegistry.ObjectHolder("icwth:iridium_rotor")
+    public static IridiumRotor iridiumRotor;
 
 
 
@@ -123,5 +125,6 @@ public class ModItems {
         perfectMatter.initModel();
         denseIridiumPlate.initModel();
 
+        iridiumRotor.initModel();
     }
 }

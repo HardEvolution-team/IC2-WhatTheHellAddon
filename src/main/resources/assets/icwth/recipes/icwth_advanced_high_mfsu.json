@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "CDC",
+    "EFE"
+  ],
+  "key": {
+    "A": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 5
+    },
+    "B": {
+      "item": "icwth:ultimate_hybrid_circuit",
+      "data": 0
+    },
+    "C": {
+      "item": "ic2:charging_lapotron_crystal",
+      "data": 0
+    },
+    "D": {
+      "item": "icwth:intermediate_high_mfsu",
+      "data": 0
+    },
+    "E": {
+      "item": "icwth:hybrid_circuit",
+      "data": 0
+    },
+    "F": {
+      "item": "ic2:resource",
+      "data": 13
+    }
+  },
+  "result": {
+    "item": "icwth:advanced_high_mfsu",
+    "count": 1
+  }
+}

@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class IC2WTHLateMixinLoader implements ILateMixinLoader {
     public static final Map<String, Boolean> modMixinsConfig = new ImmutableMap.Builder<String, Boolean>()
-            .put("fluxnetworks", true)
             .build();
 
     @Override

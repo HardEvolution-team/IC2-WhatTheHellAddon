@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "ic2:crafting",
+      "data": 4
+    }
+  },
+  "result": {
+    "item": "icwth:dense_iridium_plate",
+    "count": 1
+  }
+}

@@ -9,6 +9,7 @@ import com.ded.icwth.items.circuits.ItemHybridCircuit;
 import com.ded.icwth.items.circuits.ItemQuantumCircuit;
 import com.ded.icwth.items.circuits.ItemUltimateHybridCircuit;
 import com.ded.icwth.items.materials.*;
+import com.ded.icwth.items.rotors.IridiumRotor;
 import com.ded.icwth.items.singularity.ItemMFSUSingularity;
 import com.ded.icwth.items.upgrades.matter.ItemMatterUpgrade;
 import com.ded.icwth.items.upgrades.overclocker.ItemAdvancedOverclocker;
@@ -42,7 +43,7 @@ public class CommonProxy {
         event.getRegistry().register(new ItemMFSUSingularity());
 
         event.getRegistry().register(new ItemMatterUpgrade());
-
+        event.getRegistry().register(new IridiumRotor());
 
         //event.getRegistry().register(new ItemBlock(CommonProxy.LoliSolar).setRegistryName(CommonProxy.LoliSolar.getTranslationKey()));
 

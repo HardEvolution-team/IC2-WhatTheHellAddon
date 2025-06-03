@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "BCB",
+    "DED"
+  ],
+  "key": {
+    "A": {
+      "item": "ic2:hex_heat_storage",
+      "data": 0
+    },
+    "B": {
+      "item": "icwth:diffraction_mfsu",
+      "data": 0
+    },
+    "C": {
+      "item": "icwth:vector_mfsu",
+      "data": 0
+    },
+    "D": {
+      "item": "icwth:mfsu_singularity",
+      "data": 0
+    },
+    "E": {
+      "item": "icwth:dispersion_mfsu",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "icwth:brauthem_mfsu",
+    "count": 1
+  }
+}

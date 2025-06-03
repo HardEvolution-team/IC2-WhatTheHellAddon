@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "BCB",
+    "DED"
+  ],
+  "key": {
+    "A": {
+      "item": "icwth:intermediate_solar",
+      "data": 0
+    },
+    "B": {
+      "item": "ic2:lapotron_crystal",
+      "data": 0
+    },
+    "C": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 13
+    },
+    "D": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 5
+    },
+    "E": {
+      "item": "icwth:hybrid_circuit",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "icwth:superior_solar",
+    "count": 1
+  }
+}

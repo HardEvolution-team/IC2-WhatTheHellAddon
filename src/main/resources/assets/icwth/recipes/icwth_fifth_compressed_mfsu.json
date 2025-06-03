@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "icwth:quadruple_compressed_mfsu",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "icwth:fifth_compressed_mfsu",
+    "count": 1
+  }
+}

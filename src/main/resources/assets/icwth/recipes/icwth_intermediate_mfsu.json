@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "ACA",
+    "ADA"
+  ],
+  "key": {
+    "A": {
+      "item": "ic2:lapotron_crystal",
+      "data": 0
+    },
+    "B": {
+      "item": "icwth:hybrid_circuit",
+      "data": 0
+    },
+    "C": {
+      "item": "ic2:te",
+      "data": 75
+    },
+    "D": {
+      "item": "ic2:resource",
+      "data": 13
+    }
+  },
+  "result": {
+    "item": "icwth:intermediate_mfsu",
+    "count": 1
+  }
+}

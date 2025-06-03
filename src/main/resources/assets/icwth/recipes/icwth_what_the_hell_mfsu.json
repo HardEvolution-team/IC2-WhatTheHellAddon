@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "ACA",
+    "ADA"
+  ],
+  "key": {
+    "A": {
+      "item": "ic2:charging_lapotron_crystal",
+      "data": 0
+    },
+    "B": {
+      "item": "icwth:quantum_circuit",
+      "data": 0
+    },
+    "C": {
+      "item": "icwth:superior_mfsu",
+      "data": 0
+    },
+    "D": {
+      "item": "advanced_solar_panels:crafting",
+      "data": 13
+    }
+  },
+  "result": {
+    "item": "icwth:what_the_hell_mfsu",
+    "count": 1
+  }
+}
