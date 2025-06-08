@@ -1,7 +1,7 @@
 {
     "parent": "builtin/entity",
     "textures": {
-        "particle": "icwth:models/particles"
+        "particle": "advanced_solar_panels:models/particles"
     },
     "display": {
         "gui": {

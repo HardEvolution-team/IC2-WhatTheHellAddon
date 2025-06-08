@@ -1,6 +1,7 @@
 package com.ded.icwth.items.rotors;
 
 import ic2.api.item.IKineticRotor;
+import ic2.core.IC2;
 import ic2.core.init.Localization;
 import net.lrsoft.mets.MoreElectricTools;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -21,7 +22,7 @@ public class IridiumRotor extends Item implements IKineticRotor {
     public IridiumRotor() {
         this.setTranslationKey("iridium_rotor");
         this.setRegistryName("iridium_rotor");
-        this.setCreativeTab(MoreElectricTools.CREATIVE_TAB);
+        this.setCreativeTab(IC2.tabIC2);
         this.setMaxDamage(192800*5);
         this.setMaxStackSize(1);
     }
@@ -52,7 +53,6 @@ public class IridiumRotor extends Item implements IKineticRotor {
 
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         tooltip.add(Localization.translate("ic2.itemrotor.wind.info", new Object[]{this.getMinWindStrength(stack), this.getMaxWindStrength(stack)}));
-        tooltip.add(Localization.translate("mets.info.rotor"));
     }
 
     @SideOnly(Side.CLIENT)

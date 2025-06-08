@@ -11,6 +11,7 @@ import com.ded.icwth.blocks.ModBlocks;
 import com.ded.icwth.blocks.batbox.EnergyStorageManager;
 import com.ded.icwth.blocks.hyperstorage.HyperStorageManager;
 import com.ded.icwth.blocks.hyperstorage.TileHyperStorage;
+import com.ded.icwth.blocks.mechanism.distiller.TileElectricDistiller;
 import com.ded.icwth.blocks.moleculartransformer.advanced.TileEntityAdvancedMolecularTransformer;
 import com.ded.icwth.blocks.moleculartransformer.advanced.renders.AdvancedMolecularTransformerTESR;
 import com.ded.icwth.blocks.moleculartransformer.recipes.RecipeInitializer;
@@ -182,6 +183,9 @@ public class MyMod {
         GameRegistry.registerTileEntity(TileHyperStorage.class, new ResourceLocation(MODID, "hyper_storage_tile"));
         GameRegistry.registerTileEntity(TileEntityMolecularTransformer.class, new ResourceLocation(MODID, "molecular_transformer_tile"));
         GameRegistry.registerTileEntity(TileEntityAdvancedMolecularTransformer.class, new ResourceLocation(MODID, "advanced_molecular_transformer_tile"));
+        GameRegistry.registerTileEntity(TileElectricDistiller.class, new ResourceLocation(MODID, "electric_distiller_tile"));
+
+
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMolecularTransformer.class, new MolecularTransformerTESR());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAdvancedMolecularTransformer.class, new AdvancedMolecularTransformerTESR());

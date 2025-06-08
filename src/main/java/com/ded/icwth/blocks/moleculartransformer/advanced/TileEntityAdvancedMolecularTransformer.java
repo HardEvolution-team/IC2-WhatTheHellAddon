@@ -497,7 +497,10 @@ public class TileEntityAdvancedMolecularTransformer extends TileEntity implement
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
         return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
-
+    @Override
+    public boolean canRenderBreaking() {
+        return true; // Было true
+    }
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {

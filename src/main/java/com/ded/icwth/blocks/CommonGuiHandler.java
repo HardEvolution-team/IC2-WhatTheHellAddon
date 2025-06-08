@@ -3,6 +3,9 @@ package com.ded.icwth.blocks;
 
 
 
+import com.ded.icwth.blocks.mechanism.distiller.TileElectricDistiller;
+import com.ded.icwth.blocks.mechanism.distiller.gui.ContainerElectricDistiller;
+import com.ded.icwth.blocks.mechanism.distiller.gui.GuiElectricDistiller;
 import com.ded.icwth.blocks.moleculartransformer.advanced.TileEntityAdvancedMolecularTransformer;
 
 import com.ded.icwth.blocks.moleculartransformer.advanced.gui.ContainerAdvancedMolecularTransformer;
@@ -43,6 +46,9 @@ public class CommonGuiHandler implements IGuiHandler {
         } else if (te instanceof TileEntityAdvancedMolecularTransformer) {
             System.out.println("Creating ContainerMolecularAssembler for Advanced Molecular Assembler");
             return new ContainerAdvancedMolecularTransformer((TileEntityAdvancedMolecularTransformer) te, player);
+        } else if (te instanceof TileElectricDistiller) {
+            System.out.println("Creating ContainerMolecularAssembler for Advanced Molecular Assembler");
+            return new ContainerElectricDistiller((TileElectricDistiller) te, player);
         }
 
         System.out.println("No valid TileEntity found for ID: " + ID);
@@ -71,6 +77,10 @@ public class CommonGuiHandler implements IGuiHandler {
             System.out.println("Creating GuiMolecularAssembler for Advanced Molecular Assembler");
             TileEntityAdvancedMolecularTransformer tile = (TileEntityAdvancedMolecularTransformer) te;
             return new GuiAdvancedMolecularTransformer(tile, player);
+        } else if (te instanceof TileElectricDistiller) {
+            System.out.println("Creating GuiMolecularAssembler for Advanced Molecular Assembler");
+            TileElectricDistiller tile = (TileElectricDistiller) te;
+            return new GuiElectricDistiller(tile, player);
         }
 
         System.out.println("No valid TileEntity found for ID: " + ID);

@@ -1,6 +1,7 @@
 package com.ded.icwth.blocks.moleculartransformer.based.renders;
 
 
+
 import com.ded.icwth.blocks.moleculartransformer.based.TileEntityMolecularTransformer;
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
@@ -29,13 +30,13 @@ import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class MolecularTransformerTESR extends TileEntitySpecialRenderer<TileEntityMolecularTransformer> {
-    private static final ResourceLocation transfTextloc = new ResourceLocation("icwth", "textures/models/texturemoleculartransformer.png");
-    private static final ResourceLocation plazmaTextloc = new ResourceLocation("icwth", "textures/models/plazma.png");
-    private static final ResourceLocation particlesTextloc = new ResourceLocation("icwth", "textures/models/particles.png");
+    private static final ResourceLocation transfTextloc = new ResourceLocation("advanced_solar_panels", "textures/models/textureMolecularTransformer.png");
+    private static final ResourceLocation plazmaTextloc = new ResourceLocation("advanced_solar_panels", "textures/models/plazma.png");
+    private static final ResourceLocation particlesTextloc = new ResourceLocation("advanced_solar_panels", "textures/models/particles.png");
     public static final MolecularTransformerModel model = new MolecularTransformerModel();
     private static final TObjectIntMap<List<Serializable>> textureSizeCache = new TObjectIntHashMap();
     private static final IResourceManager resources = Minecraft.getMinecraft().getResourceManager();
-    public static boolean drawActiveCore = true;
+    public static boolean drawActiveCore = false;
     public int ticker;
 
     public MolecularTransformerTESR() {
@@ -46,7 +47,7 @@ public class MolecularTransformerTESR extends TileEntitySpecialRenderer<TileEnti
             return textureSizeCache.get(Arrays.asList(s, dv));
         } else {
             try {
-                InputStream inputstream = resources.getResource(new ResourceLocation("icwth", s)).getInputStream();
+                InputStream inputstream = resources.getResource(new ResourceLocation("advanced_solar_panels", s)).getInputStream();
                 if (inputstream == null) {
                     throw new FileNotFoundException("Image not found: " + s);
                 } else {
@@ -142,7 +143,6 @@ public class MolecularTransformerTESR extends TileEntitySpecialRenderer<TileEnti
     }
 
     public void render(TileEntityMolecularTransformer tileTransformer, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-        // Рендерим основную модель блока
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)x + 0.5F, (float)y + 1.5F, (float)z + 0.5F);
         if (destroyStage >= 0) {
@@ -160,49 +160,17 @@ public class MolecularTransformerTESR extends TileEntitySpecialRenderer<TileEnti
         model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         GlStateManager.popMatrix();
         if (destroyStage >= 0) {
-            GlStateManager.matrixMode(5890);
-            GlStateManager.popMatrix();
-            GlStateManager.matrixMode(5888);
+            return;
         }
 
         GlStateManager.popMatrix();
-
-        // Если блок активен, рендерим дополнительные эффекты
-        if (tileTransformer != null && tileTransformer.isActive()) {
-            // Рендерим ядро (плазму и частицы)
-            if (drawActiveCore) {
-                GL11.glPushMatrix();
-                GlStateManager.pushAttrib();
-                this.renderCore(tileTransformer, x, y, z);
-                GlStateManager.popAttrib();
-                GL11.glPopMatrix();
-            }
-
-            // Рендерим вращающийся предмет внутри блока
-            ItemStack stack = tileTransformer.getStackInSlot(1);
-            if (!stack.isEmpty()) {
-                // Настраиваем позицию и вращение
-                GlStateManager.pushMatrix();
-                GlStateManager.translate(x + 0.5, y + 0.5, z + 0.5);
-
-                // Вычисляем угол вращения на основе времени - простое вращение вокруг оси Y
-                float angle = (float) ((System.currentTimeMillis() % 3600) / 10.0);
-                GlStateManager.rotate(angle, 0, 1, 0);
-
-                // Настраиваем освещение
-                RenderHelper.enableStandardItemLighting();
-
-                // Фиксированный масштаб для предмета
-                float scale = 0.4f;
-                GlStateManager.scale(scale, scale, scale);
-
-                // Рендерим предмет
-                Minecraft.getMinecraft().getRenderItem().renderItem(stack, ItemCameraTransforms.TransformType.FIXED);
-
-                // Восстанавливаем состояние OpenGL
-                RenderHelper.disableStandardItemLighting();
-                GlStateManager.popMatrix();
-            }
+        if (tileTransformer != null && drawActiveCore && tileTransformer.isActive()) {
+            GL11.glPushMatrix();
+            GlStateManager.pushAttrib();
+            this.renderCore(tileTransformer, x, y, z);
+            GlStateManager.popAttrib();
+            GL11.glPopMatrix();
         }
+
     }
 }

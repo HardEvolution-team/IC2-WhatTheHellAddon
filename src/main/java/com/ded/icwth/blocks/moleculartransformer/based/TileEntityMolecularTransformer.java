@@ -3,6 +3,7 @@ package com.ded.icwth.blocks.moleculartransformer.based;
 import ic2.api.energy.EnergyNet;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
+import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -14,16 +15,25 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
+
+import java.util.Arrays;
+import java.util.List;
+
 
 /**
  * TileEntity для молекулярного трансформера.
  * Обрабатывает логику преобразования предметов, потребление энергии и взаимодействие с GUI.
  */
 public class TileEntityMolecularTransformer extends TileEntity implements ITickable, IInventory, IEnergySink {
-
+    protected static final List<AxisAlignedBB> AABBs = Arrays.asList(new AxisAlignedBB(0.25, 0.0, 0.25, 0.75, 1.0, 0.75), new AxisAlignedBB(0.05, 0.0, 0.2, 0.6, 1.0, 0.8));
     // Инвентарь: слот 0 - вход, слот 1 - выход
     private NonNullList<ItemStack> inventory = NonNullList.withSize(2, ItemStack.EMPTY);
     private InvWrapper itemHandler = new InvWrapper(this);
@@ -155,6 +165,14 @@ public class TileEntityMolecularTransformer extends TileEntity implements ITicka
         }
     }
 
+    @Override
+    public boolean canRenderBreaking() {
+        return true; // Было true
+    }
+
+    protected List<AxisAlignedBB> getAabbs(boolean forCollision) {
+        return AABBs;
+    }
     /**
      * Проверяет, существует ли рецепт для текущего входного предмета.
      *

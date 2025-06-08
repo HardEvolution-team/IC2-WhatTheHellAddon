@@ -4,7 +4,7 @@ package com.ded.icwth.blocks;
 import com.ded.icwth.Tags;
 
 
-
+import com.ded.icwth.blocks.mechanism.distiller.BlockElectricDistiller;
 import com.ded.icwth.blocks.moleculartransformer.advanced.BlockAdvancedMolecularTransformer;
 
 import com.ded.icwth.blocks.moleculartransformer.based.BlockMolecularTransformer;
@@ -50,6 +50,8 @@ public class ModBlocks {
     
     public static Block AdvancedMolecularTransformer;
 
+    public static Block Distiller;
+
   //  public static Block TestRenderBlock;
     public static void init() {
 
@@ -67,6 +69,8 @@ public class ModBlocks {
         AdvancedMolecularTransformer = new BlockAdvancedMolecularTransformer(Material.IRON).setTranslationKey("advanced_molecular_transformer").setCreativeTab(IC2.tabIC2);
 
         // TestRenderBlock = new BlockEnergyCoreProcedural(Material.IRON).setTranslationKey("test_render_block").setCreativeTab(IC2.tabIC2);
+
+        Distiller = new BlockElectricDistiller(Material.IRON).setTranslationKey("electric_distiller").setCreativeTab(IC2.tabIC2);
     }
 
     public static void InGameRegister() {
@@ -83,7 +87,7 @@ public class ModBlocks {
         
         registerBlock(AdvancedMolecularTransformer, AdvancedMolecularTransformer.getTranslationKey().substring(5));
 
-     //   registerBlock(TestRenderBlock, TestRenderBlock.getTranslationKey().substring(5));
+        registerBlock(Distiller, Distiller.getTranslationKey().substring(5));
     }
 
     public static void Render() {
@@ -100,7 +104,7 @@ public class ModBlocks {
         
         registerRender(AdvancedMolecularTransformer);
 
-      //  registerRender(TestRenderBlock);
+        registerRender(Distiller);
     }
 
 
@@ -108,7 +112,6 @@ public class ModBlocks {
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
-        // BlockLoliSolarPanel.initModel();
 
 
     }
